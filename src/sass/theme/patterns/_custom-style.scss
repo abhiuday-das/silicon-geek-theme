@@ -1,0 +1,411 @@
+.about-bg {
+    background-image: url(../assets/images/about-us-page-illustration-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media (max-width: 450px) {
+        background-image: url(../assets/images/m-about-us-page-illustration-bg.png);
+        background-size: contain;
+        background-position-y: 190px;
+    }
+}
+
+.specialties-bg {
+    background-image: url(../assets/images/specialties-bg.png);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media (max-width: 450px) {
+        background-image: url(../assets/images/m-specialties-bg.png);
+    }
+}
+
+.faq-bg {
+    position: relative;
+
+    &:before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 1200px;
+        height: 870px;
+        background-image: url(../assets/images/faq-bg.png);
+        background-position: top left;
+        background-repeat: no-repeat;
+
+        @media (max-width: 450px) {
+            background-image: url(../assets/images/m-faq-bg.png);
+            background-position: top center;
+            background-size: 100%;
+        }
+    }
+}
+
+.circle-right-bg {
+    position: relative;
+
+    &:before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 1200px;
+        height: 870px;
+        background-image: url(../assets/images/circle-right.png);
+        background-position: top left;
+        background-repeat: no-repeat;
+
+        @media (max-width: 450px) {
+            background-image: url(../assets/images/m-circle-right.png);
+            background-position: top center;
+            background-size: 100%;
+        }
+    }
+}
+
+.content-bg {
+    position: relative;
+
+    &:after {
+        position: absolute;
+        content: "";
+        right: 0;
+        top: 0;
+        width: 100%;
+        max-width: 1148px;
+        height: 920px;
+        z-index: -1;
+        background-image: url(../assets/images/content-bg.png);
+        background-position: top right;
+        background-repeat: no-repeat;
+
+        @media (max-width: 450px) {
+            background-image: url(../assets/images/m-about-us-page-illustration-bg.png);
+            background-position: top right;
+            background-size: 100%;
+        }
+    }
+}
+
+.invisalign-bg {
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url(../assets/images/illustration-bg.png);
+        z-index: -1;
+        height: 1173px;
+        width: 745px;
+        top: -403px;
+
+        @media screen and (max-width: 991px) {
+            background-image: url(../assets/images/m-illustration-bg.png);
+            height: 300px;
+            width: 343px;
+            top: 0;
+        }
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url(../assets/images/flower-illustration-bg.png);
+        z-index: -1;
+        height: 388px;
+        width: 315px;
+
+        @media screen and (max-width: 991px) {
+            background-image: url(../assets/images/m-flower-illustration-bg.png);
+            height: 88px;
+            width: 77px;
+        }
+    }
+}
+
+.swiper-button,
+.wp-block-query-pagination-next,
+.wp-block-query-pagination-previous {
+    background: var(--color-secondary-900);
+    height: 62px !important;
+    width: 62px !important;
+    border-radius: 6px !important;
+    position: relative !important;
+    top: unset !important;
+    left: unset !important;
+    right: unset !important;
+    transition: .5s !important;
+
+    @media only screen and (max-width: 640) {
+        height: 52px !important;
+        width: 52px !important;
+    }
+
+    &:before {
+        position: absolute !important;
+        content: "" !important;
+        border-left: 15px solid var(--color-white-900);
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        top: 50%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+    }
+
+    &.swiper-button-prev {
+        &:before {
+            border-right: 15px solid var(--color-white-900);
+            border-left: none;
+            left: 45%;
+        }
+    }
+
+    &:after {
+        display: none !important;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+        background: var(--color-secondary-hover-900);
+    }
+}
+
+.wp-block-query-pagination-previous {
+    &:before {
+        border-right: 15px solid var(--color-white-900);
+        border-left: none;
+        left: 45%;
+    }
+}
+
+.swiper-pagination {
+    .swiper-pagination-bullet {
+        width: 10px !important;
+        height: 10px !important;
+        background-color: var(--color-primary-900) !important;
+        opacity: .6 !important;
+        transition: all .3s ease !important;
+        margin: 0 6px !important;
+
+        &.swiper-pagination-bullet-active {
+            background-color: var(--color-secondary-900) !important;
+            opacity: 1 !important;
+            width: 12px !important;
+            height: 12px !important
+        }
+    }
+}
+
+.our-specialties-section {
+    .our-specialties-swiper {
+        .swiper-wrapper {
+            align-items: stretch; // important for equal height slides
+
+            .swiper-slide {
+                height: auto;
+
+                .our-specialties-card {
+                    max-width: 255px;
+                    margin: 0 auto;
+                    padding: 19px;
+                    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.35);
+                    position: relative;
+
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%; // 🔥 equal card height
+
+                    &:hover {
+                        border-radius: 8px;
+                        background: linear-gradient(0deg,
+                                rgba(45, 156, 148, 0.15) 0%,
+                                rgba(45, 156, 148, 0.15) 100%),
+                            var(--color-quaternary-900);
+                        box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.57);
+                    }
+
+                    .our-specialties-image {
+                        height: 142px;
+                        border-radius: 6px;
+                    }
+
+                    .our-specialties-title {
+                        margin: 24px 0;
+                    }
+
+                    .wp-block-button.is-style-tertiary {
+                        margin-top: auto; // 🔥 pushes button to bottom
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.our-preventative-section {
+    .our-preventative-swiper {
+        .swiper-wrapper {
+            align-items: stretch; // important for equal height slides
+
+            .swiper-slide {
+                height: auto;
+
+                .our-preventative-card {
+                    max-width: 255px;
+                    margin: 0 auto;
+                    padding: 19px;
+                    border-radius: 8px;
+                    background-color: var(--color-secondary-900);
+                    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+                    position: relative;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    height: 100% !important; // 🔥 equal card height
+
+                    &:hover {
+                        background-color: var(--color-quaternary-900);
+                        box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.57);
+
+                        .our-preventative-title,
+                        .wp-element-button {
+                            color: var(--color-black-900) !important;
+                        }
+                    }
+
+                    .our-preventative-title {
+                        margin: 24px 0;
+                    }
+
+                    .wp-block-button.is-style-tertiary {
+                        margin-top: auto; // 🔥 pushes button to bottom
+                    }
+                }
+            }
+        }
+    }
+}
+
+.gradient-line {
+    background: linear-gradient(270deg, var(--color-tertiary-900) 27.71%, var(--color-primary-900) 50%);
+    border: none;
+    height: 1px;
+}
+
+.pt-lg-80,
+.py-lg-80 {
+    padding-top: 40px;
+
+    @media only screen and (min-width: 992px) {
+        padding-top: 80px;
+    }
+}
+
+.pb-lg-80,
+.py-lg-80 {
+    padding-bottom: 40px;
+
+    @media only screen and (min-width: 992px) {
+        padding-bottom: 80px;
+    }
+}
+
+.sticky-footer-btn {
+    z-index: 10;
+}
+
+.modal {
+    width: 100%;
+    max-width: 100%;
+}
+
+.video-wrapper {
+    text-align: center;
+
+    iframe,
+    img {
+        border-radius: 8px;
+
+        @media only screen and (max-width: 400px) {
+            width: 343px !important;
+            height: 194px !important;
+            aspect-ratio: auto;
+        }
+
+        @media only screen and (min-width: 401px) and (max-width: 991px) {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16 / 9;
+
+        }
+         @media only screen and (min-width: 992px) and (max-width: 1200px) {
+            width: 90% !important;
+            height: auto !important;
+            aspect-ratio: 16 / 9;
+
+        }
+
+        @media only screen and (min-width: 1366px) {
+            min-width: 560px !important;
+            height: 315px !important;
+            aspect-ratio: auto;
+        }
+    }
+
+    .vide-thumb {
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 82px;
+            width: 82px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-image: url(../assets/images/play-icon.png);
+            background-size: 100% 100%;
+
+            @media only screen and (max-width: 640px) {
+                height: 65px;
+                width: 65px;
+            }
+        }
+
+        img {
+            object-fit: cover;
+
+        }
+    }
+}
+
+.card {
+    .wp-block-heading {
+        margin-bottom: 24px !important;
+    }
+
+    .wp-block-list {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    p {
+        margin-top: 0 !important;
+    }
+}

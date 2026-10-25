@@ -1,0 +1,108 @@
+.flexible-card {
+  .wp-block-columns {
+    border-radius: 2.4rem;
+    padding: 0;
+    @media only screen and (max-width: 991px) {
+      border-radius: 1.2rem;
+      flex-wrap: wrap !important;
+    }
+    .card-contents {
+      border-radius: 2.4rem 0 0 2.4rem;
+      padding: 6.4rem 4.8rem;
+      box-shadow: var(--wp--preset--shadow--sm);
+      @media only screen and (max-width: 991px) {
+        border-radius: 1.2rem;
+        padding: 3.2rem 2.4rem;
+        flex-basis: 100% !important;
+      }
+      p {
+        @media only screen and (min-width: 992px) {
+          margin-block-start: 3.6rem;
+        }
+      }
+    }
+    .card-image {
+      position: relative;
+      padding-bottom: 4.4rem;
+      @media only screen and (max-width: 991px) {
+        flex-basis: 100% !important;
+        padding-bottom: 10rem;
+      }
+      img, video {
+        border-radius: 0 2.4rem 2.4rem 0;
+        @media only screen and (max-width: 991px) {
+          width: 100%;
+          border-radius: 0 0 1.2rem 1.2rem;
+        }
+      }
+      .flexible-card-badge {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 44.3rem;
+        width: calc(100% - 4.8rem);
+        border-radius: 2.4rem;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 2.4rem;
+        box-shadow: var(--wp--preset--shadow--md);
+        @media only screen and (max-width: 991px) {
+          max-width: unset;
+          width: 100%;
+          border-radius: 1.2rem;
+          padding: 4.4rem 2.15rem;
+        }
+        .wp-block-group {
+          position: relative;
+          padding-left: 4rem !important;
+          figure,
+          .wp-block-image {
+            position: absolute;
+            left: 0;
+            img {
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.v2 {
+    .wp-block-columns {
+      .wp-block-column {
+        @media only screen and (max-width: 991px) {
+          flex-basis: 100% !important;
+        }
+      }
+      .card-image {
+        padding-bottom: 5rem;
+        @media only screen and (max-width: 991px) {
+          padding-bottom: 10rem;
+          margin-bottom: 2.4rem;
+        }
+        .flexible-card-badge {
+          max-width: unset;
+          width: 100%;
+          bottom: 0;
+          @media only screen and (max-width: 991px) {
+            padding: 3.4rem 2.4rem;
+            bottom: 0;
+          }
+          .wp-block-group {
+            padding-left: 7.5rem !important;
+            figure {
+              left: 1rem;
+            }
+          }
+        }
+      }
+      .wp-block-button {
+        @media only screen and (max-width: 991px) {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}

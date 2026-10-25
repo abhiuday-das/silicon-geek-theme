@@ -1,0 +1,54 @@
+// ----------------------------------
+// Utility Variables
+// ----------------------------------
+// Spacing, sizing, and layout utility variables
+
+// Heights
+$heights: (
+  "2xs": 2.4rem,
+  "xs": 2.8rem,
+  "sm": 4rem,
+  "md": 4.8rem,
+  "ml": 5rem,
+  "lg": 7.2rem,
+  "xl": 10rem,
+);
+
+// Widths
+$widths: (
+  "2xs": 2.4rem,
+  "xs": 2.8rem,
+  "sm": 4rem,
+  "md": 4.8rem,
+  "ml": 5rem,
+  "lg": 7.2rem,
+  "xl": 10rem,
+);
+
+// Border radius sizes
+$border-radius-sizes: (
+  "8": 0.8rem,
+  "10": 1rem,
+  "12": 0.75rem,
+  "16": 1.6rem,
+  "18": 1.8rem,
+  "20": 2rem,
+  "24": 2.4rem,
+);
+
+// Border widths
+$border-widths: (
+  1: 0.1rem,
+  2: 0.2rem,
+  4: 0.4rem,
+);
+
+// Border sides
+$border-sides: (
+  "": "",
+  // all sides
+  "t": "-top",
+  "r": "-right",
+  "b": "-bottom",
+  "l": "-left",
+);

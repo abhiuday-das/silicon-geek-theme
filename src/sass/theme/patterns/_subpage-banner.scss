@@ -1,0 +1,14 @@
+.subpage-banner{
+  .img-lg{
+    img{
+      min-height: 250px;
+        object-fit: cover;
+    }
+  }
+  .d-lg-none{
+    img{
+      height: 215px;
+      object-fit: cover;
+    }
+  }
+}

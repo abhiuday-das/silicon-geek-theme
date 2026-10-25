@@ -1,0 +1,9 @@
+// ----------------------------------
+// Paragraph Block Styles
+// ----------------------------------
+// Custom paragraph block styling and utilities
+
+.wp-block-paragraph.is-style-badge {
+  @extend .badge;
+  @extend .text-bg-primary;  // Bootstrap v5 style badge color helper
+}

@@ -1,0 +1,12 @@
+.blog-detail {
+  .post-title {
+    position: relative;
+    font-size: 5.6rem;
+    font-weight: var(--font-medium);
+    line-height: 1.25;
+    margin-bottom: 15px; 
+  }
+  img {
+    border-radius: 8px;
+  }
+} 

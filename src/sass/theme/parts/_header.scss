@@ -1,0 +1,731 @@
+.stars {
+  display: inline-flex;
+  gap: 4px;
+  @media only screen and (max-width: 767px) {
+    gap: 1px;
+  }
+
+  i {
+    color: var(
+      --wp--preset--color--star
+    ) !important; // #E8B835 gold from theme.json
+    display: inline-block;
+    font-size: 2rem;
+
+    @media only screen and (max-width: 767px) {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.w_75 {
+  width: 7.5rem !important;
+}
+.h_75 {
+  height: 7.5rem !important;
+}
+
+.m-cta-list {
+  i {
+    color: var(--wp--preset--color--white);
+  }
+}
+
+.shadow_header {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+// ═══════════════════════════════════════════════════════
+// MAIN HEADER WRAPPER
+// ═══════════════════════════════════════════════════════
+header {
+  background-color: var(--wp--preset--color--header-bg) !important; // #222222
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+  z-index: 998;
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  // ─────────────────────────────────────────────────────
+  // ANNOUNCEMENT BAR — Pure black #000
+  // Override the has-secondary-background-color Gutenberg class
+  // ─────────────────────────────────────────────────────
+  .announcement-bar {
+    background-color: var(--wp--preset--color--black) !important; // #000000
+
+    // Kill Gutenberg's color utility override
+    &.has-secondary-background-color,
+    &.has-background,
+    &[class*="has-"][class*="background-color"] {
+      background-color: var(--wp--preset--color--black) !important;
+    }
+
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+
+    .wp-block-button {
+      &.is-style-tertiary-alt {
+        .wp-element-button {
+          font-weight: normal !important;
+        }
+      }
+    }
+
+    // All text white by default
+    p,
+    span,
+    a {
+      color: var(--wp--preset--color--white) !important;
+    }
+
+    // Stars — gold from theme.json
+    .stars i {
+      color: var(--wp--preset--color--star) !important; // #E8B835
+    }
+
+    // "Accepting New Patients!" — yellow accent
+    .has-text-align-right.display2-alt {
+      color: var(--wp--preset--color--muted-text) !important; // #FFD166
+    }
+
+    p {
+      a {
+        color: var(--wp--preset--color--white) !important;
+        text-decoration: none;
+
+        &[href^="tel:"] {
+          margin-left: 1.6rem;
+          color: var(--wp--preset--color--muted-text) !important;
+        }
+
+        &:hover {
+          color: var(--wp--preset--color--muted-text) !important;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .hover-has-white-color {
+      p:hover a {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────────────────
+  // DESKTOP HEADER — #222222 from theme.json header-bg
+  // ─────────────────────────────────────────────────────
+  .desktop-header {
+    background-color: var(--wp--preset--color--header-bg) !important; // #222222
+
+    &.has-white-background-color,
+    &.has-background,
+    &[class*="has-"][class*="background-color"] {
+      background-color: var(--wp--preset--color--header-bg) !important;
+    }
+
+    // ── NUKE ALL INNER BACKGROUND COLORS ──
+    // Gutenberg injects has-white-background-color on every nested group
+    // including ones with unique generated class names like wp-container-core-group-is-layout-ced60ee5
+    // The wildcard [class*=] catches ALL of them regardless of generated hash.
+    *[class*="has-white-background"],
+    *[class*="has-background"],
+    .wp-block-group,
+    .wp-block-columns,
+    .wp-block-column,
+    .desktop-header-header,
+    .custom-container,
+    .is-style-container,
+    .is-style-container-fluid {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+
+    // But keep the button backgrounds (Schedule Online Now etc.)
+    .wp-block-button__link,
+    .wp-block-button__link.has-background {
+      background-color: revert !important;
+      background: revert !important;
+    }
+
+    @media (hover: none), only screen and (max-width: 991px) {
+      display: none !important;
+    }
+
+    @media only screen and (max-width: 1024px) {
+      display: none;
+    }
+
+    // Phone/fax number text — white
+    p.has-secondary-color,
+    p[class*="has-secondary"] {
+      color: var(--wp--preset--color--white) !important;
+    }
+
+    // Make any remaining images visible on dark background
+    figure img {
+      filter: brightness(0) invert(1);
+    }
+
+    // ── CONTACT ICONS (phone & fax) ──
+    .header-contact-icon {
+      font-size: 2.6rem;
+      color: var(--wp--preset--color--primary) !important; // orange #FF9A2D
+      align-self: center;
+      transition: color 0.2s ease;
+    }
+
+    .header-contact-text {
+      color: var(--wp--preset--color--white) !important;
+      transition: color 0.2s ease;
+    }
+
+    .header-contact-link {
+      text-decoration: none !important;
+      &:hover {
+        .header-contact-icon {
+          color: var(--wp--preset--color--primary-hover) !important;
+        }
+        .header-contact-text {
+          color: var(--wp--preset--color--primary) !important;
+        }
+      }
+    }
+
+    // ── PRIMARY-COLORED DIVIDER between phone & fax ──
+    // Replaces old .border_left_2
+    .header-divider {
+      border-left: 2px solid var(--wp--preset--color--primary) !important; // #FF9A2D
+      padding-left: 1.2rem;
+    }
+
+    // Keep old class working too in case it's still on the element
+    .border_left_2 {
+      border-left: 2px solid var(--wp--preset--color--primary) !important;
+    }
+
+    // ── NAV LINKS ──
+    nav > ul > li > a {
+      font-family: map-get($font-families, "heading");
+      font-size: var(--font-size-lg);
+      color: var(--wp--preset--color--white) !important;
+      line-height: normal;
+      text-decoration: none;
+      letter-spacing: -0.25px;
+      transition: all 0.2s ease-in-out;
+      text-transform: capitalize !important;
+
+      &:hover {
+        color: var(--wp--preset--color--primary) !important; // #FF9A2D orange
+        font-weight: var(--font-bold);
+      }
+
+      &.active {
+        color: var(--wp--preset--color--primary) !important;
+        font-weight: var(--font-bold);
+      }
+    }
+
+    nav ul li {
+      margin-bottom: 0px;
+      &::before {
+        display: none;
+      }
+
+      a {
+        font-weight: 500;
+        color: var(--wp--preset--color--white) !important;
+      }
+
+      &:hover .wp-block-navigation__submenu-icon svg path {
+        stroke: var(--wp--preset--color--primary);
+      }
+
+      .wp-block-navigation__submenu-icon svg {
+        stroke: var(--wp--preset--color--white);
+        height: 1.6rem !important;
+        width: 1.6rem !important;
+        margin-top: -1px !important;
+        margin-left: 4px;
+
+        &:hover {
+          stroke: var(--wp--preset--color--primary);
+        }
+      }
+
+      /* ── SECOND LEVEL DROPDOWN ── */
+      ul.wp-block-navigation-submenu {
+        padding-top: 1rem;
+        padding-left: 0px !important;
+        background-color: transparent !important;
+        border: 0 !important;
+        left: -14px !important;
+        min-width: 250px !important;
+
+        li {
+          box-shadow: 0 1.5rem 2rem 0 rgba(0, 0, 0, 0.5);
+          border-radius: 0px;
+          background-color: #1a1a1a;
+          margin-bottom: 0px !important;
+
+          &:hover {
+            background-color: var(--wp--preset--color--primary); // orange
+            text-decoration: none;
+          }
+
+          &:hover a {
+            color: var(--wp--preset--color--white) !important;
+          }
+
+          &:hover .wp-block-navigation__submenu-icon svg path {
+            stroke: var(--wp--preset--color--white);
+          }
+
+          .wp-block-navigation__submenu-icon svg {
+            right: 7px !important;
+            position: relative;
+            path {
+              stroke: rgba(255, 255, 255, 0.7);
+            }
+          }
+
+          &:first-child a {
+            border-radius: 0px 0px 0 0 !important;
+          }
+          &:last-child a {
+            border-radius: 0 0 0px 0px !important;
+          }
+
+          /* ── THIRD LEVEL DROPDOWN ── */
+          ul.wp-block-navigation-submenu {
+            position: absolute;
+            left: 250px !important;
+            top: -10px !important;
+            min-width: 250px !important;
+            background: #1a1a1a;
+            box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.5);
+
+            a {
+              color: var(--wp--preset--color--white) !important;
+              &:hover {
+                color: var(--wp--preset--color--white) !important;
+              }
+            }
+          }
+
+          a {
+            font-family: map-get($font-families, "base");
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-size: var(--font-size-lg);
+            line-height: normal;
+            padding: 1.2rem 0rem 1.2rem 1.6rem !important;
+
+            &:hover {
+              color: var(--wp--preset--color--white) !important;
+              background-color: var(--wp--preset--color--primary);
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────────────────
+  // MOBILE HEADER — Full dark theme fixes
+  // ─────────────────────────────────────────────────────
+  .mobile-header {
+    display: none;
+    background-color: var(--wp--preset--color--header-bg) !important;
+
+    @media (hover: none), only screen and (max-width: 991px) {
+      display: block !important;
+    }
+    @media only screen and (max-width: 1024px) {
+      display: block;
+      padding: 0 !important;
+    }
+
+    .is-style-row {
+      max-width: unset !important;
+    }
+
+    .site-phone-number {
+      color: var(--wp--preset--color--white);
+      display: flex;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-family: var(--wp--preset--font-family--base);
+    }
+
+    // ── FIXED TOP BAR ──
+    .mobile-header-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1001;
+      background-color: var(--wp--preset--color--header-bg) !important;
+
+      &.has-white-background-color,
+      &.has-background {
+        background-color: var(--wp--preset--color--header-bg) !important;
+      }
+
+      // Kill shadow on the inner row — we handle shadow on the header itself
+      .is-style-row.shadow_header {
+        box-shadow: none !important;
+      }
+
+      // Columns block
+      .wp-block-columns,
+      .wp-block-columns.has-white-background-color,
+      .wp-block-columns.has-background {
+        background-color: var(--wp--preset--color--header-bg) !important;
+        box-shadow: none !important;
+      }
+
+      // ── HAMBURGER BUTTON ──
+      // Remove box shadow, just a clean icon
+      .hamburger-btn {
+        .wp-block-button__link,
+        .wp-element-button {
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+          padding: 8px 16px !important;
+        }
+
+        a i,
+        a .navbar-toggler-icon {
+          color: var(--wp--preset--color--white) !important;
+          font-size: 2.4rem;
+        }
+      }
+
+      // ── CLOSE BUTTON (in mobile-header-nav) ──
+      .close-btn {
+        .wp-block-button__link,
+        .wp-element-button {
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+
+        a i {
+          color: var(--wp--preset--color--white) !important;
+          font-size: 2.4rem;
+        }
+      }
+
+      // ── CTA BUTTON (message icon, top right) ──
+      .callctaBtn {
+        .wp-block-button__link,
+        .wp-element-button {
+          background-color: var(
+            --wp--preset--color--primary
+          ) !important; // #00D4FF cyan
+          box-shadow: none !important;
+          border: none !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          width: 75px !important;
+          height: 75px !important;
+          padding: 0 !important;
+          border-radius: 10px 0 0 10px !important;
+        }
+
+        // Message icon — Font Awesome
+        .fa-message,
+        i[class*="fa-message"] {
+          font-size: 2.6rem !important;
+          color: var(--wp--preset--color--white) !important;
+          margin: 0 !important;
+          width: auto !important;
+          height: auto !important;
+        }
+
+        // Fallback for custom icon font
+        .navbar-toggler-icon {
+          font-size: 2.6rem !important;
+          color: var(--wp--preset--color--white) !important;
+          width: auto !important;
+          height: auto !important;
+        }
+
+        // Remove any img (old approach)
+        img {
+          display: none !important;
+        }
+      }
+    }
+
+    // ── SHADOW: only on the header bar itself, not inner elements ──
+    &.mobile-header {
+      .mobile-header-header {
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    // ── MOBILE NAV PANEL ──
+    .mobile-header-nav {
+      position: fixed;
+      top: 75px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 75px);
+      background-color: var(--wp--preset--color--header-bg) !important;
+      overflow-y: auto;
+      z-index: 999;
+      display: none;
+
+      &.has-white-background-color,
+      &.has-background {
+        background-color: var(--wp--preset--color--header-bg) !important;
+      }
+
+      > .is-style-row:first-child {
+        display: none;
+      }
+
+      // Nav row header (close btn row) — no shadow
+      .shadow_header {
+        box-shadow: none !important;
+        background-color: var(--wp--preset--color--header-bg) !important;
+      }
+
+      .wp-block-columns,
+      .wp-block-columns.has-white-background-color {
+        background-color: var(--wp--preset--color--header-bg) !important;
+        box-shadow: none !important;
+      }
+
+      // Close button in nav panel
+      .close-btn {
+        .wp-block-button__link {
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+
+        i {
+          color: var(--wp--preset--color--white) !important;
+          font-size: 2.4rem;
+        }
+      }
+
+      // CTA button in nav panel header row
+      .callctaBtn {
+        .wp-block-button__link {
+          background-color: var(--wp--preset--color--secondary) !important;
+          box-shadow: none !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          width: 75px !important;
+          height: 75px !important;
+          padding: 0 !important;
+          border-radius: 10px 0 0 10px !important;
+        }
+
+        .fa-message,
+        i[class*="fa-message"] {
+          font-size: 2.6rem !important;
+          color: var(--wp--preset--color--white) !important;
+          margin: 0 !important;
+          width: auto !important;
+          height: auto !important;
+        }
+
+        img {
+          display: none !important;
+        }
+      }
+    }
+
+    // ── CTA POPUP ──
+    .cta-popup {
+      position: fixed;
+      top: 75px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 75px);
+      background-color: var(--wp--preset--color--header-bg) !important;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+
+      &.has-white-background-color,
+      &.has-background {
+        background-color: var(--wp--preset--color--header-bg) !important;
+      }
+
+      > .is-style-row:first-child {
+        display: none;
+      }
+      > .is-style-row:last-child {
+        padding-top: 2rem;
+      }
+    }
+
+    // ── OVERLAY ──
+    .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      z-index: 998;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+
+      &.active {
+        display: block;
+        opacity: 1;
+      }
+    }
+
+    // ── NAV ITEMS ──
+    nav ul li {
+      display: block !important;
+      width: 100%;
+      padding-block: 1.2rem;
+      margin-bottom: 0px !important;
+
+      &:not(:last-child) {
+        border-bottom: 0.1rem solid rgba(255, 255, 255, 0.08);
+      }
+
+      &::before {
+        display: none;
+      }
+
+      a {
+        font-size: 2rem;
+        color: var(--wp--preset--color--white) !important;
+        font-weight: var(--font-medium);
+        line-height: normal;
+        font-family: map-get($font-families, "heading");
+        letter-spacing: -0.25px;
+        padding-left: 30px !important;
+        text-decoration: none;
+      }
+
+      .wp-block-navigation__submenu-icon {
+        position: absolute;
+        right: 30px;
+        top: 1.6rem;
+        height: 1.6rem !important;
+        width: 1.6rem !important;
+        cursor: pointer;
+        pointer-events: auto !important;
+        transition: transform 0.3s ease;
+
+        svg {
+          stroke: var(--wp--preset--color--white);
+        }
+      }
+
+      ul.wp-block-navigation-submenu {
+        position: relative !important;
+        padding-left: 0 !important;
+        width: 100% !important;
+
+        &.is-open {
+          margin-top: 1.6rem;
+          border: 0 !important;
+          visibility: unset;
+          height: auto;
+          opacity: 1;
+        }
+
+        li {
+          background: #1c1c1c !important;
+          border-bottom: 0;
+          padding: 0;
+          margin-bottom: 0px !important;
+
+          a {
+            font-family: var(--wp--preset--font-family--base);
+            font-size: 2rem;
+            font-weight: var(--font-regular);
+            color: rgba(255, 255, 255, 0.75) !important;
+            margin: 0px 60px 0px 30px !important;
+            text-decoration: none !important;
+          }
+        }
+      }
+
+      &:hover {
+        ul.wp-block-navigation-submenu:not(.is-open) {
+          height: 0 !important;
+          overflow: hidden !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+        }
+      }
+    }
+
+    // ── WP BUTTON GLOBAL RESET inside mobile ──
+    // Remove ALL box shadows from button elements inside mobile header
+    .wp-block-button__link,
+    .wp-element-button {
+      &:not(.callctaBtn .wp-block-button__link) {
+        box-shadow: none !important;
+      }
+    }
+  }
+
+  // ── GLOBAL MOBILE HEADER OVERRIDES (outside header{}) ──
+  header .mobile-header,
+  .mobile-header.has-white-background-color,
+  .mobile-header.has-background,
+  header .mobile-header-header,
+  .mobile-header-header.has-white-background-color,
+  .mobile-header-header.has-background {
+    background-color: var(--wp--preset--color--header-bg) !important;
+  }
+
+  .mobile-header-nav.has-white-background-color,
+  .mobile-header-nav.has-background,
+  .cta-popup.has-white-background-color,
+  .cta-popup.has-background {
+    background-color: var(--wp--preset--color--header-bg) !important;
+  }
+
+  .mobile-header .wp-block-columns.has-white-background-color,
+  .mobile-header .wp-block-columns.has-background,
+  .mobile-header-header .wp-block-columns.has-white-background-color,
+  .mobile-header-header .wp-block-columns.has-background {
+    background-color: var(--wp--preset--color--header-bg) !important;
+    box-shadow: none !important;
+  }
+
+  // Kill ALL box shadows on shadow_header inside mobile
+  .mobile-header .shadow_header,
+  .mobile-header-nav .shadow_header {
+    box-shadow: none !important;
+    background-color: var(--wp--preset--color--header-bg) !important;
+  }
+}
+.hamburger-btn {
+  i {
+    justify-content: center;
+    margin-left: 0px;
+  }
+}
+.close-btn {
+  i {
+    justify-content: center;
+    margin-left: 0px;
+  }
+}

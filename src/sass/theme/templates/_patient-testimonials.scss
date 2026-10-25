@@ -1,0 +1,90 @@
+.patient-testimonials {
+  // Testimonials Section
+  .testimonials {
+    .wp-block-understrap-cards {
+      &.is-style-cards {
+        .wp-block-understrap-card {
+          &.card {
+            &.is-style-card {
+              .card-content {
+                max-height: 48rem;
+                overflow-y: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Share Your Story Section
+  .share-your-story {
+    .flexible-card {
+      .wp-block-columns {
+        @media only screen and (max-width: 991px) {
+          flex-wrap: wrap-reverse !important;
+          .wp-block-column {
+            &.card-image {
+              margin-bottom: 1.6rem;
+              img {
+                border-radius: 1rem;
+              }
+            }
+            &.card-contents {
+              position: relative;
+              background: linear-gradient(
+                90deg,
+                rgba(6, 186, 181, 0.2),
+                #06bab5
+              );
+              border-radius: 2.4rem;
+              padding: 3.2rem 4.8rem;
+              &::before {
+                content: "";
+                position: absolute;
+                inset: 0.2rem;
+                border-radius: 2.2rem;
+                background: var(--color-white-900);
+                z-index: 1;
+              }
+              p {
+                position: relative;
+                z-index: 2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Share Your Story Popup */
+.share-your-story-popup {
+  padding: 14rem 8.7rem !important;
+  @media only screen and (max-width: 991px) {
+    padding: 14rem 2rem !important;
+  }
+  .gform_title {
+    @extend h2;
+    @extend .text-center;
+    color: var(--color-tertiary-900);
+    margin-bottom: 4.8rem;
+  }
+  .gform_wrapper {
+    .gform_fields {
+      max-width: unset;
+      .gfield {
+        .gfield_label {
+          @extend .d-block;
+          @extend .text-center;
+        }
+        .ginput_container {
+          .gform-field-label {
+            @extend .d-none;
+          }
+        }
+      }
+    }
+  }
+}

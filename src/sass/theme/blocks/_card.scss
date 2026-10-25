@@ -1,0 +1,137 @@
+/* ======================================================
+   UNDERSTRAP CARD BLOCK — FULLY FUNCTIONAL VERSION
+   ====================================================== */
+
+/* Cards Group Block */
+.wp-block-understrap-cards {
+  &.is-style-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    .wp-block-understrap-card {
+      &.card.is-style-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 0 1 35.4rem;
+        max-width: 35.4rem;
+        width: 100%;
+        padding: 3.6rem 4.8rem;
+        gap: 2.4rem;
+        border-radius: 2.4rem;
+        border: 0;
+        background: linear-gradient(90deg, #06bab533, #06bab5);
+        box-shadow: 0.3122rem 0.9366rem 2.1854rem 0 rgba(0, 0, 0, 0.06);
+        transition: 300ms all ease-in-out;
+        @media only screen and (max-width: 1200px) {
+          flex: 0 1 calc(33.33% - 1.5rem);
+        }
+        @media only screen and (max-width: 991px) {
+          flex: 0 1 calc(50% - 1.5rem);
+        }
+        @media only screen and (max-width: 767px) {
+          flex: 0 1 100%;
+          border-radius: 1.2rem;
+        }
+
+        /* Default fallbacks for CSS variables */
+        --image-bg: transparent;
+        --image-width: auto;
+        --image-height: auto;
+        --image-border-radius: 0;
+        --image-justify: center;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0.2rem;
+          border-radius: 2.2rem;
+          background: var(--color-white-900);
+          z-index: 1;
+          transition: 300ms all ease-in-out;
+          @media only screen and (max-width: 767px) {
+            border-radius: 1rem;
+          }
+        }
+
+        // Card Image
+        .card-image {
+          display: block;
+          width: var(--image-width, auto) !important;
+          height: var(--image-height, auto) !important;
+          border-radius: var(--image-border-radius, 0) !important;
+          background-color: var(--image-bg, transparent) !important;
+          object-fit: cover;
+          object-position: center;
+          margin: 0 auto;
+          z-index: 2;
+          transition: all 0.3s ease-in-out;
+        }
+
+        // Card Content / Body
+        .card-content {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 1.6rem;
+          z-index: 2;
+
+          .wp-block-heading {
+            color: var(--color-tertiary-900);
+            margin-top: 0;
+          }
+
+          p {
+            margin-bottom: 0;
+            color: var(--wp--preset--color--darkgray);
+          }
+        }
+
+        // Card Badge
+        .is-style-badge {
+          &.is-style-badge-primary {
+            display: inline-block;
+            background-color: var(--color-primary-900);
+            color: var(--color-white-900);
+            padding: 0.4rem 0.6rem;
+            border-radius: 0.4rem;
+            font-size: 1.6rem;
+          }
+        }
+
+        // Card Button
+        .card-button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 500;
+          text-decoration: none;
+          color: var(--color-primary-900);
+          margin-top: 0.75rem;
+          transition: all 0.2s ease-in-out;
+          i {
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+            transition: transform 300ms ease-in-out;
+          }
+          &:hover {
+            text-decoration: underline;
+            i {
+              transform: translateX(4px);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.card{
+  ul{
+    li{
+      &:before {
+        background: var(--color-black-900) !important;
+      }
+    }
+  }
+}

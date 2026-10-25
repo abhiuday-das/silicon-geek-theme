@@ -1,0 +1,41 @@
+// ----------------------------------
+// WordPress Core Pattern Styles
+// ----------------------------------
+// This file imports all individual block stylesheets for better organization
+@import "patterns/homepage-hero";
+@import "patterns/subpage-banner";
+@import "patterns/blog-banner";
+@import "patterns/master";
+@import "patterns/our-team";
+@import "patterns/reviews";
+@import "patterns/custom-style";
+
+
+.team-container ul.wp-block-post-template {
+    padding-left: 0px !important;
+}
+
+.team-container ul.wp-block-post-template li::before {
+    display: none;
+}
+
+.team-container ul.wp-block-post-template li .wp-block-group.is-style-container {
+    padding:0px
+}
+
+
+button.read-more-button ,button.read-less-button {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--color-secondary-900);
+    text-decoration: none;
+    border: 0px;
+    background: transparent;
+    padding: 0px;
+    margin-top: 20px;
+    &:hover{
+        text-decoration: underline;
+    }
+}

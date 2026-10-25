@@ -1,0 +1,61 @@
+/* ------------------------------------------
+   Responsive Spacing Utility Classes
+   Example:
+     p-15       → padding: 15px (all)
+     p-d-30     → padding: 30px (desktop ≥768px)
+     py-71      → padding-top/bottom: 71px
+     py-d-80    → padding-top/bottom: 80px
+     mx-16      → margin-left/right: 16px
+     mx-d-30    → margin-left/right: 30px
+   ------------------------------------------ */
+
+$spaces: (12, 15, 16, 24, 30, 32, 40, 64, 71, 80, 98);
+
+/* Generate spacing utilities */
+@mixin spacing-utils($prefix, $property) {
+  @each $space in $spaces {
+    // ---------- All devices ----------
+    .#{$prefix}-#{$space} {
+      #{$property}: #{$space}px !important;
+    }
+
+    // Individual sides
+    .#{$prefix}t-#{$space} { #{$property}-top: #{$space}px !important; }
+    .#{$prefix}r-#{$space} { #{$property}-right: #{$space}px !important; }
+    .#{$prefix}b-#{$space} { #{$property}-bottom: #{$space}px !important; }
+    .#{$prefix}l-#{$space} { #{$property}-left: #{$space}px !important; }
+
+    // Axis shortcuts
+    .#{$prefix}x-#{$space} {
+      #{$property}-left: #{$space}px !important;
+      #{$property}-right: #{$space}px !important;
+    }
+    .#{$prefix}y-#{$space} {
+      #{$property}-top: #{$space}px !important;
+      #{$property}-bottom: #{$space}px !important;
+    }
+
+    // ---------- Desktop only ----------
+    @media (min-width: 768px) {
+      .#{$prefix}-d-#{$space} { #{$property}: #{$space}px !important; }
+
+      .#{$prefix}t-d-#{$space} { #{$property}-top: #{$space}px !important; }
+      .#{$prefix}r-d-#{$space} { #{$property}-right: #{$space}px !important; }
+      .#{$prefix}b-d-#{$space} { #{$property}-bottom: #{$space}px !important; }
+      .#{$prefix}l-d-#{$space} { #{$property}-left: #{$space}px !important; }
+
+      .#{$prefix}x-d-#{$space} {
+        #{$property}-left: #{$space}px !important;
+        #{$property}-right: #{$space}px !important;
+      }
+      .#{$prefix}y-d-#{$space} {
+        #{$property}-top: #{$space}px !important;
+        #{$property}-bottom: #{$space}px !important;
+      }
+    }
+  }
+}
+
+/* Generate margin and padding utilities */
+@include spacing-utils("m", "margin");
+@include spacing-utils("p", "padding");

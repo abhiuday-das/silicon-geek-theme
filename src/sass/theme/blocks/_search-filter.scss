@@ -1,0 +1,52 @@
+// Search Filter Block Styles
+.search-filter-block {
+    margin-bottom: 2rem;
+    .search-filter-form {
+        .input-group {
+            width: 100%;
+            .form-control {
+                border-right: 0;
+                font-weight: 400;
+                transition: all 0.3s ease;
+                &:focus {
+                    border-color: var(--bs-primary);
+                    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+                    border-right: 0;
+                }
+                &::placeholder {
+                    color: #999;
+                }
+            }
+            .btn {
+                font-weight: 500;
+                transition: all 0.3s ease;
+                
+                &:hover {
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+                }
+            }
+        }
+    }
+}
+
+// Alignment support
+.wp-block-ts-theme-search-filter {
+    .d-flex {
+        &.justify-content-center {
+            justify-content: center !important;
+        }
+        
+        &.justify-content-end {
+            justify-content: flex-end !important;
+        }
+    }
+}
+
+// Wide and Full Width Alignments
+.alignwide .search-filter-block,
+.alignfull .search-filter-block {
+    .search-filter-form .input-group {
+        max-width: 600px;
+    }
+}

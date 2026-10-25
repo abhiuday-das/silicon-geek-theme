@@ -1,0 +1,111 @@
+.page-404 {
+  .hero-section-404 {
+    .navigation-wrapper-404 {
+      border-radius:2.4rem;
+      margin-top: 3.2rem;
+      padding: 25px 42px;
+      border-radius: 8px;
+      background: linear-gradient(270deg, var(--color-tertiary-900) 27.71%, var(--color-primary-900) 50%);
+      &::before {
+        content: "";
+        position: absolute;
+        background: var(--color-quaternary-900);
+        inset: 2px;
+        border-radius: 6px;
+        top:0;
+        z-index: 1;
+      }
+      & {
+        * {
+          position: relative;
+          z-index: 2;
+        }
+      }
+      .wp-block-heading {
+        margin-top: 0 !important;
+      }
+      nav.wp-block-navigation {
+        margin-top: 0;
+      }
+      ul.wp-block-navigation {
+        justify-content: center;
+        padding-bottom: 25px;
+        padding-left: 0 !important;
+        margin-top: 25px;
+        gap: 70px;
+        @media only screen and (max-width: 991px) {
+          flex-direction: column;
+          gap: 2rem;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 1.6rem;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 2px;
+          width: 100%;
+          background: linear-gradient(270deg, var(--color-tertiary-900) 27.71%, var(--color-primary-900) 50%);
+        }
+        li {
+          &::before {
+            display: none;
+          }
+          a {
+           font-size: 2rem;
+             color: var(--color-black-900) !important;
+             line-height: normal;
+             font-weight: 500;
+             text-transform: capitalize;
+             &:hover{
+                  color: var(--color-primary-hover-900) !important;
+             }
+          }
+        }
+      }
+      .wp-block-search {
+        margin-top: 0;
+        .wp-block-search__inside-wrapper {
+          justify-content: center;
+          flex-direction: row-reverse;
+          height: 50px;
+          input {
+            all: unset;
+            max-width: 10rem;
+            width: 100%;
+            font-size: 16px;
+            line-height: normal;
+            font-weight: var(--font-bold);
+            font-family: var(--wp--preset--font-family--base);
+            color: var(--color-black-900);
+            &::-webkit-search-cancel-button {
+              -webkit-appearance: none;
+              appearance: none;
+            }
+            &::placeholder {
+              text-transform: uppercase;
+              font-size: 16px;
+              line-height: normal;
+              font-weight: var(--font-bold);
+              font-family: var(--wp--preset--font-family--base);
+              color: var(--color-black-900);
+            }
+          }
+          .wp-block-search__button {
+            background: transparent;
+            color: var(--color-tertiary-900);
+            font-size: 2.4rem;
+            transform: rotateY(-180deg);
+            margin: 0;
+            border: 0;
+            padding: 0 0.4rem;
+            svg {
+              fill: var(--color-black-900);
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

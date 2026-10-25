@@ -1,0 +1,388 @@
+// ----------------------------------------------------
+// Fonts & Typography — UPDATED for ECE design.
+// Fixes vs your file:
+//  1) @import Google Fonts REMOVED (now enqueued in functions.php = faster,
+//     no render-blocking CSS import; Dancing Script dropped — not used by ECE).
+//  2) Font-size scale fixed: 5xl (4.4) > 6xl (4.0) was upside-down; now 6xl biggest.
+//     Slugs UNCHANGED (xs,xsm,md,lg,xl,2xl..6xl) so old blocks keep working.
+//  3) Text colors now use design tokens (cs-navy / cs-body) instead of dental vars.
+//  4) Global `ul{display:table-cell}` rule SCOPED to article content only —
+//     the old rule hit EVERY <ul> on the site (navigation, menus, WooCommerce).
+//     Same look inside notes/articles, zero menu breakage.
+//  5) .text classes: undefined --line-height-snug/--color-grey-600 replaced.
+// ----------------------------------------------------
+$font-families: (
+  "base": "Open Sans",
+  "heading": "Montserrat",
+  "script": "Dancing Script",
+  // Legacy alias so old SCSS asking for "Dancing Script" still compiles:
+  "Dancing Script": "Dancing Script",
+  "mono": "Consolas, SFMono-Regular, Menlo, monospace",
+);
+
+// Font weights (xxbold alias kept: colors.scss used to look it up)
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "semibold": 600,
+  "bold": 700,
+  "extrabold": 800,
+  "xbold": 800,
+  "xxbold": 900,
+);
+
+// Font sizes — slugs MUST match theme.json fontSizes
+$font-sizes: (
+  "xs": 1.2rem,
+  "sm": 1.4rem,
+  "md": 1.6rem,
+  "lg": 1.8rem,
+  "xl": 2rem,
+  "2xl": 2.4rem,
+  "3xl": 2.8rem,
+  "4xl": 3.4rem,
+  "5xl": 4.2rem,
+  "6xl": 6rem,
+);
+
+$line-heights: (
+  "6xl": 1.15,
+  "5xl": 1.3,
+  "4xl": 1.35,
+  "3xl": 1.4,
+  "sm": 1.45,
+  "2xl": 1.45,
+  "xs": 1.5,
+  "md": 1.5,
+  "xl": 1.5,
+  "lg": 1.55,
+);
+
+// ----------------------------------
+// Typography Styles
+// ----------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+h6,
+h7,
+.h7,
+h8,
+.h8,
+.h1-alt,
+.h2-alt,
+.h3-alt,
+.h4-alt,
+.h5-alt,
+.h7-alt,
+.h8-alt {
+  font-family: map-get($font-families, "heading");
+  color: var(--cs-navy);
+  font-style: normal;
+  line-height: var(--line-height-lg);
+  letter-spacing: normal;
+  word-spacing: normal;
+  margin-bottom: 0;
+}
+.h1-alt,
+.h2-alt,
+.h3-alt,
+.h4-alt,
+.h5-alt,
+.h7-alt,
+.h8-alt {
+  color: #ffffff;
+}
+h1,
+.h1 {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-extrabold);
+  line-height: 1.08 !important;
+  letter-spacing: -0.25px;
+  color: var(--cs-navy);
+  @media screen and (max-width: 991px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+h2,
+.h2 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-extrabold);
+  line-height: 1.15;
+  letter-spacing: -0.25px;
+  @media screen and (max-width: 991px) {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+h3,
+.h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-bold);
+  line-height: 1.25;
+  letter-spacing: -0.25px;
+  @media screen and (max-width: 991px) {
+    font-size: var(--font-size-lg);
+  }
+}
+
+h4,
+.h4 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-bold);
+  line-height: 1.3;
+  letter-spacing: -0.25px;
+  @media screen and (max-width: 991px) {
+    font-size: var(--font-size-lg);
+  }
+}
+
+h5,
+.h5 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-xl);
+  letter-spacing: -0.25px;
+  @media screen and (max-width: 991px) {
+    font-size: var(--font-size-md);
+  }
+}
+
+h6,
+.h6 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-6xl);
+  @media screen and (max-width: 991px) {
+    font-size: var(--font-size-md);
+  }
+}
+h7,
+.h7 {
+  font-family: map-get($font-families, "base");
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-medium);
+  line-height: var(--line-height-6xl);
+  @media screen and (max-width: 991px) {
+    font-size: 18px;
+  }
+}
+h8,
+.h8 {
+  font-family: map-get($font-families, "base");
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-6xl);
+  @media screen and (max-width: 991px) {
+    font-size: 18px;
+  }
+}
+// Legacy decorative class (font no longer loaded; falls back to cursive).
+.dancing-script {
+  font-family: map-get($font-families, "script"), cursive;
+  font-size: 48px;
+  font-weight: var(--font-bold);
+  line-height: normal !important;
+  letter-spacing: -0.25px;
+  @media screen and (max-width: 991px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+p,
+li,
+em,
+.p-alt {
+  font-family: map-get($font-families, "base");
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-regular);
+  line-height: 1.6;
+  color: var(--cs-body);
+}
+
+strong {
+  font-size: var(--font-size-lg);
+  line-height: normal;
+  display: inline;
+  font-weight: var(--font-bold);
+}
+
+.p-alt {
+  color: #ffffff;
+}
+
+ul,
+ol {
+  padding-left: 1.6rem !important;
+}
+
+a {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  transition: all ease 0.3s;
+  color: inherit;
+  &:hover {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.display1 {
+  font-family: map-get($font-families, "heading");
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-extrabold);
+  line-height: var(--line-height-6xl) !important;
+  letter-spacing: -0.25px;
+  color: var(--cs-navy);
+  @media screen and (max-width: 991px) {
+    font-size: var(--font-size-4xl);
+    line-height: var(--line-height-4xl) !important;
+  }
+}
+.dancing-script-display {
+  font-family: map-get($font-families, "script"), cursive;
+  font-size: 48px;
+  font-weight: var(--font-bold);
+  letter-spacing: -0.25px;
+  @media screen and (max-width: 991px) {
+    font-size: 32px;
+  }
+}
+
+.display2 {
+  font-family: map-get($font-families, "base");
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 33px;
+  letter-spacing: 0;
+  @media screen and (max-width: 991px) {
+    font-size: 24px;
+  }
+}
+
+.display2-alt {
+  font-family: map-get($font-families, "heading");
+  font-size: var(--font-size-md);
+  font-weight: var(--font-regular);
+  line-height: var(--line-height-md);
+  color: #ffffff;
+  @media screen and (max-width: 991px) {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-regular);
+    line-height: var(--line-height-md);
+  }
+}
+// ------------------------------
+// Font size utility classes
+// ------------------------------
+@each $size, $value in $font-sizes {
+  .fs-#{$size} {
+    font-size: var(--font-size-#{$size}) !important;
+  }
+}
+
+// ------------------------------
+// Font weight utility classes
+// ------------------------------
+@each $weight, $value in $font-weights {
+  .fw-#{$weight} {
+    font-weight: var(--font-#{$weight}) !important;
+  }
+}
+
+// ------------------------------
+// Line height utility classes
+// ------------------------------
+@each $lh, $value in $line-heights {
+  .lh-#{$lh} {
+    line-height: var(--line-height-#{$lh}) !important;
+  }
+}
+
+.text {
+  font-family: map-get($font-families, "base");
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--line-height-4xl);
+  color: var(--cs-muted);
+  &-xl-semibold {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-4xl);
+    color: var(--cs-muted);
+  }
+  &-lg-semibold {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-lg);
+  }
+  &-lg-medium {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-medium);
+    line-height: var(--line-height-lg);
+  }
+  &-m-semibold {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-lg);
+  }
+  &-m-regular {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-regular);
+    line-height: var(--line-height-lg);
+  }
+  &-s-semibold {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-lg);
+    color: var(--cs-muted);
+  }
+  &-s-regular {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-regular);
+    line-height: var(--line-height-lg);
+    color: var(--cs-muted);
+  }
+}
+
+// Custom bullet list — SCOPED to note/article content (was global `ul` before).
+// Add class "cs-prose" to a Group around post content if you want it on pages too.
+.wp-block-post-content ul:not([class*="wp-block-"]),
+.entry-content ul:not([class*="wp-block-"]),
+.cs-prose ul:not([class*="wp-block-"]) {
+  max-width: 100%;
+  width: 100%;
+  padding-top: 24px;
+  list-style: none;
+
+  li {
+    position: relative;
+    display: block;
+    text-align: left;
+    margin-bottom: 15px;
+    padding-left: 1.5rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background-color: var(--cs-orange);
+    }
+  }
+}

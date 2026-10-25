@@ -1,0 +1,285 @@
+.min_w_100 {
+  min-width: 100% !important;
+}
+
+.w-img-100 {
+  img {
+    width: 100% !important;
+  }
+}
+
+.px_sm_24 {
+  @media (max-width: 768px) {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/**
+ * Video Mute Toggle Styles  
+ */
+.banner-home-video {
+  video {
+    @media (max-width: 767px) {
+      height: 270px;
+      object-fit: cover;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      height: 500px;
+      object-fit: cover;
+    }
+  }
+
+  .video-mute-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    height: 60px;
+    width: 60px;
+    font-size: 36px;
+    background-color: #1a4e5a;
+    border: none;
+    border-radius: 13px;
+    box-shadow:
+      rgba(0, 0, 0, 0.25) 0 54px 55px,
+      rgba(0, 0, 0, 0.12) 0 -12px 30px,
+      rgba(0, 0, 0, 0.12) 0 4px 6px,
+      rgba(0, 0, 0, 0.17) 0 12px 13px,
+      rgba(0, 0, 0, 0.09) 0 -3px 5px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+
+  /* Always show on mobile/touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .video-mute-toggle {
+      opacity: 1;
+    }
+  }
+
+  /* Responsive sizing */
+  @media (max-width: 768px) {
+    .video-mute-toggle {
+      width: 45px;
+      height: 45px;
+      top: 15px;
+      left: 15px;
+    }
+  }
+}
+
+.gradiant_border {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #ff9a2d, #ffc803);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #ffc803, #e07a10);
+  }
+}
+.about-home {
+  ul {
+    li {
+      margin-bottom: 5px !important;
+    }
+  }
+}
+.reviews-main {
+  @media (max-width: 767px) {
+    padding: 16px !important;
+  }
+  .quote-circle {
+    min-width: 53px;
+    min-height: 53px;
+    max-width: 53px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .icon-star-sharp1 {
+    font-size: 18px;
+    color: var(--color-star-900);
+    margin-right: 8px;
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+  }
+}
+.testimonial {
+  .swiper {
+    padding-bottom: 24px !important;
+    height: fit-content !important;
+  }
+  .gapc-3 {
+    gap: 3px;
+    time {
+      color: #424245 !important;
+      font-size: 18px !important;
+    }
+  }
+  .swiper-slide-content {
+    @media (max-width: 767px) {
+      padding: 12px !important;
+    }
+  }
+  .name-flex.wp-block-columns {
+    display: flex;
+    flex-wrap: nowrap; // stop stacking
+    align-items: center;
+
+    // Mobile fix
+    @media (max-width: 767px) {
+      flex-direction: row !important;
+      gap: 10px;
+
+      > .wp-block-column {
+        flex: 1;
+        flex-basis: 47% !important;
+      }
+    }
+  }
+}
+
+.our-specialties-button {
+  i {
+    @media (max-width: 767px) {
+      font-size: 20px !important;
+      color: var(--color-secondary-900);
+    }
+  }
+}
+.hero-banner-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-top: 64px !important;
+  padding-bottom: 32px !important;
+  position: relative !important;
+
+  @media screen and (max-width: 991px) {
+    padding-top: 49px !important;
+    padding-bottom: 0px !important;
+  }
+
+  .hero-content-img {
+    position: relative !important;
+    z-index: 1 !important;
+
+    .hero-content-wrp {
+      h1,
+      .h1 {
+        max-width: 539px !important;
+        @media screen and (max-width: 991px) {
+          max-width: 100% !important;
+        }
+      }
+      p.p-alt {
+        max-width: 480px !important;
+        font-weight: var(--font-medium);
+        color: var(--color-secondary-600);
+        @media screen and (max-width: 991px) {
+          margin-top: 14px !important;
+          max-width: 100% !important;
+        }
+      }
+    }
+
+    .hero-image-wrp {
+      figure {
+        @media screen and (max-width: 991px) {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+        img {
+          @media screen and (max-width: 991px) {
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+
+  .hero-banner-bg {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: absolute !important;
+    bottom: 0px !important;
+    left: 0px !important;
+    figure {
+      width: 100% !important;
+      max-width: 100% !important;
+      .components-resizable-box__container {
+        width: 100% !important;
+        max-width: 100% !important;
+        img {
+          width: 100% !important;
+          max-width: 100% !important;
+          object-fit: cover !important;
+
+          @media only screen and (min-width: 768px) and (max-width: 991px) {
+            height: 197px !important;
+            object-fit: inherit !important;
+          }
+        }
+      }
+
+      img {
+        width: 100% !important;
+        max-width: 100% !important;
+        object-fit: cover !important;
+
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+          height: 197px !important;
+          object-fit: inherit !important;
+        }
+      }
+    }
+
+    &.is-style-container-fluid.wp-block {
+      bottom: 85px !important;
+    }
+  }
+}
+
+.wp-block-columns:not(.is-not-stacked-on-mobile)
+  > .wp-block-column.hero-content-wrp {
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    flex-basis: 48% !important;
+    flex-grow: 0;
+  }
+}
+
+.wp-block-columns:not(.is-not-stacked-on-mobile)
+  > .wp-block-column.hero-image-wrp {
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    flex-basis: 48% !important;
+    flex-grow: 0;
+  }
+}
+.italics-cta {
+  margin-bottom: 150px;
+  margin-top: 70px;
+  @media screen and (min-width: 350px) and (max-width: 768px) {
+    margin-bottom: 50px;
+    margin-top: 30px;
+  }
+}

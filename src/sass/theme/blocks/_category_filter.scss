@@ -1,0 +1,197 @@
+/**
+ * Custom Select Dropdown Styles
+ * Category Filter Block - Custom Select with Hover Colors
+ */
+
+/* Custom Select Container */
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    min-width: calc(100% - 54px);
+}
+
+/* Custom Select Button */
+.custom-select-button {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border-radius:0px 0.375rem 0.375rem 0px;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    transition: all 0.3s ease;
+    border: none !important;
+    font-size: 18px;
+    font-weight: var(--font-normal);
+    font-family: var(--wp--preset--font-family--base);
+    color: var(--color-black-900);       
+    padding: 1.55rem 1rem;
+    max-height: 54px !important;
+    background: url(../assets/images/br_down.png) no-repeat right var(--color-quaternary-900) !important;
+    -webkit-appearance: none !important;
+    vertical-align: middle;
+    box-shadow: none !important;
+    background-position: 95% !important;
+}
+
+.custom-select-button:hover {
+    background-color: #B9CFD4; /* Hover background color - customizable */
+    color: #212529; /* Hover text color - customizable */
+    border-color: #B9CFD4;
+}
+
+.custom-select-button:focus {
+    outline: none;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Dropdown Arrow */
+.custom-select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.custom-select-arrow::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid currentColor;
+}
+
+.custom-select-wrapper.active .custom-select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Dropdown Menu */
+.custom-select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: none;
+    display: none;
+    border-radius: 8px;
+    background: var(--color-quaternary-900);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.custom-select-wrapper.active .custom-select-dropdown {
+    display: block;
+}
+
+/* Dropdown Options */
+.custom-select-option {
+    padding: 12px 16px;
+    background: var(--color-quaternary-900);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: var(--font-normal);
+    font-family: var(--wp--preset--font-family--base);
+    color: var(--color-black-900);  
+    font-size: 18px;
+    line-height: normal;
+}
+.custom-select-option:hover {
+     background-color: var(--color-secondary-900);
+    color: var(--color-white-900);
+}
+
+.custom-select-option.selected {
+    background-color: var(--color-secondary-900);
+    color: var(--color-white-900);
+    
+}
+
+/* Custom Scrollbar for Dropdown */
+.custom-select-dropdown::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-select-dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 0 0.375rem 0.375rem 0;
+}
+
+.custom-select-dropdown::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.custom-select-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Alignment Classes */
+.category-filter-form.justify-content-center {
+    justify-content: center !important;
+}
+
+.category-filter-form.justify-content-end {
+    justify-content: flex-end !important;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .custom-select-wrapper {
+        width: 100%;
+    }
+}
+
+/* 
+ * CUSTOMIZATION VARIABLES
+ * Change these values to customize hover colors:
+ * 
+ * For button hover:
+ * - .custom-select-button:hover { background-color: YOUR_COLOR; color: YOUR_TEXT_COLOR; }
+ * 
+ * For option hover:
+ * - .custom-select-option:hover { background-color: YOUR_COLOR; color: YOUR_TEXT_COLOR; }
+ */
+
+@media screen and (max-width:991px){
+ .blogs-wrapper .filter-blog-controls .filter-item .form-control {
+    min-width: 21rem;
+}
+
+.category-filter-form .input-group {
+    flex-wrap: nowrap;
+}
+}
+
+form.category-filter-form{
+    .input-group{
+        border-radius: 0.6rem;
+        margin-right: 0rem;
+        margin-bottom: 1.5rem;
+        background: var(--color-quaternary-900) !important;
+        box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+        height: 54px;
+        width: 100%;
+        max-width: 350px;
+        @media only screen and (min-width: 1200px){
+        min-width: 350px;
+        }
+        .input-group-text {
+            height: 5.4rem;
+            width: 5.4rem;
+            min-width: 5.4rem;
+            border-radius: .6rem 0 0 .6rem;
+            justify-content: center;
+            font-size: var(--font-size-md);
+            background-color: var(--color-secondary-900) !important;
+            border-color: var(--color-primary-900) !important;
+            color: var(--color-white-900) !important;
+        }
+    }
+}

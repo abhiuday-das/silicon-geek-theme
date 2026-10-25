@@ -1,0 +1,19 @@
+// ----------------------------------
+// Group Block Styles
+// ----------------------------------
+// Bootstrap container and layout utilities for Group blocks
+
+.wp-block-group.is-style-container {
+  @extend .container;
+  max-width: 1110px !important;
+  
+}
+
+.wp-block-group.is-style-container-fluid {
+  @extend .container-fluid;
+  max-width: 100% !important;
+}
+.is-style-row {
+  @extend .row;
+  gap: 0 !important;
+}

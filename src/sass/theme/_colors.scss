@@ -1,0 +1,158 @@
+// ----------------------------------
+// Colors & CSS Custom Properties — UPDATED (generation logic UNCHANGED)
+// Fixes vs your file:
+//  1) :root font vars pointed to non-existent map keys (roboto/roboto-slab/
+//     source-sans/barlow + "xxbold"/"--font-size-m"/"--font-sans") => fixed below.
+//  2) Added --cs-* variables (ECE design) so any SCSS file can use them.
+// Your actual COLOR VALUES live in theme_variables ($theme-color-shades/$colors)
+// which you did NOT paste — see PATCH file "PATCH--theme-variables.scss.txt"
+// and merge those two maps; do NOT replace that whole file blindly.
+// ----------------------------------
+// WordPress color utilities and CSS custom properties generation
+
+@use "sass:map";
+@import "utilities";
+@import "theme_variables";
+$theme-colors: ();
+
+@each $color, $shades in $theme-color-shades {
+  @if map-has-key($shades, 900) {
+    $theme-colors: map.merge(
+      $theme-colors,
+      (
+        $color: map-get($shades, 900),
+      )
+    );
+  } @else {
+    $last-shade-key: nth(map-keys($shades), length(map-keys($shades)));
+    $theme-colors: map.merge(
+      $theme-colors,
+      (
+        $color: map-get($shades, $last-shade-key),
+      )
+    );
+  }
+}
+$merged-colors: map.merge($theme-colors, $colors);
+@each $color, $shades in $theme-color-shades {
+  @each $shade, $value in $shades {
+    .bg-#{$color}-#{$shade} {
+      background-color: #{$value} !important;
+    }
+    .bg-hover-#{$color}-#{$shade}:hover {
+      background-color: #{$value} !important;
+    }
+    .text-#{$color}-#{$shade} {
+      color: #{$value} !important;
+    }
+    .text-hover-#{$color}-#{$shade}:hover {
+      color: #{$value} !important;
+    }
+    .bg-#{$color}-#{$shade}.has-#{$color}-#{$shade}-background-color,
+    .bg-#{$color}-#{$shade}.has-#{$color}-background-color {
+      background-color: #{$value} !important ;
+    }
+    .has-#{$color}-#{$shade}-background-color.has-background {
+      background: $value !important;
+    }
+    .has-#{$color}-#{$shade}-color.has-text-color {
+      color: $value !important;
+    }
+    .text-#{$color}-#{$shade}.has-#{$color}-#{$shade}-color.has-text-color {
+      color: #{$value} !important;
+    }
+    .text-hover-#{$color}-#{$shade}.has-#{$color}-#{$shade}-color.has-text-color:hover {
+      color: #{$value} !important;
+    }
+
+    .border-#{$color}-#{$shade} {
+      border-color: #{$value} !important;
+    }
+  }
+}
+@each $name, $color in $merged-colors {
+  .has-#{$name}-color,
+  .has-#{$name}-color:visited {
+    color: $color !important;
+  }
+  .has-#{$name}-background-color {
+    background-color: $color !important;
+    border-color: $color !important;
+  }
+  .has-#{$name}-background-color.has-background {
+    background-color: $color !important;
+    border-color: $color !important;
+  }
+  .wp-block-button:hover {
+    .wp-block-button__link.has-white-background-color.has-#{$name}-color {
+      & {
+        color: $color !important;
+      }
+    }
+  }
+}
+:root {
+  // Colors
+  @each $color, $shades in $theme-color-shades {
+    @each $shade, $value in $shades {
+      --color-#{$color}-#{$shade}: #{$value};
+    }
+  }
+  @each $color, $shades in $theme-color-shades {
+    @each $shade, $value in $shades {
+      --border-#{$color}-#{$shade}: #{$value};
+    }
+    @if map-has-key($shades, 900) {
+      --border-#{$color}: #{map-get($shades, 900)};
+    }
+  }
+  @each $height, $value in $heights {
+    --height-#{$height}: #{$value};
+  }
+  @each $width, $value in $widths {
+    --width-#{$width}: #{$value};
+  }
+
+  // FIXED: real keys from fonts.scss $font-families (legacy names kept as aliases
+  // so any old SCSS using var(--font-roboto) etc. keeps working).
+  --font-base: #{map-get($font-families, "base")};
+  --font-heading: #{map-get($font-families, "heading")};
+  --font-mono: #{map-get($font-families, "mono")};
+  --font-sans: #{map-get($font-families, "base")};
+  --font-roboto: #{map-get($font-families, "base")};
+  --font-roboto-slab: #{map-get($font-families, "heading")};
+  --font-source-sans: #{map-get($font-families, "base")};
+  --font-barlow: #{map-get($font-families, "heading")};
+
+  // Font weights (FIXED: generated from the map — no hard-coded "xxbold" lookup)
+  @each $w, $value in $font-weights {
+    --font-#{$w}: #{$value};
+  }
+  @each $size, $value in $font-sizes {
+    --font-size-#{$size}: #{$value};
+  }
+  @each $lh, $value in $line-heights {
+    --line-height-#{$lh}: #{$value};
+  }
+  @each $radius, $value in $border-radius-sizes {
+    --radius-#{$radius}: #{$value};
+  }
+
+  // ECE / CircuitShala design tokens (mirror theme.json cs-* palette)
+  --cs-navy: #0b1226;
+  --cs-navy-2: #111b38;
+  --cs-cyan: #0891b2;
+  --cs-sky: #06b6d4;
+  --cs-blue: #2563eb;
+  --cs-amber: #f59e0b;
+  --cs-orange: #f97316;
+  --cs-green: #22c55e;
+  --cs-ink: #0f172a;
+  --cs-body: #334155;
+  --cs-muted: #64748b;
+  --cs-line: #e2e8f0;
+  --cs-soft: #f8fafc;
+
+  --bs-body-font-family: var(--font-base);
+  --bs-body-font-size: var(--font-size-md);
+}

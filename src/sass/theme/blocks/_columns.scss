@@ -1,0 +1,51 @@
+// ----------------------------------
+// Columns & Column Block Styles
+// ----------------------------------
+// Bootstrap grid-like behavior for WordPress Columns blocks
+
+/* Gutters */
+.wp-block-columns.is-style-gutters { 
+  row-gap: 1.5rem; 
+}
+
+/* Default column: behave like Bootstrap col */
+.wp-block-column { 
+  flex: 1 0 0%; 
+}
+
+/* Let Bootstrap control sizing when its grid classes are used */
+.wp-block-column[class*="is-style-col-"] {
+  flex: 0 0 auto !important;   /* disable Gutenberg's flex-grow/shrink */
+}
+
+// Loop through 1–12 columns - Apply Bootstrap classes to individual columns
+@for $i from 1 through 12 {
+  // Normal column mapping
+  .wp-block-column.is-style-col-#{$i} {
+    @extend .col-#{$i};
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+
+  // Responsive mapping
+  .wp-block-column.is-style-col-sm-#{$i} {
+    @extend .col-sm-#{$i};
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  .wp-block-column.is-style-col-md-#{$i} {
+    @extend .col-md-#{$i};
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  .wp-block-column.is-style-col-lg-#{$i} {
+    @extend .col-lg-#{$i};
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  .wp-block-column.is-style-col-xl-#{$i} {
+    @extend .col-xl-#{$i};
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+}

@@ -1,0 +1,191 @@
+// Utilities
+.has-px-sm-20 {
+  @media only screen and (max-width: 767px) {
+    padding-inline: 2rem !important;
+  }
+}
+
+.has-section-py {
+  padding-block: 6.4rem;
+  @media only screen and (max-width: 991px) {
+    padding-block: 3.2rem;
+  }
+}
+
+.section-gradient-bg {
+  background-image: linear-gradient(
+    270deg,
+    rgba(131, 221, 218, 0.2) 0,
+    rgba(255, 255, 255, 0) 27.32%,
+    rgba(255, 255, 255, 0) 75.48%,
+    rgba(131, 221, 218, 0.2) 100%
+  );
+}
+
+.has-bg-carolina-gradient {
+  background: var(--wp--preset--gradient--color-gradient);
+  padding: 0.4rem;
+}
+
+.has-bg-radial-gradient {
+  background: radial-gradient(88.89% 50% at 50% 50%, #f9ffff 50%, #fdffff 100%);
+}
+
+.rounded-24 {
+  border-radius: 2.4rem;
+}
+
+.hide-on-mobile {
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+}
+
+.hide-on-desktop {
+  @media only screen and (min-width: 992px) {
+    display: none;
+  }
+}
+
+.mb-32 {
+  margin-bottom: 3.2rem !important;
+}
+
+.mb-lg_32 {
+  @media only screen and (min-width: 992px) {
+    margin-bottom: 3.2rem !important;
+  }
+}
+
+.mt-32 {
+  margin-top: 3.2rem !important;
+}
+
+.mt-lg_32 {
+  @media only screen and (min-width: 992px) {
+    margin-top: 3.2rem !important;
+  }
+}
+
+.mb-48 {
+  margin-bottom: 4.8rem !important;
+}
+
+.mb-lg_48 {
+  @media only screen and (min-width: 992px) {
+    margin-bottom: 4.8rem !important;
+  }
+}
+
+.mt-48 {
+  margin-top: 4.8rem !important;
+}
+
+.mt-lg_48 {
+  @media only screen and (min-width: 992px) {
+    margin-top: 4.8rem !important;
+  }
+}
+
+.mb-64 {
+  margin-bottom: 6.4rem !important;
+}
+
+.mb-lg_64 {
+  @media only screen and (min-width: 992px) {
+    margin-bottom: 6.4rem !important;
+  }
+}
+
+.mt-64 {
+  margin-top: 6.4rem !important;
+}
+
+.mt-lg_64 {
+  @media only screen and (min-width: 992px) {
+    margin-top: 6.4rem !important;
+  }
+}
+
+.p_2 {
+  padding: 0.2rem !important;
+}
+
+.has-pb-sm-64 {
+  @media only screen and (max-width: 991px) {
+    padding-bottom: 6.4rem !important;
+  }
+}
+
+.max-w_644 {
+  max-width: 64.4rem !important;
+}
+
+.max-w_unset {
+  max-width: unset !important;
+}
+
+.right-max-lg-0 {
+  @media only screen and (max-width: 1024px) {
+    right: 0 !important;
+  }
+}
+
+.flex-1 {
+  flex: 100% !important;
+}
+
+.gap-x-lg_30 {
+  @media only screen and (min-width: 992px) {
+    gap: 0 3rem !important;
+  }
+}
+
+.min-h-172 {
+  min-height: 17.2rem;
+}
+
+.min-h-468 {
+  min-height: 46.8rem;
+}
+
+/* Swiper Global Styling */
+.swiper-pagination {
+  position: static !important;
+  .swiper-pagination-bullet {
+    background: var(--wp--preset--color--primary-300);
+    opacity: 1;
+    &.swiper-pagination-bullet-active {
+      background: var(--wp--preset--color--white);
+    }
+  }
+}
+
+// Insta Feed Plugin
+#sb_instagram {
+  .sbi_photo {
+    img {
+      object-fit: contain;
+      background: var(--bs-gray-200);
+    }
+  }
+}
+/* hide fallback by default */
+.fallback-img {
+  display: none;
+}
+
+/* make the anchor clickable & full-width */
+.fallback-img .fallback-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* make sure images are responsive */
+.wp-block-post-featured-image img,
+.fallback-img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

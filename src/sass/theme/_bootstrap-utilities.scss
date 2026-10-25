@@ -1,0 +1,164 @@
+// ----------------------------------
+// Bootstrap Utilities for WordPress Blocks
+// ----------------------------------
+// Additional Bootstrap utility classes for spacing and typography
+
+// Spacing utilities for WordPress blocks
+.wp-block-group {
+  // Padding utilities
+  &.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  &.py-6 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  &.py-7 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+  &.py-8 {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+
+  // Margin utilities
+  &.mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  &.mb-5 {
+    margin-bottom: 3rem !important;
+  }
+
+  // Gap utilities for flex containers
+  &.gap-4 {
+    gap: 1.5rem !important;
+  }
+  &.gap-5 {
+    gap: 3rem !important;
+  }
+}
+
+// Typography utilities for headings
+.wp-block-heading {
+  &.display-1 {
+    @extend .display-1;
+  }
+  &.display-2 {
+    @extend .display-2;
+  }
+  &.display-3 {
+    @extend .display-3;
+  }
+  &.display-4 {
+    @extend .display-4;
+  }
+  &.display-5 {
+    @extend .display-5;
+  }
+  &.display-6 {
+    @extend .display-6;
+  }
+
+  // Font weight utilities
+  &.fw-xbold {
+    font-weight: 900 !important;
+  }
+  &.fw-bold {
+    font-weight: 700 !important;
+  }
+  &.fw-semibold {
+    font-weight: 600 !important;
+  }
+  &.fw-medium {
+    font-weight: 500 !important;
+  }
+}
+
+// Paragraph utilities
+.wp-block-paragraph {
+  &.lead {
+    @extend .lead;
+  }
+  &.text-muted {
+    @extend .text-muted;
+  }
+  &.fs-5 {
+    font-size: 1.25rem !important;
+  }
+  &.fs-6 {
+    font-size: 1rem !important;
+  }
+}
+
+// Button group utilities
+.wp-block-buttons {
+  &.gap-3 {
+    gap: 1rem !important;
+  }
+  &.gap-4 {
+    gap: 1.5rem !important;
+  }
+
+  // Flex direction utilities
+  &.flex-column {
+    flex-direction: column !important;
+  }
+  &.flex-sm-row {
+    @media (min-width: 576px) {
+      flex-direction: row !important;
+    }
+  }
+}
+
+// Column alignment utilities
+.wp-block-columns {
+  &.align-items-center {
+    align-items: center !important;
+  }
+  &.align-items-start {
+    align-items: flex-start !important;
+  }
+  &.align-items-end {
+    align-items: flex-end !important;
+  }
+}
+
+// Image utilities
+.wp-block-image {
+  &.rounded {
+    img {
+      @extend .rounded;
+    }
+  }
+  &.rounded-3 {
+    img {
+      @extend .rounded-3;
+    }
+  }
+  &.shadow {
+    img {
+      @extend .shadow;
+    }
+  }
+  &.shadow-lg {
+    img {
+      @extend .shadow-lg;
+    }
+  }
+}
+ 
+/* Boreder-radius */
+.rounded-4{
+  border-radius: 4px;
+}
+.rounded-6{
+  border-radius: 6px;
+}
+.rounded-8{
+  border-radius: 8px;
+}
+.box-shadow{
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.35);
+}

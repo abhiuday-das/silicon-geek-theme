@@ -1,0 +1,954 @@
+{
+  "version": 3,
+  "title": "ECE Design (CircuitShala) — mapped for ts-block-theme",
+  "description": "Full replacement theme.json. Legacy slugs kept + remapped; new cs-* tokens added. Works WITH your existing SCSS (62.5% rem system). Replace whole file, backup first.",
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "124rem",
+      "wideSize": "136rem"
+    },
+    "color": {
+      "custom": true,
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "defaultDuotone": false,
+      "palette": [
+        {
+          "slug": "error",
+          "color": "#DC2626",
+          "name": "Error"
+        },
+        {
+          "slug": "warning",
+          "color": "#F59E0B",
+          "name": "Warning"
+        },
+        {
+          "slug": "success",
+          "color": "#16A34A",
+          "name": "Success"
+        },
+        {
+          "slug": "info",
+          "color": "#0891B2",
+          "name": "Info"
+        },
+        {
+          "slug": "star",
+          "color": "#F59E0B",
+          "name": "Star"
+        },
+        {
+          "slug": "primary",
+          "color": "#F97316",
+          "name": "Primary — CTA Orange"
+        },
+        {
+          "slug": "primary-hover",
+          "color": "#EA580C",
+          "name": "Primary Hover"
+        },
+        {
+          "slug": "primary-100",
+          "color": "#FFF7ED",
+          "name": "Primary 100"
+        },
+        {
+          "slug": "primary-300",
+          "color": "#FDBA74",
+          "name": "Primary 300"
+        },
+        {
+          "slug": "primary-800",
+          "color": "#9A3412",
+          "name": "Primary 800"
+        },
+        {
+          "slug": "secondary",
+          "color": "#0891B2",
+          "name": "Secondary — Brand Cyan"
+        },
+        {
+          "slug": "secondary-hover",
+          "color": "#0E7490",
+          "name": "Secondary Hover"
+        },
+        {
+          "slug": "secondary-700",
+          "color": "#0E7490",
+          "name": "Secondary 700"
+        },
+        {
+          "slug": "secondary-800",
+          "color": "#155E75",
+          "name": "Secondary 800"
+        },
+        {
+          "slug": "secondary-900",
+          "color": "#164E63",
+          "name": "Secondary 900"
+        },
+        {
+          "slug": "tertiary",
+          "color": "#DBEAFE",
+          "name": "Tertiary — Light Blue"
+        },
+        {
+          "slug": "quaternary",
+          "color": "#F8FAFC",
+          "name": "Quaternary — Soft BG"
+        },
+        {
+          "slug": "link",
+          "color": "#0E7490",
+          "name": "Link"
+        },
+        {
+          "slug": "footerlink",
+          "color": "#CBD5E1",
+          "name": "Footer Link"
+        },
+        {
+          "slug": "white",
+          "color": "#FFFFFF",
+          "name": "White"
+        },
+        {
+          "slug": "dark-gray",
+          "color": "#334155",
+          "name": "Dark Gray"
+        },
+        {
+          "slug": "gray",
+          "color": "#64748B",
+          "name": "Gray"
+        },
+        {
+          "slug": "lt-gray",
+          "color": "#CBD5E1",
+          "name": "Light Gray"
+        },
+        {
+          "slug": "xl-gray",
+          "color": "#F1F5F9",
+          "name": "Extra Light Gray"
+        },
+        {
+          "slug": "black",
+          "color": "#0F172A",
+          "name": "Black (Ink)"
+        },
+        {
+          "slug": "site-bg",
+          "color": "#FFFFFF",
+          "name": "Site Background"
+        },
+        {
+          "slug": "card-bg",
+          "color": "#FFFFFF",
+          "name": "Card Background"
+        },
+        {
+          "slug": "footer-bg",
+          "color": "#071022",
+          "name": "Footer Background"
+        },
+        {
+          "slug": "header-bg",
+          "color": "#FFFFFF",
+          "name": "Header Background"
+        },
+        {
+          "slug": "body-text",
+          "color": "#0F172A",
+          "name": "Body Text"
+        },
+        {
+          "slug": "muted-text",
+          "color": "#64748B",
+          "name": "Muted Text"
+        },
+        {
+          "slug": "cs-navy",
+          "color": "#0B1226",
+          "name": "CS Navy"
+        },
+        {
+          "slug": "cs-navy-2",
+          "color": "#111B38",
+          "name": "CS Navy 2"
+        },
+        {
+          "slug": "cs-cyan",
+          "color": "#0891B2",
+          "name": "CS Cyan"
+        },
+        {
+          "slug": "cs-sky",
+          "color": "#06B6D4",
+          "name": "CS Sky"
+        },
+        {
+          "slug": "cs-blue",
+          "color": "#2563EB",
+          "name": "CS Blue"
+        },
+        {
+          "slug": "cs-indigo",
+          "color": "#5B21B6",
+          "name": "CS VLSI Purple"
+        },
+        {
+          "slug": "cs-amber",
+          "color": "#F59E0B",
+          "name": "CS Amber"
+        },
+        {
+          "slug": "cs-orange",
+          "color": "#F97316",
+          "name": "CS Orange"
+        },
+        {
+          "slug": "cs-green",
+          "color": "#22C55E",
+          "name": "CS WhatsApp Green"
+        },
+        {
+          "slug": "cs-ink",
+          "color": "#0F172A",
+          "name": "CS Ink"
+        },
+        {
+          "slug": "cs-body",
+          "color": "#334155",
+          "name": "CS Body"
+        },
+        {
+          "slug": "cs-muted",
+          "color": "#64748B",
+          "name": "CS Muted"
+        },
+        {
+          "slug": "cs-line",
+          "color": "#E2E8F0",
+          "name": "CS Line"
+        },
+        {
+          "slug": "cs-soft",
+          "color": "#F8FAFC",
+          "name": "CS Soft"
+        },
+        {
+          "slug": "cs-ice",
+          "color": "#ECFEFF",
+          "name": "CS Ice"
+        },
+        {
+          "slug": "cs-sand",
+          "color": "#FFFBEB",
+          "name": "CS Sand"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "color-gradient",
+          "name": "Color Gradient (Legacy)",
+          "gradient": "linear-gradient(135deg,#0B1226 0%,#0E7490 100%)"
+        },
+        {
+          "slug": "hero-gradient",
+          "name": "Hero Gradient (Legacy)",
+          "gradient": "linear-gradient(135deg,#0B1226 0%,#111B38 58%,#0C2F52 100%)"
+        },
+        {
+          "slug": "primary-gradient",
+          "name": "Primary Gradient (Legacy)",
+          "gradient": "linear-gradient(135deg,#F59E0B 0%,#F97316 100%)"
+        },
+        {
+          "slug": "cs-hero",
+          "name": "CS Hero Navy",
+          "gradient": "linear-gradient(135deg,#0B1226 0%,#111B38 58%,#0C2F52 100%)"
+        },
+        {
+          "slug": "cs-cta",
+          "name": "CS CTA Orange",
+          "gradient": "linear-gradient(135deg,#F59E0B 0%,#F97316 100%)"
+        },
+        {
+          "slug": "cs-brand",
+          "name": "CS Brand Cyan-Blue",
+          "gradient": "linear-gradient(135deg,#0891B2 0%,#2563EB 100%)"
+        },
+        {
+          "slug": "cs-embedded",
+          "name": "CS Embedded Track",
+          "gradient": "linear-gradient(135deg,#0F766E 0%,#2563EB 100%)"
+        },
+        {
+          "slug": "cs-vlsi",
+          "name": "CS VLSI Track",
+          "gradient": "linear-gradient(135deg,#5B21B6 0%,#111827 100%)"
+        },
+        {
+          "slug": "cs-gate",
+          "name": "CS GATE Panel",
+          "gradient": "linear-gradient(135deg,#331B00 0%,#0B1226 62%)"
+        },
+        {
+          "slug": "cs-green-cta",
+          "name": "CS WhatsApp",
+          "gradient": "linear-gradient(135deg,#14532D 0%,#16A34A 100%)"
+        }
+      ]
+    },
+    "typography": {
+      "customFontSize": true,
+      "fontStyle": true,
+      "fontWeight": true,
+      "letterSpacing": true,
+      "lineHeight": true,
+      "fontFamilies": [
+        {
+          "slug": "base",
+          "name": "Open Sans",
+          "fontFamily": "'Open Sans', 'Segoe UI', Arial, sans-serif"
+        },
+        {
+          "slug": "heading",
+          "name": "Montserrat",
+          "fontFamily": "'Montserrat', 'Open Sans', Arial, sans-serif"
+        },
+        {
+          "slug": "mono",
+          "name": "Code (Consolas)",
+          "fontFamily": "Consolas, 'SFMono-Regular', Menlo, monospace"
+        },
+        {
+          "slug": "Dancing Script",
+          "name": "Dancing Script (Legacy)",
+          "fontFamily": "'Dancing Script', cursive"
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "xs",
+          "size": "1.2rem",
+          "name": "Extra Small"
+        },
+        {
+          "slug": "xsm",
+          "size": "1.4rem",
+          "name": "Small"
+        },
+        {
+          "slug": "md",
+          "size": "1.6rem",
+          "name": "Medium"
+        },
+        {
+          "slug": "lg",
+          "size": "1.8rem",
+          "name": "Large"
+        },
+        {
+          "slug": "xl",
+          "size": "2.0rem",
+          "name": "Extra Large"
+        },
+        {
+          "slug": "2xl",
+          "size": "2.4rem",
+          "name": "2x Large"
+        },
+        {
+          "slug": "3xl",
+          "size": "2.8rem",
+          "name": "3x Large"
+        },
+        {
+          "slug": "4xl",
+          "size": "3.4rem",
+          "name": "4x Large"
+        },
+        {
+          "slug": "5xl",
+          "size": "4.2rem",
+          "name": "5x Large"
+        },
+        {
+          "slug": "6xl",
+          "size": "clamp(4.0rem, 5vw, 6.0rem)",
+          "name": "6x Large"
+        }
+      ],
+      "lineHeights": [
+        {
+          "slug": "xs",
+          "size": "1.50",
+          "name": "Extra Small"
+        },
+        {
+          "slug": "xsm",
+          "size": "1.45",
+          "name": "Small"
+        },
+        {
+          "slug": "md",
+          "size": "1.50",
+          "name": "Medium"
+        },
+        {
+          "slug": "lg",
+          "size": "1.55",
+          "name": "Large"
+        },
+        {
+          "slug": "xl",
+          "size": "1.50",
+          "name": "Extra Large"
+        },
+        {
+          "slug": "2xl",
+          "size": "1.45",
+          "name": "2x Large"
+        },
+        {
+          "slug": "3xl",
+          "size": "1.40",
+          "name": "3x Large"
+        },
+        {
+          "slug": "4xl",
+          "size": "1.35",
+          "name": "4x Large"
+        },
+        {
+          "slug": "5xl",
+          "size": "1.30",
+          "name": "5x Large"
+        },
+        {
+          "slug": "6xl",
+          "size": "1.15",
+          "name": "6x Large"
+        }
+      ]
+    },
+    "spacing": {
+      "blockGap": true,
+      "padding": true,
+      "margin": true,
+      "units": ["px", "rem", "em", "%", "vw"],
+      "spacingSizes": [
+        {
+          "slug": "20",
+          "size": "0.8rem",
+          "name": "20"
+        },
+        {
+          "slug": "30",
+          "size": "1.6rem",
+          "name": "30"
+        },
+        {
+          "slug": "40",
+          "size": "2.4rem",
+          "name": "40"
+        },
+        {
+          "slug": "50",
+          "size": "3.2rem",
+          "name": "50"
+        },
+        {
+          "slug": "60",
+          "size": "4.8rem",
+          "name": "60"
+        },
+        {
+          "slug": "70",
+          "size": "6.4rem",
+          "name": "70"
+        },
+        {
+          "slug": "80",
+          "size": "8.0rem",
+          "name": "80"
+        }
+      ]
+    },
+    "shadow": {
+      "defaultPresets": false,
+      "custom": true,
+      "presets": [
+        {
+          "slug": "sm",
+          "name": "Small Shadow",
+          "shadow": "0 0.2rem 0.8rem rgba(2,6,23,0.08)"
+        },
+        {
+          "slug": "md",
+          "name": "Medium Shadow",
+          "shadow": "0 0.8rem 2.4rem rgba(2,6,23,0.12)"
+        },
+        {
+          "slug": "lg",
+          "name": "Large Shadow",
+          "shadow": "0 1.8rem 4.0rem rgba(2,6,23,0.14)"
+        },
+        {
+          "slug": "card",
+          "name": "Card Shadow",
+          "shadow": "0 0.8rem 2.4rem rgba(14,116,144,0.14)"
+        },
+        {
+          "slug": "primary-glow",
+          "name": "Primary Glow",
+          "shadow": "0 1.2rem 2.6rem rgba(249,115,22,0.35)"
+        },
+        {
+          "slug": "cs-panel",
+          "name": "CS Hero Panel",
+          "shadow": "0 2.8rem 7.0rem rgba(0,0,0,0.35)"
+        }
+      ]
+    },
+    "border": {
+      "radius": true,
+      "color": true,
+      "style": true,
+      "width": true
+    },
+    "blocks": {
+      "core/button": {
+        "color": {
+          "custom": false,
+          "text": true,
+          "background": true,
+          "gradient": true
+        },
+        "border": {
+          "radius": true
+        }
+      },
+      "core/group": {
+        "color": {
+          "background": true
+        },
+        "spacing": {
+          "padding": true,
+          "margin": true
+        },
+        "background": {
+          "backgroundImage": true,
+          "backgroundSize": true,
+          "backgroundPosition": true,
+          "backgroundRepeat": true
+        }
+      }
+    }
+  },
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
+  ],
+  "customTemplates": [
+    {
+      "name": "homepage",
+      "title": "Homepage (ECE)",
+      "postTypes": ["page"]
+    },
+    {
+      "name": "page-notes-cyan",
+      "title": "Inner Page — Study Notes (Cyan)",
+      "postTypes": ["page"]
+    },
+    {
+      "name": "page-project-orange",
+      "title": "Inner Page — Project Lab (Orange)",
+      "postTypes": ["page"]
+    },
+    {
+      "name": "page-focus-violet",
+      "title": "Inner Page — Focus Reading (Violet)",
+      "postTypes": ["page"]
+    }
+  ],
+  "templates": [
+    {
+      "name": "single",
+      "title": "Single Post",
+      "postTypes": ["post"]
+    },
+    {
+      "name": "index",
+      "title": "Blog Home"
+    },
+    {
+      "name": "archive",
+      "title": "Archive"
+    },
+    {
+      "name": "page",
+      "title": "Page"
+    },
+    {
+      "name": "homepage",
+      "title": "Homepage (ECE)",
+      "postTypes": ["page"]
+    }
+  ],
+  "styles": {
+    "color": {
+      "background": "var:preset|color|site-bg",
+      "text": "var:preset|color|body-text"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|base",
+      "fontSize": "var:preset|font-size|md",
+      "lineHeight": "var:preset|line-height|md",
+      "fontWeight": "400"
+    },
+    "spacing": {
+      "padding": {
+        "left": "2rem",
+        "right": "2rem"
+      }
+    },
+    "css": ":root{font-size:62.5%;--bs-primary:var(--wp--preset--color--primary);--bs-secondary:var(--wp--preset--color--secondary);--bs-tertiary:var(--wp--preset--color--tertiary);--bs-quaternary:var(--wp--preset--color--quaternary);--bs-info:var(--wp--preset--color--info);--bs-success:var(--wp--preset--color--success);--bs-warning:var(--wp--preset--color--warning);--bs-danger:var(--wp--preset--color--error);--bs-white:var(--wp--preset--color--white);--bs-body-bg:var(--wp--preset--color--site-bg);--bs-body-color:var(--wp--preset--color--body-text);--bs-body-font-family:'Open Sans',sans-serif;--bs-card-bg:var(--wp--preset--color--card-bg);--bs-header-bg:var(--wp--preset--color--header-bg);--bs-footer-bg:var(--wp--preset--color--footer-bg);--bs-border-radius:1.2rem;--bs-card-border-radius:1.8rem;--bs-transition:all .2s ease-in-out}body{background-color:var(--wp--preset--color--site-bg);color:var(--wp--preset--color--body-text)}::selection{background:#FDE68A;color:#0B1226}a{transition:color .2s ease}.wp-block-button__link{transition:transform .15s ease,box-shadow .2s ease,background-color .2s ease}.wp-block-button__link:hover{transform:translateY(-1px);box-shadow:0 1.2rem 2.6rem rgba(249,115,22,.35)}:focus-visible{outline:.2rem solid var(--wp--preset--color--cs-sky);outline-offset:.2rem}",
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|heading",
+          "letterSpacing": "-0.02em"
+        },
+        "color": {
+          "text": "var:preset|color|cs-navy"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontSize": "var:preset|font-size|6xl",
+          "fontWeight": "800",
+          "lineHeight": "1.08"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontSize": "var:preset|font-size|4xl",
+          "fontWeight": "800",
+          "lineHeight": "1.15"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "var:preset|font-size|2xl",
+          "fontWeight": "700",
+          "lineHeight": "1.25"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontSize": "var:preset|font-size|xl",
+          "fontWeight": "700",
+          "lineHeight": "1.3"
+        }
+      },
+      "h5": {
+        "typography": {
+          "fontSize": "var:preset|font-size|lg",
+          "fontWeight": "700",
+          "lineHeight": "1.35"
+        }
+      },
+      "h6": {
+        "typography": {
+          "fontSize": "var:preset|font-size|md",
+          "fontWeight": "700",
+          "lineHeight": "1.4"
+        }
+      },
+      "caption": {
+        "typography": {
+          "fontSize": "var:preset|font-size|xsm"
+        },
+        "color": {
+          "text": "var:preset|color|muted-text"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var:preset|color|link"
+        },
+        "typography": {
+          "textDecoration": "none"
+        },
+        ":hover": {
+          "color": {
+            "text": "var:preset|color|secondary-hover"
+          },
+          "typography": {
+            "textDecoration": "underline"
+          }
+        }
+      },
+      "button": {
+        "color": {
+          "gradient": "var:preset|gradient|cs-cta",
+          "text": "var:preset|color|white"
+        },
+        "typography": {
+          "fontFamily": "var:preset|font-family|base",
+          "fontWeight": "700",
+          "fontSize": "var:preset|font-size|md"
+        },
+        "border": {
+          "radius": "999px"
+        },
+        "spacing": {
+          "padding": {
+            "top": "1.2rem",
+            "bottom": "1.2rem",
+            "left": "2.4rem",
+            "right": "2.4rem"
+          }
+        },
+        ":hover": {
+          "color": {
+            "background": "var:preset|color|primary-hover",
+            "text": "var:preset|color|white"
+          }
+        }
+      }
+    },
+    "blocks": {
+      "core/site-title": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|heading",
+          "fontWeight": "800",
+          "fontSize": "var:preset|font-size|xl"
+        },
+        "color": {
+          "text": "var:preset|color|cs-navy"
+        },
+        "elements": {
+          "link": {
+            "color": {
+              "text": "var:preset|color|cs-navy"
+            },
+            ":hover": {
+              "color": {
+                "text": "var:preset|color|secondary"
+              }
+            }
+          }
+        }
+      },
+      "core/site-tagline": {
+        "typography": {
+          "fontSize": "var:preset|font-size|xsm"
+        },
+        "color": {
+          "text": "var:preset|color|muted-text"
+        }
+      },
+      "core/navigation": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|base",
+          "fontSize": "var:preset|font-size|md",
+          "fontWeight": "600"
+        },
+        "color": {
+          "text": "var:preset|color|cs-navy"
+        },
+        "elements": {
+          "link": {
+            "color": {
+              "text": "var:preset|color|cs-navy"
+            },
+            ":hover": {
+              "color": {
+                "text": "var:preset|color|secondary"
+              }
+            }
+          }
+        }
+      },
+      "core/post-title": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|heading",
+          "fontWeight": "800",
+          "fontSize": "clamp(3.2rem,5vw,4.8rem)",
+          "lineHeight": "1.15"
+        },
+        "color": {
+          "text": "var:preset|color|cs-navy"
+        },
+        "spacing": {
+          "margin": {
+            "bottom": "2.4rem"
+          }
+        }
+      },
+      "core/post-content": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|base",
+          "fontSize": "var:preset|font-size|lg",
+          "lineHeight": "1.75"
+        },
+        "color": {
+          "text": "var:preset|color|cs-body"
+        }
+      },
+      "core/post-author": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|base",
+          "fontSize": "var:preset|font-size|xsm",
+          "fontWeight": "600"
+        },
+        "color": {
+          "text": "var:preset|color|secondary"
+        }
+      },
+      "core/post-date": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|base",
+          "fontSize": "var:preset|font-size|xsm"
+        },
+        "color": {
+          "text": "var:preset|color|muted-text"
+        }
+      },
+      "core/post-terms": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|base",
+          "fontSize": "var:preset|font-size|xs",
+          "fontWeight": "700",
+          "textTransform": "uppercase"
+        },
+        "elements": {
+          "link": {
+            "color": {
+              "text": "var:preset|color|white",
+              "background": "var:preset|color|secondary"
+            },
+            "border": {
+              "radius": "999px"
+            },
+            "spacing": {
+              "padding": {
+                "top": "0.4rem",
+                "bottom": "0.4rem",
+                "left": "1.2rem",
+                "right": "1.2rem"
+              }
+            },
+            ":hover": {
+              "color": {
+                "background": "var:preset|color|secondary-hover"
+              }
+            }
+          }
+        }
+      },
+      "core/post-featured-image": {
+        "border": {
+          "radius": "1.8rem"
+        },
+        "spacing": {
+          "margin": {
+            "bottom": "3.2rem"
+          }
+        }
+      },
+      "core/code": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|mono",
+          "fontSize": "var:preset|font-size|xsm",
+          "lineHeight": "1.7"
+        },
+        "color": {
+          "background": "var:preset|color|cs-navy",
+          "text": "#E2E8F0"
+        },
+        "border": {
+          "radius": "1.2rem"
+        },
+        "spacing": {
+          "padding": {
+            "top": "1.6rem",
+            "bottom": "1.6rem",
+            "left": "1.6rem",
+            "right": "1.6rem"
+          }
+        }
+      },
+      "core/preformatted": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|mono",
+          "fontSize": "var:preset|font-size|xsm"
+        },
+        "color": {
+          "background": "var:preset|color|cs-soft",
+          "text": "var:preset|color|cs-ink"
+        },
+        "border": {
+          "radius": "1.2rem",
+          "color": "var:preset|color|cs-line",
+          "width": "1px"
+        }
+      },
+      "core/separator": {
+        "color": {
+          "text": "var:preset|color|cs-line"
+        }
+      },
+      "core/table": {
+        "typography": {
+          "fontSize": "var:preset|font-size|xsm"
+        },
+        "color": {
+          "text": "var:preset|color|cs-body"
+        }
+      },
+      "core/quote": {
+        "border": {
+          "color": "var:preset|color|cs-sky",
+          "width": "0 0 0 4px"
+        },
+        "color": {
+          "text": "var:preset|color|cs-body"
+        },
+        "spacing": {
+          "padding": {
+            "left": "1.6rem"
+          }
+        }
+      },
+      "core/search": {
+        "elements": {
+          "button": {
+            "color": {
+              "gradient": "var:preset|gradient|cs-brand",
+              "text": "var:preset|color|white"
+            },
+            "border": {
+              "radius": "999px"
+            }
+          }
+        }
+      }
+    }
+  }
+}

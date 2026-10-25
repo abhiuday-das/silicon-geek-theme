@@ -1,0 +1,1337 @@
+// ============================================================
+// CircuitShala (ECE) design layer — v2, written for THIS theme.
+// File: src/sass/theme/_circuitshala-home.scss   (NEW file)
+// Activate: add ONE line at the END of src/sass/theme.scss :
+//     @import "theme/circuitshala-home";
+// then keep `npm run watch` running.
+// Notes: your theme uses :root{font-size:62.5%} => 1rem = 10px.
+// All sizes below are rem. Colors come from theme.json presets
+// (var(--wp--preset--color--*)) so editor + front-end stay in sync.
+// Everything is prefixed .cs- so NOTHING here breaks old pages.
+// ============================================================
+
+$cs-navy: var(--wp--preset--color--cs-navy);
+$cs-cyan: var(--wp--preset--color--cs-cyan);
+$cs-sky: var(--wp--preset--color--cs-sky);
+$cs-body: var(--wp--preset--color--cs-body);
+$cs-muted: var(--wp--preset--color--cs-muted);
+$cs-line: var(--wp--preset--color--cs-line);
+
+/* ---------------- Header / topbar (v3 — responsive menu fix) ----------------
+   Breakpoints:  Desktop >= 1200px : full horizontal menu always visible
+                 Tablet  768–1199  : WP core hamburger + overlay menu + CTA
+                 Mobile  <= 767px  : logo + WhatsApp bubble + hamburger overlay
+   The hamburger/overlay is printed & operated by WORDPRESS CORE
+   (navigation block, overlayMenu:"mobile") — this CSS only moves WP's
+   default 600px switch up to 1199px and styles it. */
+/* ---- Announcement bar (v4): ONE clean row inside the same 124rem container
+   as the header. Segments never wrap; on laptop widths the middle segment
+   hides instead of wrapping (the 3 equal wp-columns caused the messy wrap). ---- */
+.cs-topbar {
+  background: #071022;
+  color: #dbeafe;
+  font-size: 1.3rem;
+  .is-style-container {
+    max-width: 124rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-sizing: border-box;
+  }
+  p {
+    color: #dbeafe;
+    font-size: 1.3rem;
+    margin: 0;
+    line-height: 1.35;
+    white-space: nowrap !important;
+  }
+  strong {
+    color: #fff;
+  }
+  a {
+    color: #7dd3fc;
+    font-weight: 600;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.2rem;
+    }
+  }
+}
+.cs-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.4rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+.cs-topbar-mid {
+  text-align: center;
+}
+.cs-topbar-right {
+  text-align: right;
+}
+/* If an older columns-based topbar is still saved in the Site Editor DB, straighten it too */
+.cs-topbar .wp-block-columns {
+  display: flex;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between;
+  gap: 2.4rem;
+  margin: 0 !important;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+.cs-topbar .wp-block-column {
+  flex: 0 0 auto !important;
+}
+.cs-topbar--compact {
+  display: none;
+  padding: 0.8rem 1.6rem;
+  p {
+    white-space: normal;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+@media (max-width: 1279px) {
+  .cs-topbar-mid {
+    display: none !important;
+  }
+  .cs-topbar .wp-block-column:nth-child(2) {
+    display: none !important;
+  }
+}
+@media (max-width: 1199px) {
+  .cs-topbar--desktop {
+    display: none !important;
+  }
+  .cs-topbar--compact {
+    display: block;
+  }
+}
+
+.cs-site-header,
+.cs-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 0.2rem 1.2rem rgba(2, 6, 23, 0.05);
+}
+/* Header row width is FIXED here in CSS (not left to theme.json contentSize /
+   the old is-style-container class), so brand + menu + CTA are never starved
+   of space — that starvation is what crushed the title & the orange button. */
+.cs-site-header .cs-header-inner,
+.cs-header .cs-header-inner,
+.cs-site-header > .is-style-container,
+.cs-header > .is-style-container {
+  max-width: 124rem !important;
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
+.cs-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+.cs-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
+  min-width: 0;
+  .wp-block-site-logo img {
+    display: block;
+    height: auto;
+    max-height: 5.6rem;
+    width: auto;
+  }
+  .cs-brand-title,
+  .wp-block-site-title {
+    font-family: Montserrat, "Open Sans", sans-serif;
+    font-weight: 800;
+    font-size: 2.2rem;
+    letter-spacing: -0.02em;
+    margin: 0;
+    white-space: nowrap;
+    a {
+      color: #0b1226;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+  }
+}
+/* If a logo image exists, hide the text title (no duplicate branding);
+   if NO logo is set, the title shows — header is never blank. */
+.cs-brand:has(.wp-block-site-logo img) .cs-brand-title {
+  display: none;
+}
+.cs-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-left: auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: flex-end;
+}
+/* The CTA can NEVER be squeezed into a vertical letter-strip again */
+.cs-header-cta {
+  flex: 0 0 auto;
+  .wp-block-button {
+    flex: 0 0 auto;
+  }
+  .wp-block-button__link {
+    white-space: nowrap;
+    word-break: normal;
+    overflow-wrap: normal;
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    color: #fff !important;
+    border: 0;
+    border-radius: 999px;
+    padding: 1.15rem 2.2rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    box-shadow: 0 0.8rem 2rem rgba(249, 115, 22, 0.3);
+    &:hover {
+      filter: brightness(1.05);
+    }
+  }
+}
+/* Defensive: same protection if an older Site-Editor-saved header is still in
+   the database (without the .cs- classes on the search/button blocks). */
+.cs-main-nav {
+  min-width: 0;
+}
+.cs-site-header .wp-block-buttons,
+.cs-header .wp-block-buttons {
+  flex: 0 0 auto;
+}
+.cs-site-header .wp-block-button__link,
+.cs-header .wp-block-button__link {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+.cs-site-header .wp-block-site-title,
+.cs-header .wp-block-site-title {
+  white-space: nowrap;
+}
+.cs-site-header .wp-block-search,
+.cs-header .wp-block-search {
+  flex: 0 0 auto;
+}
+
+/* ---- Main navigation: labels ALWAYS visible (this was the hover bug) ---- */
+.cs-main-nav {
+  opacity: 1 !important;
+  visibility: visible !important;
+  /* Neutralise the old global `ul{display:table-cell}` style inside the menu */
+  ul {
+    display: flex;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0 !important;
+    list-style: none;
+  }
+  li {
+    margin: 0;
+    padding: 0 !important;
+    &::before {
+      display: none !important;
+    }
+  }
+  .wp-block-navigation-item__content,
+  .wp-block-navigation-item__label {
+    color: #0b1226 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .wp-block-navigation-item__content {
+    padding: 0.9rem 1.1rem;
+    border-radius: 0.9rem;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    text-decoration: none !important;
+    white-space: nowrap;
+    &:hover,
+    &:focus-visible {
+      background: #ecfeff;
+      color: #0e7490 !important;
+    }
+  }
+  .wp-block-navigation__submenu-icon {
+    color: #0b1226;
+  }
+  /* Desktop dropdown */
+  .wp-block-navigation__submenu-container {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1.2rem;
+    box-shadow: 0 1.8rem 4rem rgba(2, 6, 23, 0.14);
+    padding: 0.8rem;
+    min-width: 24rem;
+    z-index: 1001;
+    .wp-block-navigation-item__content {
+      white-space: normal;
+    }
+  }
+  /* Mobile-only CTA links: hidden in the desktop bar, shown inside the overlay */
+  .cs-nav-mobile-cta {
+    display: none;
+  }
+  /* Hamburger & close buttons (printed by WP core as inline SVG) */
+  .wp-block-navigation__responsive-container-open,
+  .wp-block-navigation__responsive-container-close {
+    align-items: center;
+    justify-content: center;
+    width: 4.6rem;
+    height: 4.6rem;
+    border-radius: 1.1rem;
+    cursor: pointer;
+    svg {
+      width: 2.6rem;
+      height: 2.6rem;
+    }
+  }
+  .wp-block-navigation__responsive-container-open {
+    background: #ecfeff;
+    border: 1px solid #a5f3fc;
+    color: #0b1226;
+    &:hover,
+    &:focus-visible {
+      background: #cffafe;
+    }
+  }
+}
+.cs-header-search .wp-block-search__input {
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  font-size: 1.4rem;
+}
+.cs-mobile-wa {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 4.6rem;
+  height: 4.6rem;
+  border-radius: 50%;
+  background: #22c55e;
+  font-size: 2.3rem;
+  line-height: 1;
+  text-decoration: none !important;
+  box-shadow: 0 0.8rem 2rem rgba(22, 163, 74, 0.35);
+  flex: 0 0 auto;
+}
+
+/* Desktop >= 1200px : inline menu, no hamburger (WP default, stated explicitly) */
+@media (min-width: 1200px) {
+  .cs-main-nav .wp-block-navigation__responsive-container-open {
+    display: none !important;
+  }
+  .cs-main-nav .wp-block-navigation__responsive-container {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+/* Search only when there is real room for it (incl. old-DB headers whose
+   search block lacks the .cs-header-search class) */
+@media (max-width: 1399px) {
+  .cs-header-search,
+  .cs-site-header .wp-block-search,
+  .cs-header .wp-block-search {
+    display: none !important;
+  }
+}
+@media (min-width: 1400px) {
+  .cs-header-search {
+    flex: 0 0 auto;
+  }
+}
+/* Laptop 1200–1439px: slightly tighter menu + brand so everything fits on ONE line */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .cs-main-nav .wp-block-navigation-item__content {
+    font-size: 1.5rem;
+    padding: 0.8rem 0.8rem;
+  }
+  .cs-brand .cs-brand-title {
+    font-size: 2rem;
+  }
+}
+
+/* Tablet + Mobile <= 1199px : hamburger + full-screen overlay (WP core) */
+@media (max-width: 1199px) {
+  .cs-mobile-wa {
+    display: inline-flex;
+  }
+  .cs-main-nav {
+    margin-left: auto;
+    .wp-block-navigation__responsive-container-open {
+      display: inline-flex !important;
+    }
+    /* THE switch: hide the inline list until WP adds .is-menu-open */
+    .wp-block-navigation__responsive-container:not(.is-menu-open) {
+      display: none !important;
+    }
+    .wp-block-navigation__responsive-container.is-menu-open {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      background: #0b1226;
+      color: #fff;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    .wp-block-navigation__responsive-container-close {
+      display: inline-flex !important;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+    .wp-block-navigation__responsive-dialog {
+      width: 100%;
+      margin-top: 0;
+    }
+    .wp-block-navigation__responsive-container-content {
+      width: 100%;
+    }
+    .is-menu-open .wp-block-navigation__container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.2rem;
+      width: 100%;
+      padding-top: 1.6rem !important;
+    }
+    .is-menu-open .wp-block-navigation-item {
+      width: 100%;
+    }
+    .is-menu-open .wp-block-navigation-item__content,
+    .is-menu-open .wp-block-navigation-item__label {
+      color: #fff !important;
+    }
+    .is-menu-open .wp-block-navigation-item__content {
+      display: flex;
+      width: 100%;
+      font-size: 2rem;
+      font-weight: 700;
+      padding: 1.2rem 0.4rem;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      white-space: normal;
+      &:hover,
+      &:focus-visible {
+        background: rgba(255, 255, 255, 0.08);
+        color: #7dd3fc !important;
+      }
+    }
+    .is-menu-open .wp-block-navigation__submenu-icon {
+      color: #fff;
+    }
+    /* Submenus inside the overlay: static indented list, always readable */
+    .is-menu-open .wp-block-navigation__submenu-container {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      height: auto;
+      width: auto;
+      min-width: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 0 0 0 1.8rem;
+      .wp-block-navigation-item__content {
+        font-size: 1.7rem;
+        font-weight: 600;
+        border-bottom: 0;
+        padding: 0.9rem 0.4rem;
+      }
+    }
+    .is-menu-open .cs-nav-mobile-cta {
+      display: flex;
+      margin-top: 1.2rem;
+      .wp-block-navigation-item__content {
+        justify-content: center;
+        background: #22c55e;
+        color: #fff !important;
+        border: 0;
+        border-radius: 999px;
+        padding: 1.4rem;
+        font-size: 1.7rem;
+      }
+    }
+    .is-menu-open
+      .cs-nav-mobile-cta
+      + .cs-nav-mobile-cta
+      .wp-block-navigation-item__content {
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+    }
+  }
+}
+/* Mobile <= 767px : compact bar (logo + WhatsApp + hamburger), CTA lives in overlay + sticky footer */
+@media (max-width: 767px) {
+  .cs-header-cta {
+    display: none !important;
+  }
+  .cs-brand .wp-block-site-logo img {
+    max-height: 4.4rem;
+    max-width: 15rem;
+  }
+  .cs-brand .cs-brand-title {
+    font-size: 1.9rem;
+  }
+}
+/* Tablet 768–1199px : keep the orange CTA next to the hamburger */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .cs-brand .wp-block-site-logo img {
+    max-height: 5rem;
+  }
+}
+
+/* Footer */
+.cs-footer {
+  background: #071022;
+  color: #cbd5e1;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  .h7 {
+    color: #fff;
+  }
+  p,
+  li {
+    color: #cbd5e1;
+  }
+  a {
+    color: #cbd5e1;
+    &:hover {
+      color: #67e8f9;
+    }
+  }
+  .wp-block-navigation-item__content {
+    color: #cbd5e1;
+    font-size: 1.5rem;
+    padding: 0.3rem 0;
+  }
+}
+.cs-contact-links {
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+  display: block;
+  width: auto;
+  li {
+    padding-left: 0 !important;
+    margin-bottom: 0.8rem;
+    &::before {
+      display: none !important;
+    }
+  }
+}
+
+/* ---------------- Buttons ---------------- */
+.cs-btn,
+.wp-block-button__link {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+.cs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.2rem 2.2rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1.6rem;
+  line-height: 1;
+  border: 1px solid transparent;
+  text-decoration: none !important;
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+.cs-btn--primary {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: #fff !important;
+  box-shadow: 0 1.2rem 2.6rem rgba(249, 115, 22, 0.32);
+}
+.cs-btn--cyan {
+  background: linear-gradient(135deg, #0891b2, #2563eb);
+  color: #fff !important;
+  box-shadow: 0 0.8rem 2.4rem rgba(14, 116, 144, 0.18);
+}
+.cs-btn--wa {
+  background: #22c55e;
+  color: #fff !important;
+}
+.cs-btn--ghost {
+  background: #fff;
+  border-color: #e2e8f0;
+  color: #0b1226 !important;
+}
+/* Block-style buttons registered in functions.php */
+.wp-block-button.is-style-whatsapp .wp-block-button__link {
+  background: #22c55e;
+  color: #fff;
+  border-radius: 999px;
+}
+.wp-block-button.is-style-ghost .wp-block-button__link {
+  background: #fff;
+  color: #0b1226;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+}
+.wp-block-button.is-style-primary .wp-block-button__link {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: #fff;
+  border-radius: 999px;
+  box-shadow: 0 1.2rem 2.6rem rgba(249, 115, 22, 0.3);
+}
+.wp-block-button.is-style-secondary .wp-block-button__link {
+  background: linear-gradient(135deg, #0891b2, #2563eb);
+  color: #fff;
+  border-radius: 999px;
+}
+.wp-block-button.is-style-tertiary .wp-block-button__link {
+  background: #0b1226;
+  color: #fff;
+  border-radius: 999px;
+}
+.wp-block-button.is-style-primary-alt .wp-block-button__link {
+  background: #fff;
+  color: #ea580c;
+  border: 1px solid #fdba74;
+  border-radius: 999px;
+}
+.wp-block-button.is-style-secondary-alt .wp-block-button__link {
+  background: #fff;
+  color: #0e7490;
+  border: 1px solid #a5f3fc;
+  border-radius: 999px;
+}
+.wp-block-button.is-style-tertiary-alt .wp-block-button__link {
+  background: #dbeafe;
+  color: #0b1226;
+  border-radius: 999px;
+}
+.wp-block-button.is-style-sm .wp-block-button__link {
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
+}
+.wp-block-button.is-style-lg .wp-block-button__link {
+  padding: 1.6rem 3.2rem;
+  font-size: 1.8rem;
+}
+.wp-block-button.is-style-pill .wp-block-button__link {
+  border-radius: 999px;
+}
+/* Paragraph badge style (registered in functions.php) */
+p.is-style-badge,
+.is-style-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ecfeff;
+  color: #0e7490;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+}
+
+/* ---------------- Hero ---------------- */
+.cs-hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  padding: clamp(4.8rem, 6vw, 7.2rem) 0 clamp(4rem, 5vw, 6rem);
+  background:
+    radial-gradient(
+      90rem 50rem at 85% 0%,
+      rgba(14, 165, 233, 0.35),
+      transparent 60%
+    ),
+    radial-gradient(
+      70rem 40rem at 0% 100%,
+      rgba(245, 158, 11, 0.16),
+      transparent 55%
+    ),
+    linear-gradient(135deg, #0b1226, #111b38 58%, #0c2f52);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.16;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+    background-size: 4.4rem 4.4rem;
+  }
+  > * {
+    position: relative;
+  }
+  h1,
+  .h1,
+  h2,
+  h3 {
+    color: #fff;
+  }
+  h1 {
+    font-size: clamp(3.8rem, 5vw, 6rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    .cs-grad {
+      background: linear-gradient(90deg, #67e8f9, #93c5fd, #fbbf24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+  .cs-lead {
+    color: #cbd5e1;
+    font-size: 1.8rem;
+    max-width: 64rem;
+  }
+  p,
+  li {
+    color: #cbd5e1;
+  }
+}
+.cs-badge {
+  display: inline-flex;
+  gap: 0.8rem;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.cs-searchbar {
+  background: #fff;
+  border-radius: 1.6rem;
+  padding: 0.8rem;
+  display: flex;
+  gap: 0.8rem;
+  box-shadow: 0 2rem 4.5rem rgba(0, 0, 0, 0.26);
+  max-width: 65rem;
+  margin-top: 2.2rem;
+  input[type="search"] {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    padding: 1rem 1.2rem;
+    min-width: 0;
+    font-size: 1.6rem;
+  }
+  @media (max-width: 680px) {
+    flex-direction: column;
+    .cs-btn {
+      width: 100%;
+    }
+  }
+}
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-top: 2.8rem;
+  .cs-stat {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    padding: 1.4rem;
+    border-radius: 1.5rem;
+    b {
+      font-size: 2.2rem;
+      display: block;
+      color: #fff;
+    }
+    span {
+      font-size: 1.25rem;
+      color: #cbd5e1;
+    }
+  }
+  @media (max-width: 680px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.cs-panel {
+  background: rgba(255, 255, 255, 0.97);
+  color: #0b1226;
+  border-radius: 2.6rem;
+  padding: 2.2rem;
+  box-shadow: 0 2.8rem 7rem rgba(0, 0, 0, 0.35);
+  h3,
+  p,
+  li {
+    color: #0b1226;
+  }
+}
+.cs-progress {
+  height: 0.9rem;
+  background: #e2e8f0;
+  border-radius: 99px;
+  overflow: hidden;
+  i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #06b6d4, #22c55e);
+  }
+}
+.cs-lesson {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1.3rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  margin-top: 1rem;
+  align-items: center;
+  background: #fff;
+  color: #0b1226;
+  text-decoration: none !important;
+  &:hover {
+    border-color: #67e8f9;
+    background: #f0fdff;
+  }
+  small {
+    color: #64748b;
+    font-size: 1.3rem;
+  }
+}
+.cs-lesson-icon,
+.cs-icon {
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 1.3rem;
+  display: grid;
+  place-items: center;
+  font-size: 2.2rem;
+  background: #f1f5f9;
+  flex: 0 0 auto;
+}
+.cs-pill {
+  background: #ecfeff;
+  color: #0e7490;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  &.is-amber {
+    background: #fffbeb;
+    color: #b45309;
+  }
+  &.is-green {
+    background: #f0fdf4;
+    color: #15803d;
+  }
+}
+
+/* ---------------- Sections / cards ---------------- */
+.cs-section {
+  padding: clamp(4.8rem, 6vw, 6.8rem) 0;
+}
+.cs-section--soft {
+  background: #f8fafc;
+}
+.cs-eyebrow {
+  color: #0e7490;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 1.3rem;
+  text-align: center;
+}
+.cs-title {
+  font-size: clamp(2.8rem, 4vw, 4.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-align: center;
+  max-width: 82rem;
+  margin: 0.8rem auto 1rem;
+  font-weight: 800;
+  color: #0b1226;
+}
+.cs-sub {
+  text-align: center;
+  color: #64748b;
+  max-width: 76rem;
+  margin: 0 auto 3rem;
+  font-size: 1.7rem;
+}
+.cs-grid {
+  display: grid;
+  gap: 1.8rem;
+}
+.cs-grid--4 {
+  grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+}
+.cs-grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+}
+.cs-grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+}
+.cs-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.8rem;
+  padding: 2.2rem;
+  height: 100%;
+  transition: 0.22s;
+  &:hover {
+    transform: translateY(-0.4rem);
+    box-shadow: 0 1.8rem 4rem rgba(2, 6, 23, 0.12);
+    border-color: #a5f3fc;
+  }
+  h3 {
+    margin: 1rem 0 0.7rem;
+    font-size: 2rem;
+    color: #0b1226;
+  }
+  p {
+    color: #64748b;
+    font-size: 1.6rem;
+  }
+}
+.cs-tag {
+  background: #f1f5f9;
+  padding: 0.4rem 0.8rem;
+  border-radius: 99px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #475569;
+  display: inline-block;
+  margin: 0 0.5rem 0.6rem 0;
+}
+.cs-year-num {
+  font-size: 4.2rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.cs-subject {
+  display: flex;
+  gap: 1.3rem;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.6rem;
+  padding: 1.5rem;
+  height: 100%;
+  color: #0b1226;
+  text-decoration: none !important;
+  &:hover {
+    box-shadow: 0 0.8rem 2.4rem rgba(14, 116, 144, 0.16);
+    border-color: #a5f3fc;
+  }
+  b {
+    font-size: 1.7rem;
+  }
+  small {
+    color: #64748b;
+    display: block;
+    font-size: 1.35rem;
+  }
+}
+.cs-track {
+  border-radius: 2.4rem;
+  padding: 3rem;
+  color: #fff;
+  height: 100%;
+  h3 {
+    font-size: 3rem;
+    color: #fff;
+    margin: 0.8rem 0;
+  }
+  p,
+  li {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.6rem;
+  }
+  .cs-btn {
+    background: #fff;
+    color: #0b1226 !important;
+  }
+}
+.cs-track--embed {
+  background: linear-gradient(135deg, #0e7490, #2563eb);
+}
+.cs-track--vlsi {
+  background: linear-gradient(135deg, #5b21b6, #111827);
+}
+
+/* Projects / shop */
+.cs-thumb {
+  min-height: 17rem;
+  padding: 1.8rem;
+  color: #fff;
+  border-radius: 1.8rem 1.8rem 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #0f766e, #2563eb);
+  .cs-glyph {
+    font-size: 5.4rem;
+  }
+  b {
+    font-size: 1.5rem;
+  }
+}
+.cs-thumb--b {
+  background: linear-gradient(135deg, #7c3aed, #0891b2);
+}
+.cs-thumb--c {
+  background: linear-gradient(135deg, #b45309, #dc2626);
+}
+.cs-project {
+  padding: 0 !important;
+  overflow: hidden;
+  .cs-project-body {
+    padding: 1.9rem;
+  }
+}
+.cs-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.4rem;
+  gap: 1rem;
+  b {
+    font-size: 1.8rem;
+    color: #0b1226;
+  }
+}
+.cs-art {
+  height: 16rem;
+  border-radius: 1.4rem;
+  display: grid;
+  place-items: center;
+  font-size: 5.8rem;
+  background: linear-gradient(135deg, #ecfeff, #eff6ff);
+}
+.cs-old {
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+/* GATE / CTA panels */
+.cs-gate {
+  background:
+    radial-gradient(
+      70rem 35rem at 100% 0,
+      rgba(245, 158, 11, 0.25),
+      transparent 60%
+    ),
+    linear-gradient(135deg, #331b00, #0b1226 62%);
+  color: #fff;
+  border-radius: 2.8rem;
+  padding: clamp(2.4rem, 4vw, 3.6rem);
+  h2 {
+    color: #fff;
+  }
+  p {
+    color: #e2e8f0;
+  }
+}
+.cs-check {
+  list-style: none;
+  padding: 0 !important;
+  display: block;
+  width: auto;
+  li {
+    padding: 0.8rem 0 0.8rem 0 !important;
+    color: #e2e8f0;
+    &::before {
+      content: "✓";
+      position: static;
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      background: none;
+      color: #22c55e;
+      font-weight: 900;
+      margin-right: 0.9rem;
+    }
+  }
+}
+.cs-bigcta {
+  border-radius: 2.8rem;
+  padding: clamp(2.4rem, 4vw, 3.6rem);
+  background: linear-gradient(135deg, #14532d, #16a34a);
+  color: #fff;
+  h2 {
+    color: #fff;
+  }
+  p {
+    color: #dcfce7;
+  }
+}
+.cs-leadbox {
+  background: #fff;
+  border: 2px dashed #67e8f9;
+  border-radius: 2.2rem;
+  padding: 2.6rem;
+}
+
+/* ---------------- Notes reading experience (cs-prose) ---------------- */
+.cs-def {
+  background: #ecfeff;
+  border-left: 0.5rem solid #06b6d4;
+  border-radius: 1.2rem;
+  padding: 1.6rem 1.8rem;
+  font-size: 1.7rem;
+  color: #0b1226;
+}
+.cs-compbox {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 1.6rem;
+  padding: 1.8rem;
+}
+.cs-pyq {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.6rem;
+  padding: 1.8rem;
+}
+.cs-prose {
+  font-size: 1.8rem;
+  line-height: 1.75;
+  color: #334155;
+  h2 {
+    margin-top: 3.2rem;
+    border-bottom: 2px solid #ecfeff;
+    padding-bottom: 0.8rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.5rem;
+  }
+  th,
+  td {
+    border: 1px solid #e2e8f0;
+    padding: 0.9rem 1.1rem;
+  }
+  th {
+    background: #0b1226;
+    color: #fff;
+    text-align: left;
+  }
+  img {
+    border-radius: 1.4rem;
+  }
+}
+
+/* WooCommerce cards (Phase 3) */
+.wc-block-grid__product,
+.woocommerce ul.products li.product {
+  border: 1px solid #e2e8f0;
+  border-radius: 1.8rem;
+  padding: 1.6rem;
+  background: #fff;
+}
+.woocommerce a.button,
+.wc-block-grid__product-add-to-cart .wp-block-button__link {
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+/* WhatsApp float */
+.cs-wa-float {
+  position: fixed;
+  right: 1.8rem;
+  bottom: 7.2rem;
+  z-index: 999;
+  background: #22c55e;
+  color: #fff !important;
+  width: 5.8rem;
+  height: 5.8rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 2.8rem;
+  box-shadow: 0 1.6rem 3.5rem rgba(22, 163, 74, 0.4);
+  text-decoration: none !important;
+  @media (min-width: 992px) {
+    bottom: 1.8rem;
+  }
+}
+
+/* Mobile sticky CTA safe-space so it never hides footer text */
+@media (max-width: 991px) {
+  body {
+    padding-bottom: 6.4rem;
+  }
+  .sticky-footer-btn {
+    z-index: 1000;
+    box-shadow: 0 -0.4rem 2rem rgba(2, 6, 23, 0.15);
+  }
+}
+
+/* =====================================================================
+   v5 BULLETPROOF HEADER LAYER — is file ke bilkul END mein rakho.
+   Kaam: agar Site Editor database se purani header copy de raha ho, ya
+   theme ki koi CSS header blocks ko sikod rahi ho, to bhi ye rules usi
+   template-part ko pakadti hain jiske andar .cs-site-header / .cs-header
+   hai, aur title + orange button ko kabhi sikudne nahi deti.
+   Search token (PowerShell verify ke liye): horizontal-tb
+   ===================================================================== */
+.wp-block-template-part:has(.cs-site-header),
+.wp-block-template-part:has(.cs-header) {
+  .is-style-container {
+    max-width: 124rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-sizing: border-box;
+  }
+  .wp-block-site-title {
+    margin: 0;
+    white-space: nowrap !important;
+    a {
+      white-space: nowrap !important;
+    }
+  }
+  .wp-block-site-logo {
+    flex: 0 0 auto;
+  }
+  .wp-block-buttons {
+    flex: 0 0 auto !important;
+    flex-wrap: nowrap !important;
+  }
+  .wp-block-button {
+    flex: 0 0 auto !important;
+  }
+  .wp-block-button__link {
+    white-space: nowrap !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    writing-mode: horizontal-tb !important;
+  }
+  .wp-block-search {
+    flex: 0 0 auto;
+  }
+  /* Columns se bana header bhi ek row mein, vertically centre, kuch nahi sikdega */
+  @media (min-width: 768px) {
+    .wp-block-columns {
+      flex-wrap: nowrap !important;
+      align-items: center !important;
+    }
+    .wp-block-column {
+      flex: 0 1 auto !important;
+      min-width: 0;
+    }
+    .cs-topbar .wp-block-column {
+      flex: 0 0 auto !important;
+    }
+  }
+  /* Laptop/tablet/mobile: header search band (jagah menu + button ko) */
+  @media (max-width: 1399px) {
+    .wp-block-search {
+      display: none !important;
+    }
+  }
+  /* Desktop menu labels hamesha ek line mein, 1366 par halka tight */
+  @media (min-width: 1200px) {
+    .wp-block-navigation-item__content {
+      white-space: nowrap;
+    }
+  }
+  @media (min-width: 1200px) and (max-width: 1439px) {
+    .wp-block-navigation-item__content {
+      font-size: 1.5rem;
+      padding: 0.8rem 0.8rem;
+    }
+    .wp-block-site-title {
+      font-size: 2rem;
+    }
+  }
+}
+/* ============================================================
+   ZOOM FIX — 90% / 100% har zoom par same header
+   90% zoom par viewport ~1518px ho jata hai, isliye purana
+   min-width:1400px rule header search ON kar deta tha aur
+   menu dab jata tha. Ab header search hamesha band rahega
+   (homepage ke hero mein search pehle se hai).
+   ============================================================ */
+.cs-header-search,
+.cs-site-header .wp-block-search,
+.cs-header .wp-block-search,
+.wp-block-template-part:has(.cs-site-header) .wp-block-search,
+.wp-block-template-part:has(.cs-header) .wp-block-search {
+  display: none !important;
+}
+/* ---------- Secondary / dropdown menu visibility fix ---------- */
+@media (min-width: 1200px) {
+  .cs-site-header .cs-main-nav .wp-block-navigation__submenu-container {
+    background: #fff !important;
+    background-color: #fff !important;
+    color: #0b1226 !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 1.8rem 4rem rgba(2, 6, 23, 0.14) !important;
+    padding: 0.8rem !important;
+    min-width: 24rem !important;
+    opacity: 1 !important;
+  }
+
+  .cs-site-header
+    .cs-main-nav
+    .wp-block-navigation__submenu-container
+    .wp-block-navigation-item {
+    background: transparent !important;
+  }
+
+  .cs-site-header
+    .cs-main-nav
+    .wp-block-navigation__submenu-container
+    .wp-block-navigation-item__content,
+  .cs-site-header
+    .cs-main-nav
+    .wp-block-navigation__submenu-container
+    .wp-block-navigation-item__label {
+    background: transparent !important;
+    color: #0b1226 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .cs-site-header
+    .cs-main-nav
+    .wp-block-navigation__submenu-container
+    .wp-block-navigation-item__content:hover,
+  .cs-site-header
+    .cs-main-nav
+    .wp-block-navigation__submenu-container
+    .wp-block-navigation-item__content:focus-visible {
+    background: #ecfeff !important;
+    color: #0e7490 !important;
+  }
+}

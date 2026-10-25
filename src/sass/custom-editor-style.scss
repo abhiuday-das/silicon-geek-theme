@@ -1,0 +1,48 @@
+// Add your own editor styles here or import additional files
+
+// Grab our child theme variables
+@import "theme/theme_variables";
+
+// Grab a few bootstrap assets so we can use mixins, variables, etc
+@import "assets/bootstrap5/bootstrap";
+
+// Set up basic typography
+@import "assets/bootstrap5/type";
+
+// Set up bootstrap utilities
+@import "assets/bootstrap5/bootstrap-utilities";
+
+// Start bringing in colors and styles.
+@import "theme/fonts";
+@import "theme/icons";
+@import "theme/colors";
+@import "theme/blocks";
+@import "theme/patterns";
+@import "theme";
+@import "theme/theme"; 
+
+// Fixes Gutenberg's cover block color picker.
+.components-circular-option-picker__option {
+	border-radius: 50%;
+}
+
+// Matches the page title font weight.
+.editor-post-title .editor-post-title__input {
+	font-size: $h1-font-size;
+	font-weight: $headings-font-weight;
+}
+.block-editor-block-list__layout.is-root-container
+  > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+  max-width: unset !important;
+}
+.trusted-brand{
+	.block-editor-block-list__block.wp-block.is-editing-disabled.wp-block-understrap-cards.is-style-cards.editor-swiper-preview{
+		
+		.block-editor-block-list__layout{
+display: flex !important;
+.block-editor-block-list__block.wp-block.is-editing-disabled.card.is-style-card{
+	background: transparent !important;
+}
+		}
+	}
+}

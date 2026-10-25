@@ -1,0 +1,29 @@
+.page-thank-you {
+  .hero-section-thank-you {
+    background: radial-gradient(
+      88.89% 50% at 50% 50%,
+      #f9ffff 50%,
+      #fdffff 100%
+    );
+    @media only screen and (max-width: 767px) {
+      background: linear-gradient(
+        270deg,
+        rgba(131, 221, 218, 0.2) 0,
+        rgba(255, 255, 255, 0) 27.32%,
+        rgba(255, 255, 255, 0) 75.48%,
+        rgba(131, 221, 218, 0.2) 100%
+      );
+    }
+    &.has-section-py {
+      padding-block: 6.4rem;
+    }
+    h4 {
+      &.wp-block-heading {
+        margin-top: 6.4rem !important;
+      }
+    }
+    .wp-block-buttons {
+      margin-top: 4.8rem !important;
+    }
+  }
+}

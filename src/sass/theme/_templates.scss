@@ -1,0 +1,10 @@
+// ----------------------------------
+// WordPress Core Tempalates Styles
+// ----------------------------------
+// This file imports all individual block stylesheets for better organization
+@import "templates/single";
+@import "templates/404";
+@import "templates/thank-you";
+@import "templates/homepage";
+@import "templates/schedule-service";
+@import "templates/contact";

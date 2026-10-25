@@ -1,0 +1,545 @@
+// Tab Blocks Styling
+// Using extends to avoid inline styles
+
+// Base tab container
+.wp-block-understrap-tabs {
+  @extend .mb-4;
+  
+  // Horizontal tabs layout (matching uploaded image design)
+  &.tabs-horizontal {
+    .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0;
+      margin-bottom: 0;
+      border: none;
+      background: transparent;
+      
+      .nav-item {
+        flex: 1;
+        
+        .nav-link {
+          background: #b3e5fc;
+          border: 2px solid #81d4fa;
+          border-radius: 12px 12px 0 0;
+          color: #0277bd;
+          font-weight: 600;
+          font-size: 0.9rem;
+          text-align: center;
+          padding: 1rem 0.75rem;
+          margin: 0;
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 1;
+          
+          // Arrow down indicator
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid transparent;
+            transition: all 0.3s ease;
+          }
+          
+          &:hover {
+            background: #e1f5fe;
+            border-color: #4fc3f7;
+            transform: translateY(-2px);
+          }
+          
+          &.active {
+            background: white;
+            border-color: #81d4fa;
+            color: #0277bd;
+            z-index: 2;
+            transform: translateY(-1px);
+            
+            &::after {
+              border-top-color: white;
+            }
+          }
+        }
+      }
+    }
+    
+    .tab-content {
+      background: white;
+      border: 2px solid #81d4fa;
+      border-radius: 0 0 12px 12px;
+      padding: 2rem;
+      margin-top: -1px;
+      position: relative;
+      z-index: 1;
+    }
+  }
+  
+  // Vertical tabs layout
+  &.tabs-vertical {
+    .nav {
+      @extend .flex-column;
+      @extend .me-3;
+      min-width: 300px;
+    }
+    
+    .d-flex {
+      @extend .align-items-start;
+    }
+    
+    .tab-content {
+      @extend .flex-grow-1;
+    }
+  }
+  
+  // Tab navigation styling
+  .nav {
+    @extend .mb-3;
+    
+    .nav-item {
+      position: relative;
+      
+      // Learn More link positioned outside navigation anchor
+      .tab-learn-more {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        
+        .wp-block-button__link {
+          @extend .btn-sm;
+          @extend .btn-outline-primary;
+          font-size: 0.8rem;
+          padding: 0.25rem 0.75rem;
+          text-decoration: none;
+          
+          &:hover {
+            @extend .btn-primary;
+            color: white !important;
+          }
+        }
+        
+        // Mobile responsiveness
+        @media (max-width: 768px) {
+          position: static;
+          transform: none;
+          margin-top: 0.5rem;
+          text-align: right;
+          
+          .wp-block-button__link {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+          }
+        }
+      }
+    }
+    
+    .nav-link {
+      @extend .text-decoration-none;
+      @extend .border-0;
+      @extend .text-start;
+      @extend .p-3;
+      padding-right: 120px !important; // Make room for Learn More button
+      position: relative;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent !important;
+      
+      // Mobile responsiveness for nav-link
+      @media (max-width: 768px) {
+        padding-right: 1rem !important;
+        padding-bottom: 2.5rem !important; // Make room for Learn More button below
+      }
+      
+      &:hover {
+        @extend .text-primary;
+        background-color: rgba(0, 123, 255, 0.05);
+      }
+      
+      &.active {
+        @extend .bg-transparent;
+        @extend .text-primary;
+        border-left-color: var(--bs-primary) !important;
+        background-color: rgba(0, 123, 255, 0.1);
+      }
+      
+      .tab-nav-content {
+        .tab-nav-title {
+          @extend .h4;
+          @extend .mb-0;
+        }
+        
+        .tab-nav-description {
+          @extend p;
+          @extend .mt-2;
+          @extend .mb-0;
+        }
+        
+        .tab-nav-learn-more {
+          @extend .mt-2;
+          
+          .learn-more-link {
+           @extend .btn-link;
+          }
+        }
+      }
+      
+      &.active .tab-nav-content {
+        // .tab-nav-description {
+        //   color: rgba(0, 123, 255, 0.7) !important;
+        // }
+        
+        .tab-nav-learn-more .learn-more-link {
+          @extend .btn-link;
+        }
+      }
+    }
+  }
+  
+  // Tab navigation variants
+  .nav-tabs {
+    .nav-link {
+      @extend .border-0;
+      border-radius: 0;
+      
+      &.active {
+        @extend .border-0;
+        background-color: transparent;
+        border-left: 3px solid var(--bs-primary) !important;
+      }
+    }
+  }
+  
+  .nav-pills {
+    .nav-link {
+      @extend .rounded-pill;
+      
+      &.active {
+        @extend .bg-primary;
+      }
+    }
+  }
+  
+  .nav-underline {
+    .nav-link {
+      border-bottom: 2px solid transparent;
+      -webkit-text-fill-color: unset !important;
+      
+      &:hover {
+        border-bottom-color: var(--bs-primary);
+      }
+      
+      &.active {
+        border-bottom-color: var(--bs-primary);
+        background-color: transparent;
+        color: var(--bs-primary);
+      }
+    }
+  }
+  
+  // Tab content area
+  .tab-content {
+    @extend .p-4;
+    min-height: 290px;
+    background-color: var(--bs-body-bg);
+  }
+  
+  // Individual tab panes
+  .tab-pane {
+    @extend .fade;
+    height: 100%;
+    
+    &.active {
+      @extend .show;
+    }
+    
+    // Content styling within tabs
+    h1, h2, h3, h4, h5, h6 {
+      @extend .mb-3;
+      
+      &:first-child {
+        @extend .mt-0;
+      }
+    }
+    
+    p {
+      @extend .mb-3;
+      
+      &:last-child {
+        @extend .mb-0;
+      }
+    }
+    
+    ul, ol {
+      @extend .mb-3;
+    }
+    
+    blockquote {
+      @extend .blockquote;
+      @extend .mb-3;
+    }
+    
+    .wp-block-buttons {
+      @extend .mb-3;
+    }
+  }
+}
+
+// HireBrain Suite specific styling
+.hirebrain-suite {
+  .wp-block-understrap-tabs.tabs-vertical {
+    display: flex;
+    // align-items: flex-start;
+    align-items: stretch;
+    .nav {
+      flex: 0 0 50%;
+      margin-right: 0px !important;
+      padding-left: 0px !important;
+      padding-right: 2rem !important;
+      border: 0px !important;
+      margin-bottom: 0px ;
+      .nav-link {
+        text-align: left;
+        -webkit-text-fill-color: unset !important;
+        padding: 1rem 1.5rem !important;
+        margin-bottom: 0rem !important;
+        border-radius: 0;
+        border-left: 4px solid transparent !important;
+        box-shadow: none !important;
+        &:hover {
+          border-left-color: var(--color-primary-800) !important;
+          background: transparent !important;
+        }
+        
+        &.active {
+          border-left-color: var(--color-primary-800) !important;
+          background-color: transparent;
+        }
+      }
+    }
+    
+    .tab-content {
+      flex: 1;
+      background: transparent;
+      padding: 0;
+      
+      .hirebrain-tab-content {
+        h3 {
+          color: var(--bs-dark);
+          font-weight: 600;
+        }
+        
+        .lead {
+          color: var(--bs-gray-600);
+          font-style: italic;
+        }
+        
+        .list-unstyled li {
+          display: flex;
+          align-items: flex-start;
+          
+          i {
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.hirebrain-suite.tab-b{
+  .wp-block-understrap-tabs.tabs-vertical{
+    .tab-content{
+      padding: 2rem !important;
+      border-radius: 1rem !important;
+      background: var(--color-primary-300) !important;
+      max-width: 544px !important;
+      margin-left: auto
+    }
+  }
+}
+.tab-content-inner {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+// Editor-specific styles
+.editor-tabs {
+  .editor-tabs-preview {
+    @extend .alert;
+    @extend .alert-info;
+    @extend .mb-3;
+    @extend .small;
+  }
+}
+
+.editor-tab-pane {
+  @extend .mb-3;
+  
+  .tab-header-preview {
+    @extend .fw-bold;
+    @extend .text-primary;
+    @extend .mb-2;
+    @extend .p-2;
+    @extend .bg-light;
+    @extend .rounded;
+  }
+  
+  &.active {
+    @extend .border-primary;
+    background-color: rgba(0, 123, 255, 0.05);
+  }
+}
+
+// Responsive adjustments
+@include media-breakpoint-down(md) {
+  .wp-block-understrap-tabs {
+    &.tabs-horizontal {
+      .nav {
+        flex-wrap: wrap;
+        
+        .nav-item {
+          .nav-link {
+            font-size: 0.8rem;
+            padding: 0.75rem 0.5rem;
+            border-radius: 8px 8px 0 0;
+          }
+        }
+      }
+      
+      .tab-content {
+        border-radius: 0 0 8px 8px;
+        padding: 1.5rem;
+      }
+    }
+  }
+  
+  .hirebrain-suite .wp-block-understrap-tabs.tabs-vertical {
+    flex-direction: column;
+    
+    .nav {
+      flex: none;
+      margin-right: 0;
+      margin-bottom: 1rem;
+      
+      .nav-link {
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .wp-block-understrap-tabs {
+    &.tabs-horizontal {
+      .nav {
+        .nav-item {
+          flex: 1 1 50%;
+          
+          .nav-link {
+            font-size: 0.75rem;
+            padding: 0.5rem 0.25rem;
+          }
+        }
+      }
+      
+      .tab-content {
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+// Accessibility improvements
+.wp-block-understrap-tabs {
+  .nav-link {
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      outline: none;
+    }
+  }
+}
+
+// Animation enhancements
+.tab-pane {
+  transition: opacity 0.3s ease-in-out;
+  
+  &:not(.show) {
+    opacity: 0;
+  }
+  
+  &.show {
+    opacity: 1;
+  }
+}
+
+// Print styles
+@media print {
+  .wp-block-understrap-tabs {
+    .nav {
+      display: none !important;
+    }
+    
+    .tab-pane {
+      display: block !important;
+      opacity: 1 !important;
+      
+      &:not(:first-child) {
+        page-break-before: always;
+      }
+    }
+    
+    .tab-content {
+      border: none !important;
+      padding: 0 !important;
+    }
+  }
+}
+
+
+
+@media (max-width: 991px) {
+  .hirebrain-suite{
+    .wp-block-understrap-tabs.tabs-vertical {
+      overflow: hidden;
+      .nav-tabs {
+        display: flex !important;
+        align-items: flex-start !important;
+        overflow: hidden !important;
+        position: relative !important;
+        transition: transform .4s ease;
+        white-space: nowrap;
+        width: 700%;
+        flex-direction: row !important;
+        .nav-link{
+          width: auto !important;
+          display: inline-block  !important;
+          flex: 0 0 auto;
+          max-width: 280px;   /* <— max width per button */
+          text-align: center;
+          white-space: normal; /* allow text to wrap if needed */
+          border-left: 0px solid var(--color-primary-300) !important;
+          border-top: 4px solid var(--color-primary-300) !important;
+          box-shadow: none !important;
+          padding: 0.5rem 0.75rem !important;
+          &.active {
+            border-color: var(--color-primary-800) !important;
+          }
+        }
+      }
+    }
+  }
+  
+ 
+}
+@media (min-width: 992px) {
+  .wp-block-understrap-tabs.tabs-vertical .nav-tabs {
+    transform: none !important;
+  }
+  
+}

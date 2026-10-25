@@ -1,0 +1,309 @@
+// Bootstrap Accordion Shortcode Custom Design
+// =============================================================================
+// This matches the uploaded design with rounded borders, clean spacing, and modern styling
+
+.bootstrap-accordion-wrapper {
+    margin: 2rem 0;
+    
+    .accordion {
+        border: none;
+        background: transparent;
+        
+        .accordion-item {
+            border: 2px solid #b3d9f2;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            background: #f8fcff;
+            box-shadow: none;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+            
+            // Hover effect
+            &:hover {
+                border-color: #7cc7ea;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(123, 199, 234, 0.2);
+            }
+            
+            .accordion-header {
+                margin: 0;
+                
+                .accordion-button {
+                    background: transparent;
+                    border: none;
+                    border-radius: 12px;
+                    padding: 1.25rem 1.5rem;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    color: #2c5282;
+                    box-shadow: none;
+                    text-align: left;
+                    transition: all 0.3s ease;
+                    
+                    &:focus {
+                        box-shadow: none;
+                        border: none;
+                        background: transparent;
+                    }
+                    
+                    &:hover {
+                        background: rgba(123, 199, 234, 0.1);
+                        color: #1a365d;
+                    }
+                    
+                    // Custom arrow styling
+                    &::after {
+                        background: none;
+                        border: none;
+                        content: '';
+                        width: 24px;
+                        height: 24px;
+                        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%232c5282'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+                        background-repeat: no-repeat;
+                        background-size: 1.25rem;
+                        background-position: center;
+                        transition: transform 0.3s ease;
+                        margin-left: auto;
+                        flex-shrink: 0;
+                    }
+                    
+                    // When collapsed (closed)
+                    &.collapsed {
+                        background: transparent;
+                        color: #2c5282;
+                        border-radius: 12px;
+                        
+                        &::after {
+                            transform: rotate(0deg);
+                        }
+                        
+                        &:hover {
+                            background: rgba(123, 199, 234, 0.05);
+                        }
+                    }
+                    
+                    // When expanded (open)
+                    &:not(.collapsed) {
+                        background: rgba(123, 199, 234, 0.15);
+                        color: #1a365d;
+                        border-radius: 12px 12px 0 0;
+                        
+                        &::after {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+            }
+            
+            .accordion-collapse {
+                border-top: 1px solid rgba(123, 199, 234, 0.3);
+                
+                .accordion-body {
+                    padding: 1.5rem;
+                    background: white;
+                    color: #4a5568;
+                    line-height: 1.6;
+                    font-size: 0.95rem;
+                    
+                    p {
+                        margin-bottom: 1rem;
+                        
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                    
+                    ul, ol {
+                        margin-bottom: 1rem;
+                        padding-left: 1.5rem;
+                        
+                        li {
+                            margin-bottom: 0.5rem;
+                            
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                    
+                    strong {
+                        color: #2c5282;
+                        font-weight: 600;
+                    }
+                    
+                    a {
+                        color: #3182ce;
+                        text-decoration: none;
+                        
+                        &:hover {
+                            text-decoration: underline;
+                            color: #2c5282;
+                        }
+                    }
+                }
+            }
+            
+            // Special styling for expanded items
+            &:has(.accordion-collapse.show) {
+                border-color: #7cc7ea;
+                background: white;
+                box-shadow: 0 4px 16px rgba(123, 199, 234, 0.25);
+                
+                .accordion-header .accordion-button {
+                    background: rgba(123, 199, 234, 0.2);
+                    border-bottom: 1px solid rgba(123, 199, 234, 0.3);
+                }
+            }
+        }
+    }
+}
+
+// Animation improvements
+.bootstrap-accordion-wrapper {
+    .accordion-collapse {
+        transition: all 0.35s ease;
+        
+        &.collapsing {
+            transition: height 0.35s ease;
+        }
+        
+        &.show {
+            .accordion-body {
+                animation: fadeInContent 0.4s ease-in;
+            }
+        }
+    }
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Responsive Design
+@include media-breakpoint-down(md) {
+    .bootstrap-accordion-wrapper {
+        margin: 1.5rem 0;
+        
+        .accordion {
+            .accordion-item {
+                margin-bottom: 0.75rem;
+                border-radius: 8px;
+                
+                .accordion-header {
+                    .accordion-button {
+                        padding: 1rem 1.25rem;
+                        font-size: 1rem;
+                        
+                        &::after {
+                            width: 20px;
+                            height: 20px;
+                            background-size: 1rem;
+                        }
+                    }
+                }
+                
+                .accordion-collapse {
+                    .accordion-body {
+                        padding: 1.25rem;
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .bootstrap-accordion-wrapper {
+        margin: 1rem 0;
+        
+        .accordion {
+            .accordion-item {
+                margin-bottom: 0.5rem;
+                border-radius: 6px;
+                
+                .accordion-header {
+                    .accordion-button {
+                        padding: 0.875rem 1rem;
+                        font-size: 0.95rem;
+                    }
+                }
+                
+                .accordion-collapse {
+                    .accordion-body {
+                        padding: 1rem;
+                        font-size: 0.875rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+    .bootstrap-accordion-wrapper {
+        .accordion {
+            .accordion-item {
+                border-color: #000;
+                
+                .accordion-header {
+                    .accordion-button {
+                        color: #000;
+                        
+                        &:not(.collapsed) {
+                            background: #e6e6e6;
+                        }
+                    }
+                }
+                
+                .accordion-collapse {
+                    .accordion-body {
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Print styles
+@media print {
+    .bootstrap-accordion-wrapper {
+        .accordion {
+            .accordion-item {
+                border: 1px solid #ccc;
+                margin-bottom: 0.5rem;
+                break-inside: avoid;
+                
+                .accordion-header {
+                    .accordion-button {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+                
+                .accordion-collapse {
+                    display: block !important;
+                    height: auto !important;
+                    
+                    .accordion-body {
+                        padding: 0.75rem;
+                    }
+                }
+            }
+        }
+    }
+}

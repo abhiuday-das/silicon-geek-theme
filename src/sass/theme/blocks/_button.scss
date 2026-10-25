@@ -1,0 +1,378 @@
+// ----------------------------------
+// Button Block Styles
+// ----------------------------------
+
+.wp-block-button {
+  .wp-element-button {
+    @extend .btn;
+    position: relative;
+    padding: 14px 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: var(--wp--preset--font-family--base);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-bold);
+    line-height: normal;
+    border: none;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+
+    i {
+      margin-left: 0.5rem;
+      display: inline-flex;
+    }
+
+    &::before,
+    &::after {
+      transition: all 300ms ease-in-out;
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // PRIMARY BUTTON — with slide-fill hover
+  // ─────────────────────────────────────────
+  &.is-style-primary {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: var(--wp--preset--color--primary); // #FF9A2D orange
+
+    // Slide-in overlay for hover effect
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(
+        --wp--preset--color--primary-hover
+      ); // #FF9500 darker orange
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s ease-out;
+      z-index: 0;
+    }
+
+    .wp-element-button {
+      color: var(--wp--preset--color--white) !important;
+      position: relative;
+      z-index: 1; // above the ::before overlay
+      background: transparent !important;
+      border: none;
+    }
+
+    &:hover,
+    &:active,
+    &:focus-visible {
+      background-color: var(
+        --wp--preset--color--primary
+      ); // keep base, let ::before handle it
+
+      &::before {
+        transform: scaleX(1); // slide in from left
+      }
+
+      .wp-element-button {
+        color: #000 !important;
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // PRIMARY ALT
+  // ─────────────────────────────────────────
+  &.is-style-primary-alt {
+    .wp-element-button {
+      color: var(--wp--preset--color--white);
+      position: relative;
+      z-index: 2;
+      border: 1px solid var(--wp--preset--color--secondary);
+    }
+
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+    z-index: 1;
+    background: var(--wp--preset--color--secondary);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0.2rem;
+      background: var(--wp--preset--color--secondary);
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0.2rem;
+      background: #fff;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 0.3s ease-out;
+    }
+
+    &:hover,
+    &:active {
+      &::before {
+        transform: scaleX(1);
+      }
+
+      .wp-element-button {
+        color: var(--wp--preset--color--secondary);
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // SECONDARY BUTTON
+  // ─────────────────────────────────────────
+  &.is-style-secondary {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: var(--wp--preset--color--quaternary);
+    color: var(--wp--preset--color--secondary);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: darken(#f5f7fa, 8%);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s ease-out;
+      z-index: 0;
+    }
+
+    .wp-element-button {
+      color: inherit;
+      position: relative;
+      z-index: 1;
+      background: transparent !important;
+    }
+
+    &:hover,
+    &:active,
+    &:focus-visible {
+      &::before {
+        transform: scaleX(1);
+      }
+      color: #000;
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // SECONDARY ALT
+  // ─────────────────────────────────────────
+  &.is-style-secondary-alt {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    background: var(--wp--preset--color--white);
+    color: var(--wp--preset--color--secondary);
+    border: 1px solid #d5d7da;
+
+    transform: perspective(1px) translateZ(0);
+    transition-property: color;
+    transition-duration: 0.3s;
+
+    box-shadow:
+      0 0 0 1px rgba(10, 13, 18, 0.18) inset,
+      0 -2px 0 0 rgba(10, 13, 18, 0.05) inset,
+      0 1px 2px 0 rgba(10, 13, 18, 0.05);
+
+    .wp-element-button {
+      color: var(--wp--preset--color--secondary);
+      position: relative;
+      z-index: 2;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border: 1px solid #d5d7da;
+      background: #d7dde0;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 0.3s ease-out;
+    }
+
+    &:hover,
+    &:active {
+      &::before {
+        transform: scaleX(1);
+      }
+      .wp-element-button {
+        color: #000;
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // TERTIARY — text/link style
+  // ─────────────────────────────────────────
+  &.is-style-tertiary {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+    color: var(--wp--preset--color--secondary);
+
+    transform: perspective(1px) translateZ(0);
+    transition: color 0.3s ease;
+
+    .wp-element-button {
+      @extend .btn-secondary;
+      background: transparent;
+      padding: 0;
+      padding-right: 10px;
+      color: var(--wp--preset--color--primary);
+      position: relative;
+
+      &.back-to-blog::before {
+        left: 2rem !important;
+        width: calc(100% - 2rem);
+      }
+
+      &:hover,
+      &:active {
+        color: var(--wp--preset--color--primary-hover);
+        background: transparent;
+        font-weight: 900;
+
+        &::before {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // TERTIARY ALT — transparent text
+  // ─────────────────────────────────────────
+  &.is-style-tertiary-alt {
+    .wp-element-button {
+      @extend .btn-secondary;
+      font-weight: var(--font-bold);
+      background: transparent;
+      padding: 0;
+      min-width: unset;
+      min-height: auto;
+      color: var(--color-white-900);
+
+      &:hover,
+      &:active {
+        color: var(--color-white-900);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // SEMANTIC STATES
+  // ─────────────────────────────────────────
+  &.is-style-success .wp-element-button {
+    @extend .btn-success;
+  }
+  &.is-style-danger .wp-element-button {
+    @extend .btn-danger;
+  }
+  &.is-style-warning .wp-element-button {
+    @extend .btn-warning;
+  }
+  &.is-style-info .wp-element-button {
+    @extend .btn-info;
+  }
+  &.is-style-light .wp-element-button {
+    @extend .btn-light;
+    color: $body-color;
+  }
+  &.is-style-dark .wp-element-button {
+    @extend .btn-dark;
+  }
+  &.is-style-link .wp-element-button {
+    @extend .btn-link;
+  }
+
+  &.is-style-outline-primary .wp-element-button {
+    @extend .btn-outline-primary;
+  }
+  &.is-style-outline-secondary .wp-element-button {
+    @extend .btn-outline-secondary;
+  }
+
+  &.is-style-sm .wp-element-button {
+    @extend .btn-sm;
+  }
+  &.is-style-lg .wp-element-button {
+    @extend .btn-lg;
+  }
+  &.is-style-pill .wp-element-button {
+    @extend .rounded-pill;
+  }
+
+  // ─────────────────────────────────────────
+  // WITH ICON — chevron appended
+  // ─────────────────────────────────────────
+  &.is-style-with-icon {
+    .wp-block-button__link {
+      gap: 0.5rem;
+
+      i {
+        display: inline-flex;
+        align-items: center;
+        line-height: 1;
+        color: inherit;
+
+        &:not(:first-child) {
+          margin-left: 0.25rem;
+        }
+        &:not(:last-child) {
+          margin-right: 0.25rem;
+        }
+      }
+
+      &::after {
+        content: "›";
+        display: inline-block;
+        margin-left: 6px;
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 1;
+        transition:
+          transform 0.3s ease,
+          color 0.3s ease;
+        position: relative;
+        top: -3px;
+      }
+
+      &:hover::after {
+        transform: translateX(4px); // slide right on hover
+        color: inherit;
+      }
+    }
+  }
+}
+
+/* Button group spacing */
+.wp-block-buttons {
+  gap: 0.6rem;
+}

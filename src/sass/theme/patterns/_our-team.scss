@@ -1,0 +1,41 @@
+.our-team {
+  .wp-block-query {
+    padding: 0;
+  }
+  ul {
+    &.wp-block-post-template {
+      padding-left: 0 !important;
+      @media only screen and (max-width: 600px) {
+        gap: 3rem;
+      }
+      li {
+        &.wp-block-post {
+          &::before {
+            display: none;
+          }
+          .wp-block-post-featured-image {
+            margin-bottom: 2.4rem;
+            @media only screen and (max-width: 600px) {
+              margin-bottom: 1.2rem;
+            }
+          }
+          .wp-block-post-title {
+            margin-bottom: 1.6rem;
+            @media only screen and (max-width: 600px) {
+              margin-bottom: 0.8rem;
+            }
+          }
+          .wp-block-post-content {
+            margin-top: 0;
+            p {
+              color: var(--wp--preset--color--darkgray);
+            }
+          }
+        }
+      }
+    }
+  }
+  .wp-block-buttons {
+    margin-top: 3.2rem;
+  }
+}

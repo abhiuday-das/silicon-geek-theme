@@ -1,0 +1,156 @@
+<!--
+  CircuitShala header v5 — TOPBAR BACK TO 3-PART STYLE + BULLETPROOF PAIRING
+  Paste into: parts/header.html   (backup the old file first)
+  PAIR WITH: updated src/sass/theme/_circuitshala-home.scss (v5, contains a
+  "BULLETPROOF HEADER LAYER" at the very end) + keep `npm run watch` running.
+  IMPORTANT: after copying, if the site still shows the old header, the Site
+  Editor has a saved (database) copy: Appearance > Editor > Template Parts >
+  Header > (kabab menu) > Clear customizations. Verify with HEADER-DESIGN-FIX-v5.md.
+
+  v5 notes:
+  1. Announcement bar is BACK to the previous 3-part layout (columns:
+     left / centre / right). Difference: CSS sizes each part to its content,
+     aligns them vertically in the centre and forbids wrapping, so the bar is
+     always ONE clean line (centre part hides only below 1280px; the compact
+     one-line bar takes over below 1200px). Token to search: cs-topbar-cols.
+  2. Header row width is fixed in CSS at 124rem; brand title and the orange
+     CTA are shrink-proof (they can never collapse into 2 lines / a vertical
+     letter strip again). Search appears only at >=1400px; the menu tightens
+     slightly at 1200-1439px so a 1366px laptop fits everything on one line.
+  3. v3 behaviour unchanged: ONE header for all screen sizes; tablet/mobile
+     menu uses the WordPress core overlay ("overlayMenu":"mobile"),
+     hamburger at <=1199px — no custom JS or icon font needed.
+-->
+
+<!-- wp:group {"metadata":{"name":"Announcement bar (desktop)"},"className":"cs-topbar cs-topbar--desktop is-style-container-fluid","layout":{"type":"constrained"}} -->
+<div
+  class="wp-block-group cs-topbar cs-topbar--desktop is-style-container-fluid"
+>
+  <!-- wp:group {"className":"is-style-container","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group is-style-container">
+    <!-- wp:columns {"verticalAlignment":"center","className":"cs-topbar-cols"} -->
+    <div class="wp-block-columns are-vertically-aligned-center cs-topbar-cols">
+      <!-- wp:column {"verticalAlignment":"center"} -->
+      <div class="wp-block-column is-vertically-aligned-center">
+        <!-- wp:paragraph {"className":"cs-topbar-left mx-0"} -->
+        <p class="cs-topbar-left mx-0">
+          🎓 <strong>FREE:</strong> GATE EC Formula Sheet + 100 ECE Interview
+          Questions — <a href="/project-help/">Download →</a>
+        </p>
+        <!-- /wp:paragraph -->
+      </div>
+      <!-- /wp:column -->
+
+      <!-- wp:column {"verticalAlignment":"center"} -->
+      <div class="wp-block-column is-vertically-aligned-center">
+        <!-- wp:paragraph {"align":"center","className":"cs-topbar-mid mx-0"} -->
+        <p class="has-text-align-center cs-topbar-mid mx-0">
+          <a href="/gate-pyq/">🏆 GATE EC PYQs with Solutions</a> &nbsp;•&nbsp;
+          <a href="/projects/">120+ Project Ideas</a>
+        </p>
+        <!-- /wp:paragraph -->
+      </div>
+      <!-- /wp:column -->
+
+      <!-- wp:column {"verticalAlignment":"center"} -->
+      <div class="wp-block-column is-vertically-aligned-center">
+        <!-- wp:paragraph {"align":"right","className":"cs-topbar-right mx-0"} -->
+        <p class="has-text-align-right cs-topbar-right mx-0">
+          📍 Lucknow • Online All India •
+          <a href="/project-help/">📲 Project Help</a>
+        </p>
+        <!-- /wp:paragraph -->
+      </div>
+      <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+  </div>
+  <!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Announcement bar (mobile/tablet)"},"className":"cs-topbar cs-topbar--compact is-style-container-fluid"} -->
+<div
+  class="wp-block-group cs-topbar cs-topbar--compact is-style-container-fluid"
+>
+  <!-- wp:paragraph {"align":"center","className":"mx-0"} -->
+  <p class="has-text-align-center mx-0">
+    🎁
+    <a href="/project-help/"
+      ><strong>FREE:</strong> GATE Formula Sheet + Interview Questions →</a
+    >
+  </p>
+  <!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Site header (responsive)"},"className":"cs-site-header is-style-container-fluid","style":{"spacing":{"padding":{"top":"12px","bottom":"12px"}}},"backgroundColor":"white","layout":{"type":"constrained"}} -->
+<div
+  class="wp-block-group cs-site-header is-style-container-fluid has-white-background-color has-background"
+  style="padding-top: 12px; padding-bottom: 12px"
+>
+  <!-- wp:group {"className":"is-style-container cs-header-inner","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group is-style-container cs-header-inner">
+    <!-- wp:group {"className":"cs-header-row","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+    <div class="wp-block-group cs-header-row">
+      <!-- wp:group {"metadata":{"name":"Brand"},"className":"cs-brand","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+      <div class="wp-block-group cs-brand">
+        <!-- wp:site-logo {"width":180,"shouldSyncIcon":false} /-->
+
+        <!-- wp:site-title {"level":0,"className":"cs-brand-title"} /-->
+      </div>
+      <!-- /wp:group -->
+
+      <!-- wp:group {"metadata":{"name":"Header actions"},"className":"cs-header-actions","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"right"}} -->
+      <div class="wp-block-group cs-header-actions">
+        <!-- wp:navigation {"textColor":"cs-navy","overlayMenu":"mobile","overlayBackgroundColor":"cs-navy","overlayTextColor":"white","icon":"menu","className":"cs-main-nav","style":{"typography":{"fontWeight":"700"}},"fontSize":"md","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap","orientation":"horizontal"}} -->
+        <!-- wp:navigation-submenu {"label":"Learn ECE","url":"/learn/","kind":"custom"} -->
+        <!-- wp:navigation-link {"label":"📅 1st Year","url":"/year/year-1/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"📅 2nd Year","url":"/year/year-2/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"📅 3rd Year","url":"/year/year-3/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"📅 Final Year","url":"/year/final-year/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"📚 All Subjects","url":"/learn/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"📝 All Notes","url":"/notes/","kind":"custom"} /-->
+        <!-- /wp:navigation-submenu -->
+        <!-- wp:navigation-link {"label":"Embedded","url":"/embedded/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"VLSI","url":"/vlsi/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"Projects","url":"/projects/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"GATE EC","url":"/gate-ec/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"Shop","url":"/shop/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"Training","url":"/training/","kind":"custom"} /-->
+        <!-- wp:navigation-link {"label":"📲 Get Project Help (Free)","url":"/project-help/","kind":"custom","className":"cs-nav-mobile-cta"} /-->
+        <!-- wp:navigation-link {"label":"🎁 Free PDF Download","url":"/project-help/","kind":"custom","className":"cs-nav-mobile-cta"} /-->
+        <!-- /wp:navigation -->
+
+        <!-- wp:search {"label":"Search topics","showLabel":false,"placeholder":"Search MOSFET, ESP32…","width":200,"widthUnit":"px","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"className":"cs-header-search"} /-->
+
+        <!-- wp:html -->
+        <a
+          class="cs-mobile-wa"
+          href="/project-help/"
+          aria-label="Get project help on WhatsApp"
+          ><span aria-hidden="true">💬</span></a
+        >
+        <!-- /wp:html -->
+
+        <!-- wp:buttons {"className":"cs-header-cta mt-0"} -->
+        <div class="wp-block-buttons cs-header-cta mt-0">
+          <!-- wp:button {"className":"is-style-primary"} -->
+          <div class="wp-block-button is-style-primary">
+            <a
+              class="wp-block-button__link wp-element-button"
+              href="/project-help/"
+              >Get Project Help</a
+            >
+          </div>
+          <!-- /wp:button -->
+        </div>
+        <!-- /wp:buttons -->
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
+  </div>
+  <!-- /wp:group -->
+</div>
+<!-- /wp:group -->

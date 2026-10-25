@@ -1,0 +1,54 @@
+.blog-banner {
+  max-width: unset;
+  &.has-overlay {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        0deg,
+        rgba(61, 59, 59, 0.87) 0,
+        rgba(61, 59, 59, 0.87) 100%
+      );
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  }
+  .wp-block-heading {
+    margin-bottom: 4.8rem;
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 2.4rem;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0.4rem;
+      background: linear-gradient(
+        90deg,
+        var(--color-primary-900) 32.23%,
+        rgba(32, 58, 119, 0) 100%
+      );
+    }
+  }
+  img {
+    @media only screen and (max-width: 991px) {
+      width: 100% !important;
+      object-fit: cover;
+    }
+  }
+}
+
+.banner-inner{
+  background-image: url(../assets/images/cta-bg.png);
+  margin: 0px !important;
+  min-height: 285px;
+  @media screen and (max-width:992px){
+    background-image: url(../assets/images/m-cta-bg.png);
+    margin: 0px !important;
+    min-height: 210px;
+  }
+}

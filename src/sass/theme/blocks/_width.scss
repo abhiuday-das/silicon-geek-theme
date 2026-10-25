@@ -1,0 +1,17 @@
+@for $i from 50 through 400 {
+  $value: $i * 5;
+  .mxw-#{$value} {
+    max-width: #{$value}px;
+    width: 100%;
+  }
+}
+.mxw-920{
+		width: 100%;
+		max-width: 920px;
+}
+.w-100{
+	img{
+		width: 100%;
+		max-width: 100%;
+	}
+}
