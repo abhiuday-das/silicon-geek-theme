@@ -222,10 +222,11 @@ require_once get_template_directory() . '/inc/post-content-image/post-content-im
 require_once get_template_directory() . '/inc/category-filter/category-filter-init.php';
 require_once get_template_directory() . '/inc/search-filter/search-filter-init.php';
 require_once get_template_directory() . '/inc/pattern-categories/register-pattern-categories.php';
-
+require_once get_template_directory() . '/inc/custom-post-type/ece-cpt.php';
 require_once get_template_directory() . '/inc/custom-post-type/register-cpt.php';
 // CS-CHANGE: ECE post types (Notes / Projects / GATE PYQ) — NEW FILE, nothing overwritten.
-require_once get_template_directory() . '/inc/custom-post-type/ece-cpt.php';
+// Silicon Geek Step 1: hierarchical Course Structure taxonomy + ordering helpers.
+require_once get_template_directory() . '/inc/custom-post-type/ece-course-structure.php';
 require_once get_template_directory() . '/inc/swiper-slider/swiper-slider-init.php';
 require_once get_template_directory() . '/inc/team-block/team-block.php';
 // Include shortcodes.
