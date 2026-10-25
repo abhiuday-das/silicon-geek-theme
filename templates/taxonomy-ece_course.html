@@ -1,0 +1,23 @@
+<!--
+  Silicon Geek Step 2 — automatic Course Structure index template.
+  Destination: templates/taxonomy-ece_course.html
+
+  This one template powers every /learn/... folder page:
+  Track → Year → Subject → Unit → Topic.
+
+  The [sg_course_index] Shortcode reads the current taxonomy term and
+  prints its ordered child folders / direct notes automatically.
+  Requires: inc/custom-post-type/ece-course-render.php
+-->
+
+<!-- wp:template-part {"slug":"header","theme":"ts-block-theme","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"sg-course-template-main"} -->
+<main class="wp-block-group sg-course-template-main">
+  <!-- wp:shortcode -->
+  [sg_course_index]
+  <!-- /wp:shortcode -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"ts-block-theme","tagName":"footer"} /-->

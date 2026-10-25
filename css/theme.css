@@ -24699,6 +24699,884 @@ p.is-style-badge, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .is-
     color: #0e7490 !important;
   }
 }
+/* ============================================================
+   Silicon Geek Step 2 — automatic Course Index (/learn/...)
+   PASTE AT THE VERY END OF:
+   src/sass/theme/_circuitshala-home.scss
+   Then run: npm run watch
+   Marker: sg-course-step-2
+   ============================================================ */
+.sg-course-template-main {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #f6f9fc;
+}
+
+.sg-course {
+  --sg-course-navy: #0b1226;
+  --sg-course-navy-2: #111b38;
+  --sg-course-ink: #0f172a;
+  --sg-course-body: #475569;
+  --sg-course-muted: #64748b;
+  --sg-course-line: #e2e8f0;
+  --sg-course-accent: #0891b2;
+  --sg-course-accent-2: #06b6d4;
+  --sg-course-shadow: 0 1.8rem 4.5rem rgba(15, 23, 42, 0.08);
+  background: #f6f9fc;
+  color: var(--sg-course-body);
+  font-size: 1.6rem;
+  line-height: 1.65;
+}
+
+.sg-course--root-gate-ec {
+  --sg-course-accent: #d97706;
+  --sg-course-accent-2: #f59e0b;
+}
+
+.sg-course--root-embedded-systems {
+  --sg-course-accent: #059669;
+  --sg-course-accent-2: #22c55e;
+}
+
+.sg-course--root-vlsi-design {
+  --sg-course-accent: #7c3aed;
+  --sg-course-accent-2: #8b5cf6;
+}
+
+.sg-course *,
+.sg-course *::before,
+.sg-course *::after {
+  box-sizing: border-box;
+}
+
+.sg-course-wrap {
+  width: min(124rem, 100% - 4rem);
+  margin-inline: auto;
+}
+
+.sg-course-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 4.2rem 0 5.4rem;
+  color: #e2e8f0;
+  background: radial-gradient(circle at 85% 12%, rgba(6, 182, 212, 0.32), transparent 34rem), radial-gradient(circle at 8% 110%, rgba(37, 99, 235, 0.28), transparent 38rem), linear-gradient(135deg, var(--sg-course-navy) 0%, var(--sg-course-navy-2) 58%, #0e2a4a 100%);
+}
+
+.sg-course-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -10rem -18rem auto;
+  width: 42rem;
+  height: 42rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.09);
+  border-radius: 50%;
+  box-shadow: 0 0 0 5rem rgba(255, 255, 255, 0.025), 0 0 0 10rem rgba(255, 255, 255, 0.018);
+  pointer-events: none;
+}
+
+.sg-course-breadcrumbs {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 3rem;
+  padding-bottom: 0.6rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  font-size: 1.32rem;
+  font-weight: 700;
+}
+
+.sg-course-breadcrumbs a {
+  color: #a5f3fc !important;
+  text-decoration: none !important;
+}
+
+.sg-course-breadcrumbs a:hover,
+.sg-course-breadcrumbs a:focus-visible {
+  color: #fff !important;
+  text-decoration: underline !important;
+}
+
+.sg-course-breadcrumbs [aria-current=page] {
+  color: #fff;
+}
+
+.sg-course-breadcrumbs__sep {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.sg-course-hero__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(28rem, 0.8fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+.sg-course-hero__main {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.sg-course-hero__main--wide {
+  max-width: 82rem;
+}
+
+.sg-course-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1.4rem !important;
+  padding: 0.65rem 1.1rem;
+  border: 0.1rem solid rgba(165, 243, 252, 0.24);
+  border-radius: 999px;
+  background: rgba(8, 145, 178, 0.18);
+  color: #a5f3fc !important;
+  font-size: 1.25rem !important;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.25 !important;
+  text-transform: uppercase;
+}
+
+.sg-course h1, .sg-course .h1 {
+  max-width: 86rem;
+  margin: 0 0 1.6rem !important;
+  color: #fff !important;
+  font-size: clamp(3.4rem, 5.4vw, 6.2rem) !important;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.04 !important;
+}
+
+.sg-course-hero__desc,
+.sg-course-hero__desc p,
+.sg-course-hero__desc .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description,
+.wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-course-hero__desc .tab-nav-description {
+  max-width: 78rem;
+  margin: 0 !important;
+  color: #cbd5e1 !important;
+  font-size: clamp(1.6rem, 2vw, 2rem) !important;
+  line-height: 1.65 !important;
+}
+
+.sg-course-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.4rem;
+}
+
+.sg-course-stats span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.75rem 1.1rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #e2e8f0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sg-course-stats strong {
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+.sg-course-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+}
+
+.sg-course-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.8rem;
+  padding: 1.1rem 2rem;
+  border-radius: 999px;
+  font-size: 1.5rem;
+  font-weight: 850;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.sg-course-btn:hover,
+.sg-course-btn:focus-visible {
+  transform: translateY(-0.2rem);
+}
+
+.sg-course-btn--primary {
+  background: linear-gradient(135deg, var(--sg-course-accent), var(--sg-course-accent-2));
+  color: #fff !important;
+  box-shadow: 0 1.4rem 2.8rem rgba(8, 145, 178, 0.28);
+}
+
+.sg-course-btn--dark-ghost {
+  border: 0.1rem solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e8f0 !important;
+}
+
+.sg-course-btn--light {
+  background: #fff;
+  color: var(--sg-course-navy) !important;
+}
+
+.sg-course-btn--ghost {
+  border: 0.1rem solid rgba(255, 255, 255, 0.26);
+  background: transparent;
+  color: #fff !important;
+}
+
+.sg-course-path {
+  padding: 2.2rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.13);
+  border-radius: 2.2rem;
+  background: rgba(255, 255, 255, 0.065);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.sg-course-path__title {
+  margin: 0 0 1.5rem !important;
+  color: #a5f3fc !important;
+  font-size: 1.25rem !important;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  line-height: 1.25 !important;
+  text-transform: uppercase;
+}
+
+.sg-course-path ol {
+  display: grid;
+  gap: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.sg-course-path li {
+  position: relative;
+  margin: 0 !important;
+  padding: 0 0 1.7rem 2.4rem;
+}
+
+.sg-course-path li::before {
+  content: "";
+  position: absolute;
+  top: 0.55rem;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  border: 0.2rem solid rgba(165, 243, 252, 0.62);
+  border-radius: 50%;
+  background: var(--sg-course-navy-2);
+}
+
+.sg-course-path li::after {
+  content: "";
+  position: absolute;
+  top: 1.75rem;
+  bottom: -0.1rem;
+  left: 0.42rem;
+  width: 0.1rem;
+  background: rgba(165, 243, 252, 0.22);
+}
+
+.sg-course-path li:last-child {
+  padding-bottom: 0;
+}
+
+.sg-course-path li:last-child::after {
+  display: none;
+}
+
+.sg-course-path li span {
+  display: block;
+  color: #94a3b8;
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.sg-course-path li strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: #f1f5f9;
+  font-size: 1.52rem;
+  line-height: 1.35;
+}
+
+.sg-course-path li.is-current::before {
+  background: var(--sg-course-accent-2);
+  box-shadow: 0 0 0 0.55rem rgba(6, 182, 212, 0.16);
+}
+
+.sg-course-path li.is-current strong {
+  color: #fff;
+}
+
+.sg-course-content {
+  padding: 4.8rem 0 6.4rem;
+}
+
+.sg-course-section-head {
+  margin: 0 0 2.4rem;
+}
+
+.sg-course-section-head p, .sg-course-section-head .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-course-section-head .tab-nav-description {
+  margin: 0 0 0.5rem !important;
+  color: var(--sg-course-accent) !important;
+  font-size: 1.28rem !important;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1.3 !important;
+  text-transform: uppercase;
+}
+
+.sg-course-section-head h2, .sg-course-section-head .h2 {
+  margin: 0 !important;
+  color: var(--sg-course-ink) !important;
+  font-size: clamp(2.7rem, 4vw, 4rem) !important;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.12 !important;
+}
+
+.sg-course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(28rem, 100%), 1fr));
+  gap: 2rem;
+  margin: 0 0 5rem;
+}
+
+.sg-course-grid--roots {
+  grid-template-columns: repeat(auto-fit, minmax(min(30rem, 100%), 1fr));
+}
+
+.sg-course-card {
+  display: flex !important;
+  min-height: 25rem;
+  flex-direction: column;
+  padding: 2.3rem;
+  overflow: hidden;
+  border: 0.1rem solid var(--sg-course-line);
+  border-radius: 2.2rem;
+  background: #fff;
+  color: var(--sg-course-body) !important;
+  box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.055);
+  text-decoration: none !important;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.sg-course-card:hover,
+.sg-course-card:focus-visible {
+  transform: translateY(-0.5rem);
+  border-color: color-mix(in srgb, var(--sg-course-accent-2) 50%, white);
+  box-shadow: var(--sg-course-shadow);
+}
+
+.sg-course-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.sg-course-card__icon {
+  display: inline-grid;
+  width: 5.4rem;
+  height: 5.4rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 1.7rem;
+  background: color-mix(in srgb, var(--sg-course-accent-2) 13%, white);
+  font-size: 2.55rem;
+  line-height: 1;
+}
+
+.sg-course-card__badge {
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 1.16rem;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.sg-course-card__title {
+  display: block;
+  margin-bottom: 0.9rem;
+  color: var(--sg-course-ink);
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.sg-course-card__text {
+  display: block;
+  color: var(--sg-course-body);
+  font-size: 1.52rem;
+  line-height: 1.62;
+}
+
+.sg-course-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: auto;
+  padding-top: 2rem;
+  color: var(--sg-course-muted);
+  font-size: 1.3rem;
+  font-weight: 750;
+}
+
+.sg-course-card__meta span {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: #f8fafc;
+}
+
+.sg-course-card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  color: var(--sg-course-accent);
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+
+.sg-course-lessons {
+  display: grid;
+  gap: 1.4rem;
+  margin: 0 0 5rem !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.sg-course-lesson {
+  margin: 0 !important;
+}
+
+.sg-course-lesson__link {
+  display: flex !important;
+  align-items: center;
+  gap: 1.8rem;
+  padding: 1.7rem;
+  border: 0.1rem solid var(--sg-course-line);
+  border-radius: 2rem;
+  background: #fff;
+  color: var(--sg-course-body) !important;
+  box-shadow: 0 0.8rem 2.4rem rgba(15, 23, 42, 0.045);
+  text-decoration: none !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sg-course-lesson__link:hover,
+.sg-course-lesson__link:focus-visible {
+  transform: translateY(-0.25rem);
+  border-color: color-mix(in srgb, var(--sg-course-accent-2) 50%, white);
+  box-shadow: var(--sg-course-shadow);
+}
+
+.sg-course-lesson__number {
+  display: inline-grid;
+  width: 5.2rem;
+  height: 5.2rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 1.6rem;
+  background: var(--sg-course-navy);
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.sg-course-lesson__body {
+  display: block;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.sg-course-lesson__title {
+  display: block;
+  color: var(--sg-course-ink);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.sg-course-lesson__excerpt {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--sg-course-body);
+  font-size: 1.48rem;
+  line-height: 1.55;
+}
+
+.sg-course-lesson__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.4rem;
+  margin-top: 0.8rem;
+  color: var(--sg-course-muted);
+  font-size: 1.28rem;
+  font-weight: 750;
+}
+
+.sg-course-lesson__thumb {
+  width: 13rem;
+  height: 8.6rem;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: #e2e8f0;
+}
+
+.sg-course-lesson__thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.sg-course-lesson__arrow {
+  display: inline-grid;
+  width: 4rem;
+  height: 4rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--sg-course-accent-2) 12%, white);
+  color: var(--sg-course-accent);
+  font-size: 1.9rem;
+  font-weight: 900;
+}
+
+.sg-course-empty {
+  padding: 4rem 2.4rem;
+  border: 0.1rem dashed #cbd5e1;
+  border-radius: 2.4rem;
+  background: #fff;
+  text-align: center;
+}
+
+.sg-course-empty > span {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 3.8rem;
+  line-height: 1;
+}
+
+.sg-course-empty h2, .sg-course-empty .h2 {
+  margin: 0 0 0.9rem !important;
+  color: var(--sg-course-ink) !important;
+  font-size: 2.8rem !important;
+  line-height: 1.2 !important;
+}
+
+.sg-course-empty p, .sg-course-empty .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-course-empty .tab-nav-description {
+  max-width: 58rem;
+  margin: 0 auto 2.2rem !important;
+  color: var(--sg-course-body) !important;
+  font-size: 1.55rem !important;
+}
+
+.sg-course-help {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) auto;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 5rem;
+  padding: clamp(2.4rem, 4vw, 4rem);
+  overflow: hidden;
+  border-radius: 2.6rem;
+  background: radial-gradient(circle at 92% 10%, rgba(34, 197, 94, 0.26), transparent 28rem), linear-gradient(135deg, var(--sg-course-navy), #12315a);
+  color: #e2e8f0;
+  box-shadow: var(--sg-course-shadow);
+}
+
+.sg-course-help__eyebrow {
+  margin: 0 0 0.7rem !important;
+  color: #86efac !important;
+  font-size: 1.28rem !important;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1.3 !important;
+  text-transform: uppercase;
+}
+
+.sg-course-help h2, .sg-course-help .h2 {
+  margin: 0 0 1rem !important;
+  color: #fff !important;
+  font-size: clamp(2.5rem, 3.5vw, 3.8rem) !important;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.15 !important;
+}
+
+.sg-course-help p, .sg-course-help .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-course-help .tab-nav-description {
+  margin: 0 !important;
+  color: #cbd5e1 !important;
+  font-size: 1.58rem !important;
+  line-height: 1.65 !important;
+}
+
+.sg-course-help__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sg-course-card:focus-visible,
+.sg-course-lesson__link:focus-visible,
+.sg-course-btn:focus-visible,
+.sg-course-breadcrumbs a:focus-visible {
+  outline: 0.3rem solid rgba(6, 182, 212, 0.55);
+  outline-offset: 0.3rem;
+}
+
+@media (max-width: 1024px) {
+  .sg-course-hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sg-course-path {
+    max-width: 64rem;
+  }
+}
+@media (max-width: 767px) {
+  .sg-course-wrap {
+    width: calc(100% - 3rem);
+  }
+  .sg-course-hero {
+    padding: 3rem 0 4rem;
+  }
+  .sg-course-breadcrumbs {
+    margin-bottom: 2.4rem;
+    font-size: 1.22rem;
+  }
+  .sg-course-hero__grid {
+    gap: 2.4rem;
+  }
+  .sg-course-path {
+    padding: 1.8rem;
+    border-radius: 1.8rem;
+  }
+  .sg-course-content {
+    padding: 3.6rem 0 5rem;
+  }
+  .sg-course-card {
+    min-height: 0;
+    padding: 2rem;
+    border-radius: 1.9rem;
+  }
+  .sg-course-lesson__link {
+    align-items: flex-start;
+    gap: 1.3rem;
+    padding: 1.5rem;
+    border-radius: 1.8rem;
+  }
+  .sg-course-lesson__number {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 1.3rem;
+  }
+  .sg-course-lesson__title {
+    font-size: 1.82rem;
+  }
+  .sg-course-lesson__thumb,
+  .sg-course-lesson__arrow {
+    display: none;
+  }
+  .sg-course-help {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.2rem;
+  }
+  .sg-course-help__actions {
+    align-items: stretch;
+  }
+  .sg-course-actions .sg-course-btn,
+  .sg-course-help__actions .sg-course-btn {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sg-course-card,
+  .sg-course-lesson__link,
+  .sg-course-btn {
+    transition: none;
+  }
+  .sg-course-card:hover,
+  .sg-course-lesson__link:hover,
+  .sg-course-btn:hover {
+    transform: none;
+  }
+}
+/* ---------- End Silicon Geek Step 2 (sg-course-step-2) ---------- */
+/* ============================================================
+   Silicon Geek Step 2 — Layout Fix v2
+   PASTE AT THE VERY END OF:
+   src/sass/theme/_circuitshala-home.scss
+
+   It safely overrides only the Step 2 card grid from v1.
+   Marker: sg-course-step-2-layout-fix-v2
+   ============================================================ */
+/* Fixed, predictable columns — no auto-fit surprise gap. */
+.sg-course .sg-course-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-flow: row !important;
+  gap: 2rem !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  margin: 0 0 4rem !important;
+}
+
+.sg-course .sg-course-grid--roots {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+/* Compact cards: remove the tall/empty portrait-card feeling. */
+.sg-course .sg-course-card {
+  width: auto !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: 100%;
+  margin: 0 !important;
+  padding: 2rem !important;
+  grid-column: auto !important;
+  justify-self: stretch !important;
+  border-radius: 2rem;
+}
+
+.sg-course .sg-course-card__top {
+  margin-bottom: 1.45rem;
+}
+
+.sg-course .sg-course-card__icon {
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 1.45rem;
+  font-size: 2.25rem;
+}
+
+.sg-course .sg-course-card__title {
+  margin-bottom: 0.7rem;
+  font-size: 2.05rem;
+  line-height: 1.2;
+}
+
+.sg-course .sg-course-card__text {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 1.46rem;
+  line-height: 1.58;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.sg-course .sg-course-card__meta {
+  margin-top: auto;
+  padding-top: 1.55rem;
+}
+
+.sg-course .sg-course-card__action {
+  margin-top: 1.25rem;
+}
+
+/* Slightly tighter content rhythm under the hero. */
+.sg-course .sg-course-content {
+  padding-top: 4rem;
+  padding-bottom: 5.6rem;
+}
+
+.sg-course .sg-course-section-head {
+  margin-bottom: 2rem;
+}
+
+/* Tablet: two cards per row. */
+@media (max-width: 1024px) {
+  .sg-course .sg-course-grid,
+  .sg-course .sg-course-grid--roots {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+/* Mobile: one clear card per row. */
+@media (max-width: 640px) {
+  .sg-course .sg-course-grid,
+  .sg-course .sg-course-grid--roots {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1.4rem !important;
+  }
+  .sg-course .sg-course-card {
+    padding: 1.8rem !important;
+    border-radius: 1.8rem;
+  }
+}
+/* ---------- End Step 2 Layout Fix v2 (sg-course-step-2-layout-fix-v2) ---------- */
+/* ============================================================
+   Silicon Geek Step 2 — Layout Fix v3 (empty grid-item killer)
+   PASTE AT THE VERY END OF:
+   src/sass/theme/_circuitshala-home.scss
+   (v2 block ke BHI neeche — ye uske baad aana chahiye)
+
+   Problem: WordPress kabhi-kabhi shortcode HTML ke andar
+   cards ke beech <br> / <p> jaise stray nodes ghusa deta hai.
+   CSS Grid me har aisa node ek KHALI grid cell ban jaata hai —
+   isiliye cards ek column chhod-chhod kar dikhte the.
+
+   Fix: grid ke andar sirf asli .sg-course-card ko rehne do.
+   Marker: sg-course-step-2-layout-fix-v3
+   ============================================================ */
+/* Grid ke andar card ke alawa jo bhi direct child hai — hide. */
+.sg-course .sg-course-grid > :not(.sg-course-card) {
+  display: none !important;
+}
+
+/* Agar kisi global clearfix se pseudo-items aa rahe hon to wo bhi band. */
+.sg-course .sg-course-grid::before,
+.sg-course .sg-course-grid::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Text-node safety: whitespace ko normal rakho taaki
+   blank text runs grid item na banen. */
+.sg-course .sg-course-grid {
+  white-space: normal !important;
+}
+
+/* Card ke andar ke text par upar wale rule ka asar nahi hona chahiye. */
+.sg-course .sg-course-card {
+  white-space: normal;
+}
+
+/* ---------- End Step 2 Layout Fix v3 (sg-course-step-2-layout-fix-v3) ---------- */
 /* =====================================================================
    INNER PAGE TEMPLATES v1 — is poore block ko
    src/sass/theme/_circuitshala-home.scss ke BILKUL END mein paste karo.
