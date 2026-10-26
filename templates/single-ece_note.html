@@ -1,0 +1,20 @@
+<!--
+  Silicon Geek Step 3 — Single ECE Note template.
+  Destination: templates/single-ece_note.html
+
+  The [sg_note_page] Shortcode prints:
+  left Subject syllabus + main article + Previous/Next + Continue Learning.
+  Requires: inc/custom-post-type/ece-note-render.php
+-->
+
+<!-- wp:template-part {"slug":"header","theme":"ts-block-theme","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"sg-note-template-main"} -->
+<main class="wp-block-group sg-note-template-main">
+  <!-- wp:shortcode -->
+  [sg_note_page]
+  <!-- /wp:shortcode -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"ts-block-theme","tagName":"footer"} /-->

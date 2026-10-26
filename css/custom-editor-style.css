@@ -61786,6 +61786,1045 @@ p.is-style-badge, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .is-
 }
 
 /* ---------- End Step 2 Layout Fix v3 (sg-course-step-2-layout-fix-v3) ---------- */
+/* ============================================================
+   Silicon Geek Step 3 — Single Note Page (FILTERED FINAL)
+   File: src/sass/theme/_circuitshala-home.scss ke end me rakho
+   Then keep/run: npm run watch
+
+   Is file me FINAL + Sidebar Polish v4 + v5 properly merge hain.
+   Purane teeno Step 3 blocks ki jagah sirf ye ek block rakho.
+
+   Final layout:
+   - Left: course syllabus (no inner scrollbar)
+   - Main: article (koi right rail nahi)
+   - Article ke andar: Previous/Next + Continue Learning
+   - Center article me Subject Home fallback card nahi hai
+   Marker: sg-note-step-3-filtered-final
+   ============================================================ */
+.sg-note-template-main {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #f6f9fc;
+}
+
+.sg-note-page {
+  --sg-note-navy: #0b1226;
+  --sg-note-ink: #0f172a;
+  --sg-note-body: #334155;
+  --sg-note-muted: #64748b;
+  --sg-note-line: #e2e8f0;
+  --sg-note-accent: #0891b2;
+  --sg-note-accent-2: #06b6d4;
+  --sg-note-green: #16a34a;
+  --sg-note-shadow: 0 1.4rem 4rem rgba(15, 23, 42, 0.07);
+  background: radial-gradient(circle at 8% 0%, rgba(6, 182, 212, 0.07), transparent 34rem), #f6f9fc;
+  color: var(--sg-note-body);
+  font-size: 1.6rem;
+  line-height: 1.65;
+}
+
+.sg-note-page *,
+.sg-note-page *::before,
+.sg-note-page *::after {
+  box-sizing: border-box;
+}
+
+.sg-note-wrap {
+  width: min(138rem, 100% - 4rem);
+  margin-inline: auto;
+}
+
+.sg-note-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 2.2rem 0 1.8rem;
+  overflow-x: auto;
+  color: var(--sg-note-muted);
+  font-size: 1.32rem;
+  font-weight: 700;
+  line-height: 1.35;
+  white-space: nowrap;
+  scrollbar-width: thin;
+}
+
+.sg-note-breadcrumbs a {
+  color: var(--sg-note-accent) !important;
+  text-decoration: none !important;
+}
+
+.sg-note-breadcrumbs a:hover,
+.sg-note-breadcrumbs a:focus-visible {
+  text-decoration: underline !important;
+}
+
+.sg-note-breadcrumbs [aria-current=page] {
+  overflow: hidden;
+  color: var(--sg-note-ink);
+  text-overflow: ellipsis;
+}
+
+.sg-note-layout {
+  display: grid;
+  grid-template-columns: 30rem minmax(0, 1fr);
+  grid-template-areas: "sidebar article";
+  gap: 2.4rem;
+  align-items: start;
+  padding-bottom: 6rem;
+}
+
+/* WordPress ke stray <br>/<p> nodes ko layout item banne se roko. */
+.sg-note-layout > :not(.sg-note-sidebar):not(.sg-note-article) {
+  display: none !important;
+}
+
+.sg-note-layout::before,
+.sg-note-layout::after {
+  content: none !important;
+  display: none !important;
+}
+
+.sg-note-page .sg-note-sidebar {
+  grid-area: sidebar;
+  position: static;
+  top: auto;
+  align-self: start;
+  min-width: 0;
+}
+
+.sg-note-sidebar__mobile {
+  display: none;
+}
+
+.sg-note-page .sg-note-tree-card {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  border: 0.1rem solid var(--sg-note-line);
+  border-radius: 2.2rem;
+  background: #fff;
+  box-shadow: var(--sg-note-shadow);
+}
+
+.sg-note-page .sg-note-tree-card__head {
+  position: static;
+  top: auto;
+  padding: 1.9rem 2rem 1.8rem;
+  border-bottom: 0;
+  background: radial-gradient(circle at 92% 0%, rgba(6, 182, 212, 0.32), transparent 18rem), linear-gradient(135deg, #0b1226, #12315a);
+}
+
+/* Sirf asli eyebrow par chhota cyan uppercase style lagega. */
+.sg-note-page .sg-note-tree-card__head .sg-note-tree-card__eyebrow {
+  margin: 0 !important;
+  color: #67e8f9 !important;
+  font-size: 1.05rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.15em !important;
+  line-height: 1.25 !important;
+  text-transform: uppercase !important;
+}
+
+/* Subject link — left syllabus ke andar alag clickable card. */
+.sg-note-page .sg-note-tree-card__head a.sg-note-tree-card__subject,
+.sg-note-page .sg-note-tree-card__head a.sg-note-tree-card__subject:visited {
+  box-sizing: border-box;
+  display: flex !important;
+  width: 100%;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1.2rem;
+  margin-top: 0.9rem !important;
+  padding: 1.05rem 1.15rem !important;
+  border: 0.1rem solid rgba(103, 232, 249, 0.42) !important;
+  border-radius: 1.35rem !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.055)) !important;
+  box-shadow: 0 1rem 2.4rem rgba(2, 6, 23, 0.18);
+  color: #fff !important;
+  cursor: pointer;
+  text-decoration: none !important;
+  text-transform: none !important;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.sg-note-page .sg-note-tree-card__subject-main {
+  display: flex !important;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sg-note-page .sg-note-tree-card__subject-kicker {
+  display: block;
+  color: #67e8f9 !important;
+  font-size: 0.95rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.13em !important;
+  line-height: 1.15 !important;
+  text-transform: uppercase !important;
+}
+
+/* Subject ka asal naam — bada white title, uppercase bilkul nahi. */
+.sg-note-page .sg-note-tree-card__subject-name {
+  display: block;
+  color: #fff !important;
+  font-size: 2.05rem !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.16 !important;
+  text-transform: none !important;
+  overflow-wrap: anywhere;
+}
+
+.sg-note-page .sg-note-tree-card__subject-arrow {
+  display: inline-flex !important;
+  width: 3.1rem;
+  height: 3.1rem;
+  flex: 0 0 3.1rem;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 0 0.12rem !important;
+  border-radius: 999px;
+  background: #22d3ee;
+  color: #082f49 !important;
+  font-size: 1.65rem !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.sg-note-page .sg-note-tree-card__head a.sg-note-tree-card__subject:hover,
+.sg-note-page .sg-note-tree-card__head a.sg-note-tree-card__subject:focus-visible {
+  border-color: #67e8f9 !important;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.24), rgba(255, 255, 255, 0.08)) !important;
+  color: #fff !important;
+  transform: translateY(-0.1rem);
+}
+
+.sg-note-page .sg-note-tree-card__head a.sg-note-tree-card__subject:hover .sg-note-tree-card__subject-arrow,
+.sg-note-page .sg-note-tree-card__head a.sg-note-tree-card__subject:focus-visible .sg-note-tree-card__subject-arrow {
+  background: #a5f3fc;
+  transform: translate(0.1rem, -0.1rem);
+}
+
+.sg-note-page .sg-note-tree-card__head a.sg-note-tree-card__subject:focus-visible {
+  outline: 0.3rem solid rgba(103, 232, 249, 0.65) !important;
+  outline-offset: 0.25rem;
+}
+
+.sg-note-page .sg-note-progress {
+  height: 0.7rem;
+  margin-top: 1.35rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.sg-note-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--sg-note-accent), var(--sg-note-green));
+}
+
+.sg-note-page .sg-note-tree-card__head small, .sg-note-page .sg-note-tree-card__head .small, .sg-note-page .sg-note-tree-card__head .editor-tabs .editor-tabs-preview, .editor-tabs .sg-note-page .sg-note-tree-card__head .editor-tabs-preview {
+  display: block;
+  margin-top: 0.6rem;
+  color: #cbd5e1 !important;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.sg-note-page .sg-note-tree {
+  padding: 1rem;
+}
+
+.sg-note-tree__empty {
+  margin: 0 !important;
+  padding: 1rem;
+  color: var(--sg-note-muted) !important;
+  font-size: 1.4rem !important;
+}
+
+.sg-note-page .sg-note-tree__folder {
+  margin: 0 0 0.3rem;
+}
+
+.sg-note-tree__folder > summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2rem;
+  align-items: center;
+  -moz-column-gap: 0.8rem;
+  column-gap: 0.8rem;
+  row-gap: 0.35rem;
+  padding: 0.85rem 1rem;
+  border-radius: 1.2rem;
+  color: var(--sg-note-ink);
+  cursor: pointer;
+  list-style: none;
+}
+
+.sg-note-tree__folder > summary::-webkit-details-marker {
+  display: none;
+}
+
+.sg-note-tree__folder > summary::after {
+  content: "›";
+  grid-column: 2;
+  grid-row: 1/span 2;
+  align-self: center;
+  justify-self: center;
+  color: var(--sg-note-accent);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  transition: transform 0.18s ease;
+}
+
+.sg-note-tree__folder[open] > summary::after {
+  transform: rotate(90deg);
+}
+
+.sg-note-tree__folder > summary:hover,
+.sg-note-tree__folder > summary:focus-visible {
+  background: #f0f9ff;
+}
+
+.sg-note-tree__folder-name {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  font-size: 1.46rem;
+  font-weight: 850;
+  line-height: 1.32;
+}
+
+.sg-note-tree__level-0 > summary .sg-note-tree__folder-name {
+  font-size: 1.54rem;
+}
+
+.sg-note-page .sg-note-tree__count {
+  box-sizing: border-box;
+  display: inline-flex !important;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  align-items: center !important;
+  align-self: center;
+  justify-content: center !important;
+  justify-self: start;
+  padding: 0 0.9rem !important;
+  border: 0.1rem solid #bfdbfe !important;
+  border-radius: 999px !important;
+  background: #eff6ff !important;
+  color: #075985 !important;
+  text-align: center !important;
+  vertical-align: middle;
+}
+
+.sg-note-page .sg-note-tree__count-text {
+  display: block !important;
+  color: inherit !important;
+  font-size: 1.08rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  /* Font ka visual text thoda neeche baithta hai; ye use exact center par lata hai. */
+  transform: translateY(-0.14rem);
+}
+
+.sg-note-page .sg-note-tree__folder > summary .sg-note-tree__count {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.sg-note-page .sg-note-tree__folder-link .sg-note-tree__count {
+  flex: 0 0 auto;
+  border-color: #fde68a !important;
+  background: #fffbeb !important;
+  color: #92400e !important;
+}
+
+.sg-note-tree__body {
+  margin: 0.1rem 0 0.6rem 1.25rem;
+  padding-left: 1.05rem;
+  border-left: 0.1rem solid #e2e8f0;
+}
+
+.sg-note-tree__overview,
+.sg-note-tree__folder-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 1rem;
+  color: var(--sg-note-accent) !important;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.3;
+  text-decoration: none !important;
+}
+
+.sg-note-tree__overview:hover,
+.sg-note-tree__folder-link:hover {
+  background: #f0f9ff;
+}
+
+.sg-note-tree__folder-link {
+  margin-bottom: 0.45rem;
+  color: var(--sg-note-ink) !important;
+}
+
+.sg-note-tree__notes {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0 0 0.7rem !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.sg-note-tree__notes > :not(li) {
+  display: none !important;
+}
+
+.sg-note-tree__notes li {
+  margin: 0 !important;
+}
+
+.sg-note-tree__notes a {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.72rem 0.85rem;
+  border-radius: 1.05rem;
+  color: #475569 !important;
+  font-size: 1.38rem;
+  font-weight: 700;
+  line-height: 1.38;
+  text-decoration: none !important;
+}
+
+.sg-note-tree__notes a:hover,
+.sg-note-tree__notes a:focus-visible {
+  background: #f0f9ff;
+  color: var(--sg-note-ink) !important;
+}
+
+.sg-note-tree__notes a.is-current {
+  background: linear-gradient(135deg, #ecfeff, #f0fdf4);
+  color: var(--sg-note-ink) !important;
+  box-shadow: inset 0.35rem 0 0 var(--sg-note-accent-2);
+}
+
+.sg-note-tree__num {
+  display: inline-grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 0.9rem;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 1.16rem;
+  font-weight: 900;
+}
+
+.sg-note-tree__notes a.is-current .sg-note-tree__num {
+  background: var(--sg-note-accent);
+  color: #fff;
+}
+
+.sg-note-article {
+  grid-area: article;
+  min-width: 0;
+  overflow: hidden;
+  border: 0.1rem solid var(--sg-note-line);
+  border-radius: 2.6rem;
+  background: #fff;
+  box-shadow: var(--sg-note-shadow);
+}
+
+.sg-note-article__head {
+  padding: clamp(2.6rem, 4vw, 4.4rem) clamp(2.2rem, 4vw, 4.8rem) 2.6rem;
+  border-bottom: 0.1rem solid var(--sg-note-line);
+  background: radial-gradient(circle at 94% 0%, rgba(6, 182, 212, 0.1), transparent 28rem), linear-gradient(180deg, #fff, #fbfdff);
+}
+
+.sg-note-kicker {
+  display: inline-flex;
+  margin: 0 0 1.4rem !important;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  background: #ecfeff;
+  color: #0e7490 !important;
+  font-size: 1.25rem !important;
+  font-weight: 850;
+  letter-spacing: 0.045em;
+  line-height: 1.25 !important;
+  text-transform: uppercase;
+}
+
+.sg-note-article__head h1, .sg-note-article__head .h1 {
+  margin: 0 !important;
+  color: var(--sg-note-ink) !important;
+  font-size: clamp(3.3rem, 5vw, 5.4rem) !important;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.07 !important;
+}
+
+.sg-note-lead {
+  max-width: 72rem;
+  margin: 1.6rem 0 0 !important;
+  color: #475569 !important;
+  font-size: 1.9rem !important;
+  line-height: 1.65 !important;
+}
+
+.sg-note-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2.1rem;
+}
+
+.sg-note-meta span {
+  padding: 0.65rem 0.95rem;
+  border: 0.1rem solid var(--sg-note-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--sg-note-muted);
+  font-size: 1.28rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.sg-note-featured {
+  margin: 0 !important;
+  padding: 2.2rem clamp(2.2rem, 4vw, 4.8rem) 0;
+}
+
+.sg-note-featured img {
+  display: block;
+  width: 100% !important;
+  max-height: 46rem;
+  border-radius: 2rem;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.sg-note-featured figcaption {
+  padding-top: 0.9rem;
+  color: var(--sg-note-muted);
+  font-size: 1.35rem;
+  text-align: center;
+}
+
+.sg-note-article__content {
+  padding: 1rem clamp(2.2rem, 4vw, 4.8rem) 3.2rem;
+  color: var(--sg-note-body);
+  font-size: 1.74rem;
+  line-height: 1.82;
+}
+
+.sg-note-article__content > *:first-child {
+  margin-top: 1.6rem !important;
+}
+
+.sg-note-article__content p, .sg-note-article__content .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-article__content .tab-nav-description {
+  margin: 0 0 1.9rem !important;
+  color: var(--sg-note-body) !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+.sg-note-article__content h2, .sg-note-article__content .h2,
+.sg-note-article__content h3,
+.sg-note-article__content .h3,
+.sg-note-article__content h4,
+.sg-note-article__content .h4,
+.sg-note-article__content .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-title,
+.wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-article__content .tab-nav-title {
+  scroll-margin-top: 11rem;
+  color: var(--sg-note-ink) !important;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+.sg-note-article__content h2, .sg-note-article__content .h2 {
+  margin: 4.2rem 0 1.6rem !important;
+  padding-left: 1.35rem;
+  border-left: 0.5rem solid var(--sg-note-accent-2);
+  font-size: clamp(2.6rem, 3.5vw, 3.35rem) !important;
+  line-height: 1.2 !important;
+}
+
+.sg-note-article__content h3, .sg-note-article__content .h3 {
+  margin: 3.2rem 0 1.25rem !important;
+  font-size: clamp(2.15rem, 3vw, 2.65rem) !important;
+  line-height: 1.28 !important;
+}
+
+.sg-note-article__content h4, .sg-note-article__content .h4, .sg-note-article__content .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-title, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-article__content .tab-nav-title {
+  margin: 2.6rem 0 1rem !important;
+  font-size: 2rem !important;
+  line-height: 1.35 !important;
+}
+
+.sg-note-article__content a {
+  color: #0284c7 !important;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.18em;
+}
+
+.sg-note-article__content ul,
+.sg-note-article__content ol {
+  margin: 0 0 2rem !important;
+  padding-left: 2.5rem !important;
+}
+
+.sg-note-article__content li {
+  margin: 0 0 0.8rem !important;
+}
+
+.sg-note-article__content blockquote {
+  margin: 2.6rem 0 !important;
+  padding: 2rem 2.2rem;
+  border: 0.1rem solid #bae6fd;
+  border-left: 0.55rem solid var(--sg-note-accent-2);
+  border-radius: 1.6rem;
+  background: #f0f9ff;
+}
+
+.sg-note-article__content blockquote p:last-child, .sg-note-article__content blockquote .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description:last-child, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-article__content blockquote .tab-nav-description:last-child {
+  margin-bottom: 0 !important;
+}
+
+.sg-note-article__content code {
+  padding: 0.18em 0.42em;
+  border-radius: 0.6rem;
+  background: #f1f5f9;
+  color: #be185d;
+  font-size: 0.9em;
+}
+
+.sg-note-article__content pre {
+  margin: 2.4rem 0 !important;
+  padding: 2rem;
+  overflow-x: auto;
+  border-radius: 1.6rem;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 1.45rem;
+  line-height: 1.65;
+}
+
+.sg-note-article__content pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.sg-note-article__content table {
+  display: block;
+  width: 100%;
+  margin: 2.4rem 0 !important;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 1.5rem;
+  line-height: 1.55;
+}
+
+.sg-note-article__content th,
+.sg-note-article__content td {
+  padding: 1rem 1.2rem;
+  border: 0.1rem solid var(--sg-note-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.sg-note-article__content th {
+  background: #f8fafc;
+  color: var(--sg-note-ink);
+}
+
+.sg-note-article__content img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 1.6rem;
+}
+
+.sg-note-article__content figure {
+  margin: 2.4rem 0 !important;
+}
+
+.sg-note-article__content figcaption {
+  margin-top: 0.8rem;
+  color: var(--sg-note-muted);
+  font-size: 1.35rem;
+  text-align: center;
+}
+
+.sg-note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0 clamp(2.2rem, 4vw, 4.8rem) 2.4rem;
+  padding-top: 2.2rem;
+  border-top: 0.1rem solid var(--sg-note-line);
+  color: var(--sg-note-muted);
+  font-size: 1.35rem;
+  font-weight: 750;
+}
+
+.sg-note-tags a {
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: var(--sg-note-ink) !important;
+  text-decoration: none !important;
+}
+
+.sg-note-prevnext {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: row;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin: 0 clamp(2.2rem, 4vw, 4.8rem) 2.6rem;
+}
+
+.sg-note-prevnext > :not(.sg-note-prevnext__card) {
+  display: none !important;
+}
+
+.sg-note-prevnext::before,
+.sg-note-prevnext::after {
+  content: none !important;
+  display: none !important;
+}
+
+.sg-note-prevnext__card {
+  display: flex !important;
+  width: auto;
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  padding: 1.7rem 1.9rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  grid-column: auto;
+  justify-self: stretch;
+  border: 0.1rem solid var(--sg-note-line);
+  border-radius: 1.6rem;
+  background: #f5f9fc;
+  color: var(--sg-note-body) !important;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.sg-note-prevnext__card > br {
+  display: none !important;
+}
+
+.sg-note-prevnext__card:hover,
+.sg-note-prevnext__card:focus-visible {
+  transform: translateY(-0.25rem);
+  border-color: #7dd3fc;
+  background: #f0f9ff;
+}
+
+.sg-note-prevnext__card span,
+.sg-note-prevnext__card strong {
+  margin: 0 !important;
+}
+
+.sg-note-prevnext__card span {
+  color: var(--sg-note-accent);
+  font-size: 1.22rem;
+  font-weight: 900;
+  letter-spacing: 0.035em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.sg-note-prevnext__card strong {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--sg-note-ink);
+  font-size: 1.78rem;
+  line-height: 1.32;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.sg-note-prevnext__card--next {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--sg-note-accent), var(--sg-note-accent-2));
+  box-shadow: 0 1.2rem 2.6rem rgba(8, 145, 178, 0.22);
+  text-align: right;
+}
+
+.sg-note-prevnext__card--next span {
+  color: #cffafe !important;
+}
+
+.sg-note-prevnext__card--next strong {
+  color: #fff !important;
+}
+
+.sg-note-prevnext__card--next:hover,
+.sg-note-prevnext__card--next:focus-visible {
+  background: linear-gradient(135deg, #0e7490, var(--sg-note-accent-2));
+}
+
+/* Pehle note par Previous/Subject Home fallback nahi banta;
+   akela Next card right wali jagah par hi rahega. */
+.sg-note-prevnext__card--next:only-child {
+  grid-column: 2;
+}
+
+/* Continue Learning — main article ke andar, har screen par. */
+.sg-note-continue {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 clamp(2.2rem, 4vw, 4.8rem) 2.6rem;
+  padding: 2.2rem;
+  border: 0.1rem solid #bae6fd;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #ecfeff, #f0fdf4);
+  box-shadow: 0 1rem 3rem rgba(8, 145, 178, 0.08);
+}
+
+.sg-note-continue > br {
+  display: none !important;
+}
+
+.sg-note-continue__copy {
+  min-width: 0;
+}
+
+.sg-note-continue__eyebrow {
+  margin: 0 0 0.7rem !important;
+  color: var(--sg-note-accent) !important;
+  font-size: 1.22rem !important;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.25 !important;
+  text-transform: uppercase;
+}
+
+.sg-note-continue h2, .sg-note-continue .h2 {
+  margin: 0 0 0.7rem !important;
+  color: var(--sg-note-ink) !important;
+  font-size: clamp(2.1rem, 3vw, 2.8rem) !important;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.2 !important;
+}
+
+.sg-note-continue__copy p:last-child, .sg-note-continue__copy .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description:last-child, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-continue__copy .tab-nav-description:last-child {
+  margin: 0 !important;
+  color: var(--sg-note-body) !important;
+  font-size: 1.5rem !important;
+  line-height: 1.6 !important;
+}
+
+.sg-note-continue .sg-note-btn {
+  align-self: center;
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.sg-note-article-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2.4rem;
+  align-items: center;
+  margin: 0 clamp(2.2rem, 4vw, 4.8rem) clamp(2.2rem, 4vw, 4rem);
+  padding: clamp(2.2rem, 4vw, 3.2rem);
+  border-radius: 2.2rem;
+  background: radial-gradient(circle at 92% 10%, rgba(34, 197, 94, 0.25), transparent 26rem), linear-gradient(135deg, var(--sg-note-navy), #12315a);
+  color: #e2e8f0;
+}
+
+.sg-note-article-cta h2, .sg-note-article-cta .h2 {
+  margin: 0 0 0.7rem !important;
+  color: #fff !important;
+  font-size: clamp(2.3rem, 3vw, 3.2rem) !important;
+  line-height: 1.18 !important;
+}
+
+.sg-note-article-cta p, .sg-note-article-cta .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-article-cta .tab-nav-description {
+  margin: 0 !important;
+  color: #cbd5e1 !important;
+  font-size: 1.52rem !important;
+  line-height: 1.6 !important;
+}
+
+.sg-note-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.6rem;
+  padding: 1rem 1.8rem;
+  border-radius: 999px;
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.sg-note-btn--primary {
+  background: linear-gradient(135deg, var(--sg-note-accent), var(--sg-note-accent-2));
+  color: #fff !important;
+}
+
+.sg-note-btn--light {
+  background: #fff;
+  color: var(--sg-note-navy) !important;
+  white-space: nowrap;
+}
+
+.sg-note-sidebar a:focus-visible,
+.sg-note-article a:focus-visible,
+.sg-note-breadcrumbs a:focus-visible {
+  outline: 0.3rem solid rgba(6, 182, 212, 0.55);
+  outline-offset: 0.25rem;
+}
+
+@media (max-width: 1240px) {
+  .sg-note-layout {
+    grid-template-columns: 28rem minmax(0, 1fr);
+    grid-template-areas: "sidebar article";
+  }
+}
+@media (max-width: 900px) {
+  .sg-note-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "sidebar" "article";
+    gap: 1.8rem;
+  }
+  .sg-note-page .sg-note-sidebar {
+    position: static;
+  }
+  .sg-note-sidebar__desktop {
+    display: none;
+  }
+  .sg-note-page .sg-note-sidebar__mobile {
+    display: block;
+    overflow: visible;
+    border: 0.1rem solid var(--sg-note-line);
+    border-radius: 2rem;
+    background: #fff;
+    box-shadow: var(--sg-note-shadow);
+  }
+  .sg-note-sidebar__mobile > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1.7rem 1.9rem;
+    color: var(--sg-note-ink);
+    cursor: pointer;
+    font-size: 1.55rem;
+    font-weight: 900;
+    list-style: none;
+  }
+  .sg-note-sidebar__mobile > summary::-webkit-details-marker {
+    display: none;
+  }
+  .sg-note-sidebar__mobile > summary strong {
+    color: var(--sg-note-accent);
+    font-size: 1.35rem;
+    text-align: right;
+  }
+  .sg-note-page .sg-note-sidebar__mobile .sg-note-tree-card {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    border: 0;
+    border-top: 0.1rem solid var(--sg-note-line);
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+@media (max-width: 767px) {
+  .sg-note-prevnext {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sg-note-prevnext__card--next,
+  .sg-note-prevnext__card--next:only-child {
+    grid-column: auto;
+    text-align: left;
+  }
+}
+@media (max-width: 640px) {
+  .sg-note-wrap {
+    width: calc(100% - 2.4rem);
+  }
+  .sg-note-breadcrumbs {
+    padding: 1.7rem 0 1.4rem;
+    font-size: 1.22rem;
+  }
+  .sg-note-article {
+    border-radius: 2rem;
+  }
+  .sg-note-article__head {
+    padding: 2.3rem 1.8rem 2.1rem;
+  }
+  .sg-note-featured {
+    padding: 1.6rem 1.8rem 0;
+  }
+  .sg-note-article__content {
+    padding-inline: 1.8rem;
+    font-size: 1.66rem;
+  }
+  .sg-note-tags,
+  .sg-note-prevnext,
+  .sg-note-continue,
+  .sg-note-article-cta {
+    margin-inline: 1.8rem;
+  }
+  .sg-note-article-cta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sg-note-continue {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 1.8rem;
+  }
+  .sg-note-continue .sg-note-btn {
+    width: 100%;
+    justify-self: stretch;
+    white-space: normal;
+  }
+  .sg-note-btn--light {
+    width: 100%;
+    white-space: normal;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sg-note-tree__folder > summary::after,
+  .sg-note-prevnext__card,
+  .sg-note-page .sg-note-tree-card__head a.sg-note-tree-card__subject,
+  .sg-note-page .sg-note-tree-card__subject-arrow {
+    transition: none;
+  }
+}
+/* ---------- End Silicon Geek Step 3 FILTERED FINAL (sg-note-step-3-filtered-final) ---------- */
 /* =====================================================================
    INNER PAGE TEMPLATES v1 — is poore block ko
    src/sass/theme/_circuitshala-home.scss ke BILKUL END mein paste karo.

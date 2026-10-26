@@ -229,6 +229,8 @@ require_once get_template_directory() . '/inc/custom-post-type/register-cpt.php'
 require_once get_template_directory() . '/inc/custom-post-type/ece-course-structure.php';
 // Silicon Geek Step 2: automatic /learn/ course index renderer + [sg_course_index] Shortcode.
 require_once get_template_directory() . '/inc/custom-post-type/ece-course-render.php';
+// Silicon Geek Step 3: single Note syllabus sidebar, TOC and Previous/Next renderer.
+require_once get_template_directory() . '/inc/custom-post-type/ece-note-render.php';
 require_once get_template_directory() . '/inc/swiper-slider/swiper-slider-init.php';
 require_once get_template_directory() . '/inc/team-block/team-block.php';
 // Include shortcodes.
