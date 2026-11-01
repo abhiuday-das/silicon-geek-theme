@@ -189,6 +189,19 @@ function ts_cs_course_save_order( $term_id, $term_taxonomy_id = 0 ) {
 		return;
 	}
 
+	/*
+	 * Quick Edit uses a dedicated saver below. It verifies WordPress'
+	 * own taxinlineeditnonce, so this normal Add/Edit saver should not
+	 * also try to process the inline request.
+	 */
+	if (
+		wp_doing_ajax() &&
+		isset( $_POST['action'] ) &&
+		'inline-save-tax' === sanitize_key( wp_unslash( $_POST['action'] ) )
+	) {
+		return;
+	}
+
 	if ( isset( $_POST['ts_cs_course_order'] ) ) {
 		update_term_meta(
 			(int) $term_id,
@@ -196,6 +209,49 @@ function ts_cs_course_save_order( $term_id, $term_taxonomy_id = 0 ) {
 			absint( wp_unslash( $_POST['ts_cs_course_order'] ) )
 		);
 	}
+}
+
+/**
+ * Save Display Order from Quick Edit.
+ *
+ * This intentionally uses WordPress core's Quick Edit nonce
+ * (_inline_edit / taxinlineeditnonce), which wp_ajax_inline_save_tax()
+ * has already verified before edited_ece_course fires. Keeping Quick
+ * Edit on the core nonce avoids a second, fragile nonce dependency.
+ */
+add_action( 'edited_ece_course', 'ts_cs_course_quick_edit_save_order', 20, 2 );
+
+function ts_cs_course_quick_edit_save_order( $term_id, $term_taxonomy_id = 0 ) {
+	if (
+		! wp_doing_ajax() ||
+		! isset( $_POST['action'] ) ||
+		'inline-save-tax' !== sanitize_key( wp_unslash( $_POST['action'] ) )
+	) {
+		return;
+	}
+
+	if (
+		! isset( $_POST['_inline_edit'] ) ||
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_inline_edit'] ) ), 'taxinlineeditnonce' )
+	) {
+		return;
+	}
+
+	if ( ! current_user_can( 'edit_term', (int) $term_id ) ) {
+		return;
+	}
+
+	if ( ! isset( $_POST['ts_cs_course_order'] ) ) {
+		return;
+	}
+
+	$order = sanitize_text_field( wp_unslash( $_POST['ts_cs_course_order'] ) );
+
+	if ( '' === trim( $order ) ) {
+		return;
+	}
+
+	update_term_meta( (int) $term_id, TS_CS_COURSE_ORDER_META, absint( $order ) );
 }
 
 /**
@@ -221,10 +277,277 @@ add_action( 'manage_ece_course_custom_column', 'ts_cs_course_render_order_column
 
 function ts_cs_course_render_order_column( $content, $column_name, $term_id ) {
 	if ( 'ts_cs_course_order' === $column_name ) {
-		return (string) ts_cs_course_get_order( $term_id );
+		$term       = get_term( (int) $term_id, TS_CS_COURSE_TAX );
+		$parent_id  = $term && ! is_wp_error( $term ) ? absint( $term->parent ) : 0;
+		$blocked    = array( (int) $term_id );
+		$descendants = get_term_children( (int) $term_id, TS_CS_COURSE_TAX );
+
+		if ( is_array( $descendants ) ) {
+			$blocked = array_merge( $blocked, array_map( 'absint', $descendants ) );
+		}
+
+		return sprintf(
+			'<span class="ts-cs-course-order-value">%1$s</span><span class="ts-cs-course-quick-data" hidden data-parent-id="%2$d" data-blocked-ids="%3$s"></span>',
+			esc_html( (string) ts_cs_course_get_order( $term_id ) ),
+			$parent_id,
+			esc_attr( implode( ',', array_unique( $blocked ) ) )
+		);
 	}
 
 	return $content;
+}
+
+/**
+ * Quick Edit support for Course Structure folders.
+ *
+ * WordPress core Quick Edit normally exposes only Name and Slug for a
+ * taxonomy term. For this course tree that is not enough: the parent
+ * folder and the custom Display Order are the two fields an editor needs
+ * most. The callbacks below add both controls to Quick Edit.
+ *
+ * Saving works without a custom AJAX endpoint:
+ *  - Parent uses the standard `parent` field name, which core passes to
+ *    wp_update_term() during inline-save-tax.
+ *  - Display Order reuses ts_cs_course_save_order() on edited_ece_course.
+ */
+add_action( 'quick_edit_custom_box', 'ts_cs_course_quick_edit_fields', 10, 3 );
+
+function ts_cs_course_quick_edit_fields( $column_name, $screen, $taxonomy ) {
+	static $printed = false;
+
+	if ( $printed || 'ts_cs_course_order' !== $column_name || TS_CS_COURSE_TAX !== $taxonomy ) {
+		return;
+	}
+
+	if ( 'edit-tags' !== $screen && TS_CS_COURSE_TAX !== $screen ) {
+		return;
+	}
+
+	$printed = true;
+	?>
+	<fieldset class="inline-edit-col-right ts-cs-course-quick-edit">
+		<div class="inline-edit-col">
+			<?php wp_nonce_field( 'ts_cs_course_order', 'ts_cs_course_order_nonce' ); ?>
+			<input type="hidden" name="ts_cs_course_quick_ready" value="0" />
+
+			<label>
+				<span class="title"><?php esc_html_e( 'Parent Folder', 'ts-block-theme' ); ?></span>
+				<select name="parent" class="ts-cs-course-parent-select" disabled>
+					<option value="0"><?php esc_html_e( '— No parent (root folder) —', 'ts-block-theme' ); ?></option>
+					<?php ts_cs_course_quick_edit_parent_options(); ?>
+				</select>
+			</label>
+
+			<label>
+				<span class="title"><?php esc_html_e( 'Display Order', 'ts-block-theme' ); ?></span>
+				<span class="input-text-wrap">
+					<input type="number" name="ts_cs_course_order" class="ts-cs-course-order-input" min="0" max="9999" step="1" value="" disabled />
+				</span>
+			</label>
+
+			<p class="description">
+				<?php esc_html_e( 'Use 10, 20, 30 for order. After changing a parent, refresh the list to see the folder in its new position.', 'ts-block-theme' ); ?>
+			</p>
+		</div>
+	</fieldset>
+	<?php
+}
+
+/**
+ * Print hierarchical parent choices in the same order as the frontend.
+ * The current folder and its descendants are disabled by the inline
+ * script below so a hierarchy loop cannot be selected.
+ */
+function ts_cs_course_quick_edit_parent_options( $parent_id = 0, $depth = 0 ) {
+	if ( ! function_exists( 'ts_cs_course_get_children' ) ) {
+		return;
+	}
+
+	foreach ( ts_cs_course_get_children( (int) $parent_id, false ) as $term ) {
+		printf(
+			'<option value="%1$d">%2$s</option>',
+			(int) $term->term_id,
+			esc_html( str_repeat( '— ', (int) $depth ) . $term->name )
+		);
+
+		ts_cs_course_quick_edit_parent_options( (int) $term->term_id, (int) $depth + 1 );
+	}
+}
+
+/**
+ * Last-line safety for Quick Edit parent changes.
+ *
+ * - If the inline script failed, preserve the existing parent instead
+ *   of silently moving the folder to the root.
+ * - Reject the folder itself or any descendant as its parent.
+ */
+add_filter( 'wp_update_term_parent', 'ts_cs_course_quick_edit_parent_guard', 10, 5 );
+
+function ts_cs_course_quick_edit_parent_guard( $parent, $term_id, $taxonomy, $parsed_args, $args ) {
+	if ( TS_CS_COURSE_TAX !== $taxonomy ) {
+		return $parent;
+	}
+
+	$is_inline_save = wp_doing_ajax() &&
+		isset( $_POST['action'] ) &&
+		'inline-save-tax' === sanitize_key( wp_unslash( $_POST['action'] ) );
+
+	if ( ! $is_inline_save ) {
+		return $parent;
+	}
+
+	$term = get_term( (int) $term_id, $taxonomy );
+
+	if ( ! $term || is_wp_error( $term ) ) {
+		return $parent;
+	}
+
+	$current_parent = absint( $term->parent );
+
+	if ( ! isset( $_POST['parent'] ) ) {
+		return $current_parent;
+	}
+
+	if (
+		! isset( $_POST['_inline_edit'] ) ||
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_inline_edit'] ) ), 'taxinlineeditnonce' )
+	) {
+		return $current_parent;
+	}
+
+	$parent = absint( wp_unslash( $_POST['parent'] ) );
+
+	if ( $parent === (int) $term_id ) {
+		return $current_parent;
+	}
+
+	if ( $parent ) {
+		$parent_term = get_term( $parent, $taxonomy );
+
+		if ( ! $parent_term || is_wp_error( $parent_term ) ) {
+			return $current_parent;
+		}
+
+		$descendants = get_term_children( (int) $term_id, $taxonomy );
+
+		if ( is_array( $descendants ) && in_array( $parent, array_map( 'absint', $descendants ), true ) ) {
+			return $current_parent;
+		}
+	}
+
+	return $parent;
+}
+
+/**
+ * Populate Parent + Display Order whenever a Course Folder Quick Edit
+ * row opens.
+ *
+ * v2 fix: wrap inlineEditTax.edit() itself instead of relying only on
+ * click timing. The custom controls are rendered disabled and are
+ * enabled only after this script has copied the row's real Parent and
+ * Order values into the cloned Quick Edit row. That prevents a silent
+ * reset if JavaScript has not populated them yet.
+ */
+add_action( 'admin_footer', 'ts_cs_course_quick_edit_script' );
+
+function ts_cs_course_quick_edit_script() {
+	global $pagenow;
+
+	if ( ! is_admin() || 'edit-tags.php' !== $pagenow ) {
+		return;
+	}
+
+	$taxonomy = isset( $_GET['taxonomy'] ) ? sanitize_key( wp_unslash( $_GET['taxonomy'] ) ) : '';
+
+	if ( TS_CS_COURSE_TAX !== $taxonomy ) {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+		if ( ! $screen || TS_CS_COURSE_TAX !== $screen->taxonomy ) {
+			return;
+		}
+	}
+	?>
+	<style>
+		.ts-cs-course-quick-edit select.ts-cs-course-parent-select {
+			max-width: 100%;
+		}
+		.ts-cs-course-quick-edit .description {
+			margin-top: 6px;
+		}
+	</style>
+	<script>
+	jQuery(function ($) {
+		function fillCourseQuickEdit($editRow, $row) {
+			if (!$editRow.length || !$row.length) {
+				return;
+			}
+
+			var order = $.trim($row.find('.ts-cs-course-order-value').first().text());
+			var $data = $row.find('.ts-cs-course-quick-data').first();
+			var parentId = $data.attr('data-parent-id') || '0';
+			var blockedIds = String($data.attr('data-blocked-ids') || '').split(',').filter(Boolean);
+			var $order = $editRow.find('input[name="ts_cs_course_order"]').first();
+			var $parent = $editRow.find('select[name="parent"]').first();
+
+			$order.prop('disabled', false).val(order);
+
+			$parent.find('option').prop('disabled', false);
+			blockedIds.forEach(function (id) {
+				$parent.find('option[value="' + id + '"]').prop('disabled', true);
+			});
+			$parent.prop('disabled', false).val(String(parentId));
+
+			$editRow.find('input[name="ts_cs_course_quick_ready"]').val('1');
+		}
+
+		function fillFromSourceRow($row) {
+			if (!$row.length) {
+				return;
+			}
+
+			var parts = String($row.attr('id') || '').split('-');
+			var termId = parts.length ? parts[parts.length - 1] : '';
+
+			if (termId) {
+				fillCourseQuickEdit($('#edit-' + termId), $row);
+			}
+		}
+
+		if (window.inlineEditTax && typeof window.inlineEditTax.edit === 'function' && !window.inlineEditTax.edit.tsCsCourseWrapped) {
+			var originalEdit = window.inlineEditTax.edit;
+			var wrappedEdit = function (id) {
+				var result = originalEdit.apply(this, arguments);
+				var termId = typeof id === 'object' ? this.getId(id) : id;
+
+				fillCourseQuickEdit($('#edit-' + termId), $(this.what + termId));
+
+				return result;
+			};
+
+			wrappedEdit.tsCsCourseWrapped = true;
+			window.inlineEditTax.edit = wrappedEdit;
+		}
+
+		// Fallback for rows added after page load.
+		$('#the-list').on('click', 'a.editinline', function () {
+			var $row = $(this).closest('tr');
+
+			window.setTimeout(function () {
+				fillFromSourceRow($row);
+			}, 0);
+		});
+
+		// If the editor changes a value manually, the row is definitely ready.
+		$('#the-list').on('change input', '.ts-cs-course-parent-select, .ts-cs-course-order-input', function () {
+			$(this).closest('tr').find('input[name="ts_cs_course_quick_ready"]').val('1');
+		});
+
+		$('#the-list').on('click', '.inline-edit-save .save', function () {
+			$(this).closest('tr').find('input[name="ts_cs_course_quick_ready"]').val('1');
+		});
+	});
+	</script>
+	<?php
 }
 
 /**

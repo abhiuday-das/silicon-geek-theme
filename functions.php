@@ -217,6 +217,8 @@ require_once get_template_directory() . '/inc/blog/recent-blog-init.php';
 require_once get_template_directory() . '/inc/blog/filter-blog-init.php';
 require_once get_template_directory() . '/inc/accordion/accordion-init.php';
 require_once get_template_directory() . '/inc/tab/tab-init.php';
+// Silicon Geek Step 5R: GATE PYQ Practice Set archive and single-set renderer.
+require_once get_template_directory() . '/inc/custom-post-type/ece-gate-render.php';
 require_once get_template_directory() . '/inc/read-more-toggle/read-more-toggle-init.php';
 require_once get_template_directory() . '/inc/post-content-image/post-content-image.php';
 require_once get_template_directory() . '/inc/category-filter/category-filter-init.php';
@@ -231,6 +233,10 @@ require_once get_template_directory() . '/inc/custom-post-type/ece-course-struct
 require_once get_template_directory() . '/inc/custom-post-type/ece-course-render.php';
 // Silicon Geek Step 3: single Note syllabus sidebar, TOC and Previous/Next renderer.
 require_once get_template_directory() . '/inc/custom-post-type/ece-note-render.php';
+// Silicon Geek Step 5A: GATE EC PYQ Exam Year taxonomy, question meta and admin tools.
+require_once get_template_directory() . '/inc/custom-post-type/ece-gate-pyq.php';
+// Silicon Geek Step 5B: GATE PYQ archive, course practice sections and filters.
+require_once get_template_directory() . '/inc/custom-post-type/ece-gate-render.php';
 require_once get_template_directory() . '/inc/swiper-slider/swiper-slider-init.php';
 require_once get_template_directory() . '/inc/team-block/team-block.php';
 // Include shortcodes.

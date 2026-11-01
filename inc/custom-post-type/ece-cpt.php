@@ -9,7 +9,7 @@
  * Creates:
  *  - ECE Notes    => /notes/mosfet-working/
  *  - ECE Projects => /projects/esp32-dht22-iot/
- *  - GATE PYQ     => /gate-pyq/signals-systems-pyq/
+ *  - GATE PYQ Sets => /gate-pyq/logic-gates-gate-pyqs-with-solutions/
  *  Taxonomies (auto archive pages):
  *  - Study Year   => /year/year-1/ ... /year/final-year/
  *  - Subject      => /subjects/analog-circuits/ etc.
@@ -58,10 +58,10 @@ function ts_cs_register_ece_content() {
 
 	register_post_type( 'ece_gate_pyq', array_merge( $shared, array(
 		'labels' => array(
-			'name'          => __( 'GATE PYQ', 'ts-block-theme' ),
-			'singular_name' => __( 'GATE PYQ Set', 'ts-block-theme' ),
-			'add_new_item'  => __( 'Add PYQ Set', 'ts-block-theme' ),
-			'menu_name'     => __( 'GATE PYQ', 'ts-block-theme' ),
+			'name'          => __( 'GATE PYQ Sets', 'ts-block-theme' ),
+			'singular_name' => __( 'GATE PYQ Practice Set', 'ts-block-theme' ),
+			'add_new_item'  => __( 'Add PYQ Practice Set', 'ts-block-theme' ),
+			'menu_name'     => __( 'GATE PYQ Sets', 'ts-block-theme' ),
 		),
 		'menu_icon'    => 'dashicons-awards',
 		'menu_position'=> 7,
@@ -69,7 +69,11 @@ function ts_cs_register_ece_content() {
 	) ) );
 
 	$tax_shared = array( 'hierarchical' => true, 'show_in_rest' => true, 'public' => true, 'show_admin_column' => true );
-	$all_types  = array( 'ece_note', 'ece_project', 'ece_gate_pyq', 'post' );
+	// Legacy flat taxonomies remain available for Projects and blog posts.
+	// ECE Notes and GATE PYQ Sets intentionally use Course Structure
+	// (ece_course) only. In Step 5R, exam year / marks / type are read
+	// from each Q-heading; no extra author-facing taxonomy is used.
+	$all_types  = array( 'ece_project', 'post' );
 
 	register_taxonomy( 'ece_year', $all_types, array_merge( $tax_shared, array(
 		'labels'  => array( 'name' => __( 'Study Year', 'ts-block-theme' ), 'singular_name' => __( 'Year', 'ts-block-theme' ) ),

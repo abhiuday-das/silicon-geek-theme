@@ -1,0 +1,21 @@
+<!--
+  Silicon Geek Step 5R — Single GATE PYQ Practice Set template.
+  Destination: templates/single-ece_gate_pyq.html
+
+  The [sg_gate_pyq_set] Shortcode converts the author's normal
+  H2 Q / H3 Answer / H3 Solution headings into practisable
+  question cards with hidden answers and solutions.
+  Requires: inc/custom-post-type/ece-gate-render.php
+-->
+
+<!-- wp:template-part {"slug":"header","theme":"ts-block-theme","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"sg-gate-set-template-main"} -->
+<main class="wp-block-group sg-gate-set-template-main">
+  <!-- wp:shortcode -->
+  [sg_gate_pyq_set]
+  <!-- /wp:shortcode -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"ts-block-theme","tagName":"footer"} /-->

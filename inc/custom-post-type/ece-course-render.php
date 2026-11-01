@@ -21,6 +21,9 @@
  *
  * Add/edit/delete/draft a term or note in wp-admin and the output updates
  * automatically. Nothing in the header or templates needs to be edited.
+ *
+ * Step 5R: GATE folders also show the actual question total inside their
+ * Practice Sets and print the set listing after the direct notes.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -276,6 +279,10 @@ function ts_cs_course_index_render_term_card( $term ) {
 
 	$child_count = ts_cs_course_index_count_children( $term->term_id );
 	$note_count  = ts_cs_course_index_count_notes( $term->term_id, true );
+	$card_root   = ts_cs_course_index_get_root( $term );
+	$pyq_count   = $card_root && 'gate-ec' === $card_root->slug && function_exists( 'ts_sg_gate_count_questions' )
+		? ts_sg_gate_count_questions( $term->term_id, true )
+		: 0;
 	$label       = ts_cs_course_index_level_label( $term, false );
 	?>
 	<a class="sg-course-card" href="<?php echo esc_url( $url ); ?>">
@@ -290,6 +297,9 @@ function ts_cs_course_index_render_term_card( $term ) {
 				<span><?php echo esc_html( sprintf( '%d sections', $child_count ) ); ?></span>
 			<?php endif; ?>
 			<span><?php echo esc_html( sprintf( '%d notes', $note_count ) ); ?></span>
+			<?php if ( $pyq_count > 0 ) : ?>
+				<span><?php echo esc_html( sprintf( '%d PYQs', $pyq_count ) ); ?></span>
+			<?php endif; ?>
 		</span>
 		<span class="sg-course-card__action">Open <span aria-hidden="true">→</span></span>
 	</a>
@@ -359,7 +369,11 @@ function ts_cs_course_index_render_term( $term ) {
 	$path         = ts_cs_course_get_path( $term );
 	$root         = ts_cs_course_index_get_root( $term );
 	$depth        = ts_cs_course_get_depth( $term );
-	$total_notes  = ts_cs_course_index_count_notes( $term->term_id, true );
+	$total_notes    = ts_cs_course_index_count_notes( $term->term_id, true );
+	$is_gate_branch = $root && 'gate-ec' === $root->slug;
+	$total_pyqs     = $is_gate_branch && function_exists( 'ts_sg_gate_count_questions' )
+		? ts_sg_gate_count_questions( $term->term_id, true )
+		: 0;
 	$child_label  = ! empty( $children ) ? ts_cs_course_index_level_label( $children[0], true ) : 'Course Sections';
 	$term_label   = ts_cs_course_index_level_label( $term, false );
 	$description  = trim( (string) $term->description );
@@ -387,6 +401,9 @@ function ts_cs_course_index_render_term( $term ) {
 								<span><strong><?php echo esc_html( (string) count( $children ) ); ?></strong> <?php echo esc_html( strtolower( $child_label ) ); ?></span>
 							<?php endif; ?>
 							<span><strong><?php echo esc_html( (string) $total_notes ); ?></strong> notes</span>
+							<?php if ( $is_gate_branch ) : ?>
+								<span><strong><?php echo esc_html( (string) $total_pyqs ); ?></strong> PYQs</span>
+							<?php endif; ?>
 							<?php if ( ! empty( $direct_notes ) && empty( $children ) ) : ?>
 								<span><strong><?php echo esc_html( (string) count( $direct_notes ) ); ?></strong> subtopics</span>
 							<?php endif; ?>
@@ -397,6 +414,8 @@ function ts_cs_course_index_render_term( $term ) {
 								<a class="sg-course-btn sg-course-btn--primary" href="#sg-course-content">Explore <?php echo esc_html( $child_label ); ?></a>
 							<?php elseif ( ! empty( $direct_notes ) ) : ?>
 								<a class="sg-course-btn sg-course-btn--primary" href="<?php echo esc_url( get_permalink( $direct_notes[0] ) ); ?>">Start First Note →</a>
+							<?php elseif ( $is_gate_branch && $total_pyqs > 0 ) : ?>
+								<a class="sg-course-btn sg-course-btn--primary" href="#sg-gate-questions">Practice PYQ Sets →</a>
 							<?php endif; ?>
 
 							<?php if ( ! empty( $term->parent ) ) : ?>
@@ -451,7 +470,14 @@ function ts_cs_course_index_render_term( $term ) {
 				</ol>
 			<?php endif; ?>
 
-			<?php if ( empty( $children ) && empty( $direct_notes ) ) : ?>
+			<?php
+			$gate_section_rendered = false;
+			if ( $is_gate_branch && function_exists( 'ts_sg_gate_render_course_questions' ) ) {
+				$gate_section_rendered = ts_sg_gate_render_course_questions( $term );
+			}
+			?>
+
+			<?php if ( empty( $children ) && empty( $direct_notes ) && ! $gate_section_rendered ) : ?>
 				<div class="sg-course-empty">
 					<span aria-hidden="true">🚧</span>
 					<h2>Content is being prepared</h2>

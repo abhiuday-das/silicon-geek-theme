@@ -59,5 +59,11 @@ add_action('init', function () {
      register_block_pattern_category('ts-block-theme/inner-project-starter', [
         'label' => __('inner project starter', 'ts-block-theme'),
     ]);
+     register_block_pattern_category('ts-block-theme/ece-gate-pyq-question', [
+        'label' => __('Gate PYQ question', 'ts-block-theme'),
+    ]);
+     register_block_pattern_category('ts-block-theme/ece-gate-pyq-practice-set', [
+        'label' => __('Gate PYQ practice set', 'ts-block-theme'),
+    ]);
 });
 

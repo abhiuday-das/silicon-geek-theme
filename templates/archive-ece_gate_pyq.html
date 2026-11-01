@@ -1,0 +1,20 @@
+<!--
+  Silicon Geek Step 5R — GATE PYQ Practice Set archive template.
+  Destination: templates/archive-ece_gate_pyq.html
+
+  Powers /gate-pyq/ with [sg_gate_pyq_index]: subject cards,
+  Subject/Topic + Search filters and Practice Set cards.
+  Requires: inc/custom-post-type/ece-gate-render.php
+-->
+
+<!-- wp:template-part {"slug":"header","theme":"ts-block-theme","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"sg-gate-template-main"} -->
+<main class="wp-block-group sg-gate-template-main">
+  <!-- wp:shortcode -->
+  [sg_gate_pyq_index]
+  <!-- /wp:shortcode -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"ts-block-theme","tagName":"footer"} /-->

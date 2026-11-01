@@ -62825,6 +62825,1475 @@ p.is-style-badge, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .is-
   }
 }
 /* ---------- End Silicon Geek Step 3 FILTERED FINAL (sg-note-step-3-filtered-final) ---------- */
+/* ============================================================
+   Silicon Geek Step 5B — GATE PYQ Listing + Filters
+   PASTE AT THE VERY END OF:
+   src/sass/theme/_circuitshala-home.scss
+   Then keep/run: npm run watch
+   Marker: sg-gate-step-5b
+   ============================================================ */
+.sg-gate-template-main {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #f6f9fc;
+}
+
+.sg-gate-practice,
+.sg-gate-course-practice {
+  scroll-margin-top: 10rem;
+  margin-top: 1rem;
+}
+
+.sg-gate-course-practice {
+  margin: 5rem 0;
+}
+
+/* ---------- Filter bar ---------- */
+.sg-gate-filters {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  gap: 1.4rem;
+  margin: 0 0 2rem;
+  padding: 2rem;
+  border: 0.1rem solid var(--sg-course-line);
+  border-radius: 2rem;
+  background: #fff;
+  box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.055);
+}
+
+.sg-gate-filters::before,
+.sg-gate-filters::after,
+.sg-gate-grid::before,
+.sg-gate-grid::after {
+  content: none !important;
+  display: none !important;
+}
+
+.sg-gate-field {
+  grid-column: span 3;
+  min-width: 0;
+}
+
+.sg-gate-field--course,
+.sg-gate-field--search {
+  grid-column: span 4;
+}
+
+.sg-gate-field label {
+  display: block;
+  margin: 0 0 0.65rem;
+  color: var(--sg-course-ink);
+  font-size: 1.28rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.sg-gate-field select,
+.sg-gate-field input[type=search] {
+  width: 100%;
+  min-height: 4.7rem;
+  margin: 0;
+  padding: 0.95rem 1.15rem;
+  border: 0.1rem solid #cbd5e1;
+  border-radius: 1.15rem;
+  background: #fff;
+  color: var(--sg-course-ink);
+  font: inherit;
+  font-size: 1.45rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.sg-gate-field select:focus,
+.sg-gate-field input[type=search]:focus {
+  border-color: var(--sg-course-accent-2);
+  outline: 0.3rem solid rgba(245, 158, 11, 0.24);
+  outline-offset: 0.1rem;
+}
+
+.sg-gate-filter-actions {
+  display: flex;
+  grid-column: span 4;
+  align-items: center;
+  gap: 1.2rem;
+  min-width: 0;
+}
+
+.sg-gate-filter-actions .sg-course-btn {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.sg-gate-clear {
+  color: var(--sg-course-accent) !important;
+  font-size: 1.4rem;
+  font-weight: 850;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.sg-gate-clear:hover,
+.sg-gate-clear:focus-visible {
+  text-decoration: underline !important;
+}
+
+.sg-gate-results-meta {
+  margin: 0 0 1.6rem !important;
+  color: var(--sg-course-muted) !important;
+  font-size: 1.38rem !important;
+  font-weight: 750;
+  line-height: 1.45 !important;
+}
+
+/* ---------- PYQ cards ---------- */
+.sg-gate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+  margin: 0;
+}
+
+/* WordPress ke stray nodes ko grid cell banne se roko. */
+.sg-gate-grid > :not(.sg-gate-card) {
+  display: none !important;
+}
+
+.sg-gate-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 2.1rem;
+  border: 0.1rem solid var(--sg-course-line);
+  border-radius: 2rem;
+  background: #fff;
+  box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.055);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sg-gate-card:hover {
+  transform: translateY(-0.3rem);
+  border-color: #fcd34d;
+  box-shadow: var(--sg-course-shadow);
+}
+
+.sg-gate-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.4rem;
+}
+
+.sg-gate-badge {
+  display: inline-flex;
+  min-height: 2.7rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.85rem 0.45rem;
+  border: 0.1rem solid #e2e8f0;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 1.16rem;
+  font-weight: 850;
+  letter-spacing: 0.035em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.sg-gate-badge--year {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.sg-gate-card__title {
+  margin: 0 0 0.9rem !important;
+  font-size: 2.05rem !important;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.25 !important;
+}
+
+.sg-gate-card__title a {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--sg-course-ink) !important;
+  text-decoration: none !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.sg-gate-card__title a:hover,
+.sg-gate-card__title a:focus-visible {
+  color: var(--sg-course-accent) !important;
+}
+
+.sg-gate-card__path {
+  margin: 0 0 1rem !important;
+  color: var(--sg-course-accent) !important;
+  font-size: 1.3rem !important;
+  font-weight: 800;
+  line-height: 1.4 !important;
+}
+
+.sg-gate-card__excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0 0 1.8rem !important;
+  color: var(--sg-course-body) !important;
+  font-size: 1.46rem !important;
+  line-height: 1.62 !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.sg-gate-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 0.1rem solid var(--sg-course-line);
+  color: var(--sg-course-muted);
+  font-size: 1.28rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.sg-gate-card__link {
+  flex: 0 0 auto;
+  color: var(--sg-course-accent) !important;
+  font-weight: 900;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.sg-gate-card__link:hover,
+.sg-gate-card__link:focus-visible {
+  text-decoration: underline !important;
+}
+
+/* ---------- Empty + pagination ---------- */
+.sg-gate-empty {
+  padding: 3.2rem 2.4rem;
+  border: 0.1rem dashed #cbd5e1;
+  border-radius: 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+.sg-gate-empty > span {
+  display: block;
+  margin-bottom: 1.1rem;
+  font-size: 3.4rem;
+  line-height: 1;
+}
+
+.sg-gate-empty h3, .sg-gate-empty .h3 {
+  margin: 0 0 0.8rem !important;
+  color: var(--sg-course-ink) !important;
+  font-size: 2.2rem !important;
+  line-height: 1.25 !important;
+}
+
+.sg-gate-empty p, .sg-gate-empty .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-gate-empty .tab-nav-description {
+  max-width: 58rem;
+  margin: 0 auto 1.8rem !important;
+  color: var(--sg-course-body) !important;
+  font-size: 1.5rem !important;
+  line-height: 1.6 !important;
+}
+
+.sg-gate-empty--course {
+  background: linear-gradient(180deg, #fff, #fffbeb);
+}
+
+.sg-gate-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 2.6rem 0 0;
+}
+
+.sg-gate-pagination a,
+.sg-gate-pagination span {
+  display: inline-flex;
+  min-width: 4.2rem;
+  min-height: 4.2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.2rem 0.85rem;
+  border: 0.1rem solid var(--sg-course-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--sg-course-ink) !important;
+  font-size: 1.4rem;
+  font-weight: 850;
+  line-height: 1.1;
+  text-decoration: none !important;
+}
+
+.sg-gate-pagination a:hover,
+.sg-gate-pagination a:focus-visible {
+  border-color: #fcd34d;
+  color: var(--sg-course-accent) !important;
+}
+
+.sg-gate-pagination .is-current {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--sg-course-accent), var(--sg-course-accent-2));
+  color: #fff !important;
+}
+
+.sg-gate-pagination .sg-gate-pagination__dots {
+  min-width: auto;
+  border: 0;
+  background: transparent;
+  color: var(--sg-course-muted) !important;
+}
+
+.sg-gate-card a:focus-visible,
+.sg-gate-pagination a:focus-visible,
+.sg-gate-clear:focus-visible,
+.sg-gate-filter-actions .sg-course-btn:focus-visible {
+  outline: 0.3rem solid rgba(245, 158, 11, 0.45);
+  outline-offset: 0.25rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1080px) {
+  .sg-gate-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sg-gate-field {
+    grid-column: span 4;
+  }
+  .sg-gate-field--course,
+  .sg-gate-field--search,
+  .sg-gate-filter-actions {
+    grid-column: span 6;
+  }
+}
+@media (max-width: 767px) {
+  .sg-gate-filters {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.7rem;
+    border-radius: 1.8rem;
+  }
+  .sg-gate-field,
+  .sg-gate-field--course,
+  .sg-gate-field--search,
+  .sg-gate-filter-actions {
+    grid-column: 1/-1;
+  }
+  .sg-gate-filter-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .sg-gate-filter-actions .sg-course-btn {
+    width: 100%;
+  }
+  .sg-gate-clear {
+    align-self: center;
+  }
+  .sg-gate-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sg-gate-card {
+    padding: 1.9rem;
+    border-radius: 1.8rem;
+  }
+  .sg-gate-card__foot {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .sg-gate-course-practice {
+    margin: 4rem 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sg-gate-card {
+    transition: none;
+  }
+}
+/* ---------- End Step 5B (sg-gate-step-5b) ---------- */
+/* ============================================================
+   Silicon Geek Step 5R — GATE PYQ Practice Sets
+   Heading-style questions, answers and solutions.
+
+   PASTE AT THE VERY END OF:
+   src/sass/theme/_circuitshala-home.scss
+
+   Then keep/run: npm run watch
+   Marker: sg-gate-step-5r-practice-sets
+   ============================================================ */
+.sg-gate-template-main,
+.sg-gate-set-template-main {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #f6f9fc;
+}
+
+/* ------------------------------------------------------------
+   Archive + course-page Practice Set listing
+   ------------------------------------------------------------ */
+.sg-gate-practice,
+.sg-gate-course-practice {
+  scroll-margin-top: 10rem;
+  margin-top: 1rem;
+}
+
+.sg-gate-course-practice {
+  margin: 5rem 0;
+}
+
+.sg-gate-course-summary {
+  margin: -0.8rem 0 1.8rem !important;
+  color: var(--sg-course-muted) !important;
+  font-size: 1.42rem !important;
+  font-weight: 800;
+  line-height: 1.45 !important;
+}
+
+.sg-gate-filters {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  gap: 1.4rem;
+  margin: 0 0 2rem;
+  padding: 2rem;
+  border: 0.1rem solid var(--sg-course-line);
+  border-radius: 2rem;
+  background: #fff;
+  box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.055);
+}
+
+.sg-gate-filters--sets {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.sg-gate-filters--sets.sg-gate-filters--with-course {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) auto;
+}
+
+.sg-gate-filters::before,
+.sg-gate-filters::after,
+.sg-gate-grid::before,
+.sg-gate-grid::after {
+  content: none !important;
+  display: none !important;
+}
+
+.sg-gate-field {
+  grid-column: span 3;
+  min-width: 0;
+}
+
+.sg-gate-filters--sets .sg-gate-field {
+  grid-column: auto;
+}
+
+.sg-gate-field label {
+  display: block;
+  margin: 0 0 0.65rem;
+  color: var(--sg-course-ink);
+  font-size: 1.28rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.sg-gate-field select,
+.sg-gate-field input[type=search] {
+  width: 100%;
+  min-height: 4.7rem;
+  margin: 0;
+  padding: 0.95rem 1.15rem;
+  border: 0.1rem solid #cbd5e1;
+  border-radius: 1.15rem;
+  background: #fff;
+  color: var(--sg-course-ink);
+  font: inherit;
+  font-size: 1.45rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.sg-gate-field select:focus,
+.sg-gate-field input[type=search]:focus {
+  border-color: var(--sg-course-accent-2);
+  outline: 0.3rem solid rgba(245, 158, 11, 0.24);
+  outline-offset: 0.1rem;
+}
+
+.sg-gate-filter-actions {
+  display: flex;
+  grid-column: span 4;
+  align-items: center;
+  gap: 1.2rem;
+  min-width: 0;
+}
+
+.sg-gate-filters--sets .sg-gate-filter-actions {
+  grid-column: auto;
+}
+
+.sg-gate-filter-actions .sg-course-btn {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.sg-gate-clear {
+  color: var(--sg-course-accent) !important;
+  font-size: 1.4rem;
+  font-weight: 850;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.sg-gate-clear:hover,
+.sg-gate-clear:focus-visible {
+  text-decoration: underline !important;
+}
+
+.sg-gate-results-meta {
+  margin: 0 0 1.6rem !important;
+  color: var(--sg-course-muted) !important;
+  font-size: 1.38rem !important;
+  font-weight: 750;
+  line-height: 1.45 !important;
+}
+
+.sg-gate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+  margin: 0;
+}
+
+/* WordPress ke stray nodes ko grid cell banne se roko. */
+.sg-gate-grid > :not(.sg-gate-card) {
+  display: none !important;
+}
+
+.sg-gate-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 2.1rem;
+  border: 0.1rem solid var(--sg-course-line);
+  border-radius: 2rem;
+  background: #fff;
+  box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.055);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sg-gate-card:hover {
+  transform: translateY(-0.3rem);
+  border-color: #fcd34d;
+  box-shadow: var(--sg-course-shadow);
+}
+
+.sg-gate-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.4rem;
+}
+
+.sg-gate-badge {
+  display: inline-flex;
+  min-height: 2.7rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.85rem 0.45rem;
+  border: 0.1rem solid #e2e8f0;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 1.16rem;
+  font-weight: 850;
+  letter-spacing: 0.035em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.sg-gate-badge--year {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.sg-gate-card__title {
+  margin: 0 0 0.9rem !important;
+  font-size: 2.05rem !important;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.25 !important;
+}
+
+.sg-gate-card__title a {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--sg-course-ink) !important;
+  text-decoration: none !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.sg-gate-card__title a:hover,
+.sg-gate-card__title a:focus-visible {
+  color: var(--sg-course-accent) !important;
+}
+
+.sg-gate-card__path {
+  margin: 0 0 1rem !important;
+  color: var(--sg-course-accent) !important;
+  font-size: 1.3rem !important;
+  font-weight: 800;
+  line-height: 1.4 !important;
+}
+
+.sg-gate-card__excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0 0 1.8rem !important;
+  color: var(--sg-course-body) !important;
+  font-size: 1.46rem !important;
+  line-height: 1.62 !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.sg-gate-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 0.1rem solid var(--sg-course-line);
+  color: var(--sg-course-muted);
+  font-size: 1.28rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.sg-gate-card__link {
+  flex: 0 0 auto;
+  color: var(--sg-course-accent) !important;
+  font-weight: 900;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.sg-gate-card__link:hover,
+.sg-gate-card__link:focus-visible {
+  text-decoration: underline !important;
+}
+
+.sg-gate-empty {
+  padding: 3.2rem 2.4rem;
+  border: 0.1rem dashed #cbd5e1;
+  border-radius: 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+.sg-gate-empty > span {
+  display: block;
+  margin-bottom: 1.1rem;
+  font-size: 3.4rem;
+  line-height: 1;
+}
+
+.sg-gate-empty h3, .sg-gate-empty .h3 {
+  margin: 0 0 0.8rem !important;
+  color: var(--sg-course-ink) !important;
+  font-size: 2.2rem !important;
+  line-height: 1.25 !important;
+}
+
+.sg-gate-empty p, .sg-gate-empty .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-gate-empty .tab-nav-description {
+  max-width: 58rem;
+  margin: 0 auto 1.8rem !important;
+  color: var(--sg-course-body) !important;
+  font-size: 1.5rem !important;
+  line-height: 1.6 !important;
+}
+
+.sg-gate-empty--course {
+  background: linear-gradient(180deg, #fff, #fffbeb);
+}
+
+.sg-gate-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 2.6rem 0 0;
+}
+
+.sg-gate-pagination a,
+.sg-gate-pagination span {
+  display: inline-flex;
+  min-width: 4.2rem;
+  min-height: 4.2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.2rem 0.85rem;
+  border: 0.1rem solid var(--sg-course-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--sg-course-ink) !important;
+  font-size: 1.4rem;
+  font-weight: 850;
+  line-height: 1.1;
+  text-decoration: none !important;
+}
+
+.sg-gate-pagination a:hover,
+.sg-gate-pagination a:focus-visible {
+  border-color: #fcd34d;
+  color: var(--sg-course-accent) !important;
+}
+
+.sg-gate-pagination .is-current {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--sg-course-accent), var(--sg-course-accent-2));
+  color: #fff !important;
+}
+
+.sg-gate-pagination .sg-gate-pagination__dots {
+  min-width: auto;
+  border: 0;
+  background: transparent;
+  color: var(--sg-course-muted) !important;
+}
+
+/* ------------------------------------------------------------
+   Single Practice Set — Step 3 note layout par amber theme
+   ------------------------------------------------------------ */
+.sg-pyq-set-page {
+  --sg-note-accent: #d97706;
+  --sg-note-accent-2: #f59e0b;
+  background: radial-gradient(circle at 8% 0%, rgba(245, 158, 11, 0.09), transparent 34rem), #f6f9fc;
+}
+
+.sg-pyq-set-page .sg-note-tree-card__head {
+  background: radial-gradient(circle at 92% 0%, rgba(245, 158, 11, 0.38), transparent 18rem), linear-gradient(135deg, #0b1226, #2b1c07);
+}
+
+.sg-pyq-set-page .sg-note-tree-card__head .sg-note-tree-card__eyebrow,
+.sg-pyq-set-page .sg-note-tree-card__subject-kicker {
+  color: #fcd34d !important;
+}
+
+.sg-pyq-set-page .sg-note-tree-card__head a.sg-note-tree-card__subject,
+.sg-pyq-set-page .sg-note-tree-card__head a.sg-note-tree-card__subject:visited {
+  border-color: rgba(252, 211, 77, 0.45) !important;
+}
+
+.sg-pyq-set-page .sg-note-tree-card__subject-arrow {
+  background: #f59e0b;
+  color: #451a03 !important;
+}
+
+.sg-pyq-set-article {
+  overflow: visible;
+}
+
+.sg-pyq-set-head {
+  border-radius: 2.6rem 2.6rem 0 0;
+  background: radial-gradient(circle at 94% 0%, rgba(245, 158, 11, 0.16), transparent 28rem), linear-gradient(180deg, #fff, #fffbeb);
+}
+
+.sg-pyq-set-head .sg-note-kicker {
+  background: #fffbeb;
+  color: #92400e !important;
+  box-shadow: inset 0 0 0 0.1rem #fde68a;
+}
+
+.sg-pyq-set-meta span {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.sg-pyq-set-content {
+  min-width: 0;
+}
+
+.sg-pyq-set-intro {
+  margin-bottom: 2.4rem;
+}
+
+.sg-pyq-set-intro > *:last-child,
+.sg-pyq-set-outro > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.sg-pyq-how {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.35fr);
+  align-items: center;
+  gap: 2rem;
+  margin: 0 0 2rem;
+  padding: 2.2rem;
+  border: 0.1rem solid #fde68a;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #fff, #fffbeb);
+}
+
+.sg-note-article__content .sg-pyq-how h2, .sg-note-article__content .sg-pyq-how .h2 {
+  margin: 0 0 0.6rem !important;
+  padding-left: 0;
+  border-left: 0;
+  font-size: 2.35rem !important;
+  line-height: 1.2 !important;
+}
+
+.sg-note-article__content .sg-pyq-how p, .sg-note-article__content .sg-pyq-how .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-article__content .sg-pyq-how .tab-nav-description {
+  margin: 0 !important;
+  font-size: 1.5rem !important;
+  line-height: 1.6 !important;
+}
+
+.sg-pyq-how__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.sg-pyq-how__steps span {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.2rem 1rem;
+  border: 0.1rem solid #fde68a;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--sg-note-ink);
+  font-size: 1.32rem;
+  font-weight: 850;
+  line-height: 1.32;
+  text-align: center;
+}
+
+.sg-pyq-how__steps strong {
+  display: inline-grid;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sg-note-accent-2);
+  color: #fff;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.sg-pyq-qnav {
+  position: sticky;
+  top: 10rem;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin: 0 0 2.2rem;
+  padding: 1.4rem 1.6rem;
+  border: 0.1rem solid var(--sg-note-line);
+  border-radius: 1.8rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.07);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.sg-pyq-qnav > strong {
+  flex: 0 0 auto;
+  color: var(--sg-note-ink);
+  font-size: 1.35rem;
+}
+
+.sg-pyq-qnav > div {
+  display: flex;
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+  scrollbar-width: thin;
+}
+
+.sg-note-article__content .sg-pyq-qnav a {
+  display: inline-grid;
+  min-width: 4rem;
+  height: 4rem;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0 0.9rem;
+  border: 0.1rem solid var(--sg-note-line);
+  border-radius: 999px;
+  color: #475569 !important;
+  font-size: 1.32rem;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none !important;
+}
+
+.sg-note-article__content .sg-pyq-qnav a:hover,
+.sg-note-article__content .sg-pyq-qnav a:focus-visible {
+  border-color: #fcd34d;
+  background: #fffbeb;
+  color: #92400e !important;
+}
+
+.sg-pyq-question {
+  scroll-margin-top: 17rem;
+  margin: 0 0 2.2rem;
+  padding: clamp(2.1rem, 3vw, 2.8rem);
+  border: 0.1rem solid var(--sg-note-line);
+  border-radius: 2.1rem;
+  background: #fff;
+  box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.055);
+}
+
+.sg-pyq-question__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.8rem;
+  padding-bottom: 1.8rem;
+  border-bottom: 0.1rem solid var(--sg-note-line);
+}
+
+.sg-pyq-question__number {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 1.3rem;
+}
+
+.sg-pyq-question__badge {
+  display: inline-grid;
+  width: 5rem;
+  height: 5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 1.6rem;
+  background: linear-gradient(135deg, var(--sg-note-accent), var(--sg-note-accent-2));
+  color: #fff;
+  font-size: 1.55rem;
+  font-weight: 950;
+  line-height: 1;
+  box-shadow: 0 1.2rem 2.4rem rgba(217, 119, 6, 0.25);
+}
+
+.sg-note-article__content .sg-pyq-question__number h2, .sg-note-article__content .sg-pyq-question__number .h2 {
+  margin: 0 !important;
+  padding-left: 0;
+  border-left: 0;
+  font-size: clamp(2.2rem, 3vw, 2.8rem) !important;
+  line-height: 1.18 !important;
+}
+
+.sg-note-article__content .sg-pyq-question__number p, .sg-note-article__content .sg-pyq-question__number .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-article__content .sg-pyq-question__number .tab-nav-description {
+  margin: 0.35rem 0 0 !important;
+  color: var(--sg-note-muted) !important;
+  font-size: 1.35rem !important;
+  font-weight: 750;
+  line-height: 1.4 !important;
+}
+
+.sg-pyq-question__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.65rem;
+}
+
+.sg-pyq-tag {
+  display: inline-flex;
+  min-height: 2.8rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.9rem 0.5rem;
+  border: 0.1rem solid var(--sg-note-line);
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sg-pyq-tag--year {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.sg-pyq-question__statement {
+  margin-top: 2.1rem;
+  color: #1e293b;
+}
+
+.sg-pyq-question__statement > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.sg-note-article__content .sg-pyq-options {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin: 2rem 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  counter-reset: sg-pyq-option;
+}
+
+.sg-note-article__content .sg-pyq-options > li {
+  display: flex;
+  min-width: 0;
+  min-height: 5.8rem;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 0 !important;
+  padding: 1.3rem 1.5rem;
+  border: 0.1rem solid var(--sg-note-line);
+  border-radius: 1.5rem;
+  background: #fff;
+  color: #334155;
+  font-weight: 750;
+}
+
+.sg-note-article__content .sg-pyq-options > li::before {
+  counter-increment: sg-pyq-option;
+  content: counter(sg-pyq-option, upper-alpha);
+  display: inline-grid;
+  width: 3.3rem;
+  height: 3.3rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: var(--sg-note-ink);
+  font-size: 1.32rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.sg-pyq-options li > div {
+  min-width: 0;
+}
+
+.sg-pyq-options li > div > *:first-child {
+  margin-top: 0 !important;
+}
+
+.sg-pyq-options li > div > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.sg-note-article__content .sg-pyq-nat-note {
+  margin: 2rem 0 !important;
+  padding: 1.4rem 1.6rem;
+  border: 0.1rem dashed #93c5fd;
+  border-radius: 1.5rem;
+  background: #eff6ff;
+  color: #1d4ed8 !important;
+  font-size: 1.5rem !important;
+  font-weight: 800;
+  line-height: 1.55 !important;
+}
+
+.sg-pyq-reveal {
+  overflow: hidden;
+  margin-top: 1.2rem;
+  border-radius: 1.6rem;
+}
+
+.sg-pyq-reveal > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  padding: 1.5rem 1.7rem;
+  cursor: pointer;
+  font-size: 1.55rem;
+  font-weight: 950;
+  line-height: 1.35;
+  list-style: none;
+}
+
+.sg-pyq-reveal > summary::-webkit-details-marker {
+  display: none;
+}
+
+.sg-pyq-reveal__icon {
+  display: inline-grid;
+  width: 3.1rem;
+  height: 3.1rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.78);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.sg-pyq-reveal__icon::before {
+  content: "+";
+  transform: translateY(-0.12rem);
+}
+
+.sg-pyq-reveal[open] .sg-pyq-reveal__icon::before {
+  content: "−";
+}
+
+.sg-pyq-reveal__body {
+  padding: 0.2rem 1.7rem 1.8rem;
+}
+
+.sg-pyq-reveal__body > *:first-child {
+  margin-top: 0 !important;
+}
+
+.sg-pyq-reveal__body > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.sg-pyq-reveal--answer {
+  border: 0.1rem solid #bbf7d0;
+  background: #f0fdf4;
+}
+
+.sg-pyq-reveal--answer > summary {
+  color: #166534;
+}
+
+.sg-pyq-reveal--answer .sg-pyq-reveal__body {
+  color: #166534;
+  font-weight: 750;
+}
+
+.sg-pyq-reveal--solution {
+  border: 0.1rem solid #bae6fd;
+  background: #f8fcff;
+}
+
+.sg-pyq-reveal--solution > summary {
+  color: #075985;
+}
+
+.sg-pyq-concept-reminder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 2.6rem 0;
+  padding: 2.3rem;
+  border: 0.1rem solid #a5f3fc;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #ecfeff, #fff);
+}
+
+.sg-note-article__content .sg-pyq-concept-reminder p, .sg-note-article__content .sg-pyq-concept-reminder .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-article__content .sg-pyq-concept-reminder .tab-nav-description {
+  margin: 0 0 0.5rem !important;
+  color: #0e7490 !important;
+  font-size: 1.22rem !important;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  line-height: 1.3 !important;
+  text-transform: uppercase;
+}
+
+.sg-note-article__content .sg-pyq-concept-reminder h3, .sg-note-article__content .sg-pyq-concept-reminder .h3 {
+  margin: 0 0 0.6rem !important;
+  font-size: 2.2rem !important;
+  line-height: 1.25 !important;
+}
+
+.sg-pyq-concept-reminder span {
+  color: #475569;
+  font-size: 1.45rem;
+  line-height: 1.55;
+}
+
+.sg-note-article__content .sg-pyq-concept-reminder__btn {
+  display: inline-flex;
+  min-height: 4.8rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem 1.9rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0891b2, #2563eb);
+  color: #fff !important;
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none !important;
+  box-shadow: 0 1.2rem 2.6rem rgba(8, 145, 178, 0.24);
+}
+
+.sg-pyq-set-outro {
+  margin-top: 3rem;
+}
+
+.sg-pyq-set-fallback-note {
+  margin-bottom: 2.4rem;
+  padding: 1.8rem 2rem;
+  border: 0.1rem solid #fde68a;
+  border-radius: 1.7rem;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.sg-pyq-set-fallback-note strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #78350f;
+  font-size: 1.7rem;
+}
+
+.sg-note-article__content .sg-pyq-set-fallback-note p, .sg-note-article__content .sg-pyq-set-fallback-note .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-note-article__content .sg-pyq-set-fallback-note .tab-nav-description {
+  margin: 0 !important;
+  color: #92400e !important;
+  font-size: 1.45rem !important;
+  line-height: 1.55 !important;
+}
+
+.sg-pyq-concept-notes {
+  margin: 0 clamp(2.2rem, 4vw, 4.8rem) 2.6rem;
+  padding: 2.4rem;
+  border: 0.1rem solid #a5f3fc;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #ecfeff, #f0fdf4);
+}
+
+.sg-pyq-concept-notes__head p, .sg-pyq-concept-notes__head .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .tab-nav-description, .wp-block-understrap-tabs .nav .nav-link .tab-nav-content .sg-pyq-concept-notes__head .tab-nav-description {
+  margin: 0 0 0.5rem !important;
+  color: #0e7490 !important;
+  font-size: 1.22rem !important;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.3 !important;
+  text-transform: uppercase;
+}
+
+.sg-pyq-concept-notes__head h2, .sg-pyq-concept-notes__head .h2 {
+  margin: 0 0 1.6rem !important;
+  color: var(--sg-note-ink) !important;
+  font-size: clamp(2.3rem, 3vw, 3rem) !important;
+  line-height: 1.2 !important;
+}
+
+.sg-pyq-concept-notes__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.sg-pyq-concept-notes__list > :not(a) {
+  display: none !important;
+}
+
+.sg-pyq-concept-notes__list a {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.1rem;
+  min-width: 0;
+  padding: 1.4rem 1.5rem;
+  border: 0.1rem solid rgba(14, 116, 144, 0.14);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--sg-note-ink) !important;
+  text-decoration: none !important;
+}
+
+.sg-pyq-concept-notes__list a:hover,
+.sg-pyq-concept-notes__list a:focus-visible {
+  border-color: #67e8f9;
+}
+
+.sg-pyq-concept-notes__list a > span {
+  font-size: 2rem;
+}
+
+.sg-pyq-concept-notes__list strong {
+  min-width: 0;
+  font-size: 1.5rem;
+  line-height: 1.35;
+}
+
+.sg-pyq-concept-notes__list small, .sg-pyq-concept-notes__list .small, .sg-pyq-concept-notes__list .editor-tabs .editor-tabs-preview, .editor-tabs .sg-pyq-concept-notes__list .editor-tabs-preview {
+  color: #0e7490;
+  font-size: 1.28rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.sg-pyq-set-page .sg-note-prevnext__card--next {
+  box-shadow: 0 1.2rem 2.6rem rgba(217, 119, 6, 0.22);
+}
+
+.sg-pyq-set-page .sg-note-prevnext__card--next:hover,
+.sg-pyq-set-page .sg-note-prevnext__card--next:focus-visible {
+  background: linear-gradient(135deg, #b45309, var(--sg-note-accent-2));
+}
+
+.sg-pyq-set-page .sg-note-sidebar a:focus-visible,
+.sg-pyq-set-page .sg-note-article a:focus-visible,
+.sg-pyq-set-page .sg-note-breadcrumbs a:focus-visible,
+.sg-pyq-reveal > summary:focus-visible {
+  outline: 0.3rem solid rgba(245, 158, 11, 0.55);
+  outline-offset: 0.25rem;
+}
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+@media (max-width: 1080px) {
+  .sg-gate-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .sg-gate-filters--sets,
+  .sg-gate-filters--sets.sg-gate-filters--with-course {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sg-gate-filters--sets .sg-gate-filter-actions {
+    grid-column: 1/-1;
+  }
+  .sg-pyq-how {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .sg-gate-filters,
+  .sg-gate-filters--sets,
+  .sg-gate-filters--sets.sg-gate-filters--with-course {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.7rem;
+    border-radius: 1.8rem;
+  }
+  .sg-gate-field,
+  .sg-gate-filters--sets .sg-gate-field,
+  .sg-gate-filter-actions,
+  .sg-gate-filters--sets .sg-gate-filter-actions {
+    grid-column: 1/-1;
+  }
+  .sg-gate-filter-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .sg-gate-filter-actions .sg-course-btn {
+    width: 100%;
+  }
+  .sg-gate-clear {
+    align-self: center;
+  }
+  .sg-gate-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sg-gate-card {
+    padding: 1.9rem;
+    border-radius: 1.8rem;
+  }
+  .sg-gate-card__foot {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .sg-gate-course-practice {
+    margin: 4rem 0;
+  }
+  .sg-pyq-qnav {
+    top: 7.6rem;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .sg-pyq-qnav > div {
+    width: 100%;
+  }
+  .sg-pyq-question {
+    scroll-margin-top: 15rem;
+    padding: 2rem 1.7rem;
+    border-radius: 1.8rem;
+  }
+  .sg-pyq-question__head {
+    flex-direction: column;
+  }
+  .sg-pyq-question__tags {
+    justify-content: flex-start;
+  }
+  .sg-note-article__content .sg-pyq-options,
+  .sg-pyq-concept-notes__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sg-pyq-concept-reminder {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .sg-note-article__content .sg-pyq-concept-reminder__btn {
+    width: 100%;
+  }
+  .sg-pyq-concept-notes {
+    margin-inline: 1.8rem;
+    padding: 2rem 1.7rem;
+  }
+}
+@media (max-width: 560px) {
+  .sg-pyq-how {
+    padding: 1.9rem 1.6rem;
+  }
+  .sg-pyq-how__steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sg-pyq-question__number {
+    align-items: flex-start;
+  }
+  .sg-pyq-question__badge {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 1.4rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sg-gate-card {
+    transition: none;
+  }
+}
+@media print {
+  .sg-pyq-qnav {
+    position: static;
+  }
+  .sg-pyq-reveal {
+    -moz-column-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+/* ---------- End Step 5R (sg-gate-step-5r-practice-sets) ---------- */
 /* =====================================================================
    INNER PAGE TEMPLATES v1 — is poore block ko
    src/sass/theme/_circuitshala-home.scss ke BILKUL END mein paste karo.
