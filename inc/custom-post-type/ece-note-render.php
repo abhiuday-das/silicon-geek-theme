@@ -89,6 +89,35 @@ function ts_cs_note_get_syllabus_root( $primary_term, $path ) {
 }
 
 /**
+ * Human label for the folder that owns the left syllabus.
+ *
+ * BTech/GATE folders are Subjects. Embedded and VLSI folders are Modules.
+ * Keeping this dynamic prevents an Embedded/VLSI note from incorrectly
+ * showing labels such as "Subject Home".
+ */
+function ts_cs_note_get_syllabus_labels( $syllabus_root ) {
+	$root_slug = '';
+
+	if ( $syllabus_root && function_exists( 'ts_cs_course_get_path' ) ) {
+		$path = ts_cs_course_get_path( $syllabus_root );
+
+		if ( ! empty( $path[0] ) && isset( $path[0]->slug ) ) {
+			$root_slug = (string) $path[0]->slug;
+		}
+	}
+
+	$is_module = in_array( $root_slug, array( 'embedded-systems', 'vlsi-design' ), true );
+	$singular  = $is_module ? 'Module' : 'Subject';
+
+	return array(
+		'singular' => $singular,
+		'lower'    => strtolower( $singular ),
+		'home'     => $singular . ' Home',
+		'complete' => $singular . ' Complete ✓',
+	);
+}
+
+/**
  * Flatten every note under a syllabus folder into learning order:
  * folder order → direct notes (menu_order) → child folders recursively.
  */
@@ -283,6 +312,7 @@ function ts_cs_note_render_sidebar( $post, $syllabus_root, $path, $sequence, $po
 	$total    = count( $sequence );
 	$percent  = $total > 0 && false !== $position ? (int) round( ( ( $position + 1 ) / $total ) * 100 ) : 0;
 	$root_url = $syllabus_root ? get_term_link( $syllabus_root ) : home_url( '/notes/' );
+	$labels   = ts_cs_note_get_syllabus_labels( $syllabus_root );
 
 	ob_start();
 	?>
@@ -292,7 +322,7 @@ function ts_cs_note_render_sidebar( $post, $syllabus_root, $path, $sequence, $po
 			<?php if ( $syllabus_root && ! is_wp_error( $root_url ) ) : ?>
 				<a class="sg-note-tree-card__subject" href="<?php echo esc_url( $root_url ); ?>">
 					<span class="sg-note-tree-card__subject-main">
-						<span class="sg-note-tree-card__subject-kicker">Subject Home</span>
+						<span class="sg-note-tree-card__subject-kicker"><?php echo esc_html( $labels['home'] ); ?></span>
 						<span class="sg-note-tree-card__subject-name"><?php echo esc_html( $syllabus_root->name ); ?></span>
 					</span>
 					<span class="sg-note-tree-card__subject-arrow" aria-hidden="true">↗</span>
@@ -311,7 +341,7 @@ function ts_cs_note_render_sidebar( $post, $syllabus_root, $path, $sequence, $po
 				<div class="sg-note-progress" aria-label="<?php echo esc_attr( sprintf( 'Note %d of %d', $position + 1, $total ) ); ?>">
 					<span style="width: <?php echo esc_attr( (string) $percent ); ?>%"></span>
 				</div>
-				<small><?php echo esc_html( sprintf( 'Note %d of %d in this subject', $position + 1, $total ) ); ?></small>
+				<small><?php echo esc_html( sprintf( 'Note %d of %d in this %s', $position + 1, $total, $labels['lower'] ) ); ?></small>
 			<?php endif; ?>
 		</div>
 
@@ -349,6 +379,7 @@ function ts_cs_note_render_sidebar( $post, $syllabus_root, $path, $sequence, $po
 function ts_cs_note_render_prev_next( $sequence, $position, $syllabus_root ) {
 	$previous = false !== $position && isset( $sequence[ $position - 1 ] ) ? $sequence[ $position - 1 ] : false;
 	$next     = false !== $position && isset( $sequence[ $position + 1 ] ) ? $sequence[ $position + 1 ] : false;
+	$labels   = ts_cs_note_get_syllabus_labels( $syllabus_root );
 	?>
 	<nav class="sg-note-prevnext" aria-label="<?php esc_attr_e( 'Previous and next notes', 'ts-block-theme' ); ?>">
 		<?php if ( $previous ) : ?>
@@ -367,7 +398,7 @@ function ts_cs_note_render_prev_next( $sequence, $position, $syllabus_root ) {
 			<?php $url = get_term_link( $syllabus_root ); ?>
 			<?php if ( ! is_wp_error( $url ) ) : ?>
 				<a class="sg-note-prevnext__card sg-note-prevnext__card--next" href="<?php echo esc_url( $url ); ?>">
-					<span>Subject Complete ✓</span>
+					<span><?php echo esc_html( $labels['complete'] ); ?></span>
 					<strong>Back to <?php echo esc_html( $syllabus_root->name ); ?></strong>
 				</a>
 			<?php endif; ?>
@@ -387,6 +418,8 @@ function ts_cs_note_render_continue_learning( $sequence, $position, $syllabus_ro
 	if ( ! $next && ! $syllabus_root ) {
 		return;
 	}
+
+	$labels = ts_cs_note_get_syllabus_labels( $syllabus_root );
 	?>
 	<aside class="sg-note-continue" aria-label="<?php esc_attr_e( 'Continue learning', 'ts-block-theme' ); ?>">
 		<div class="sg-note-continue__copy">
@@ -395,8 +428,8 @@ function ts_cs_note_render_continue_learning( $sequence, $position, $syllabus_ro
 				<h2><?php echo esc_html( get_the_title( $next ) ); ?></h2>
 				<p>Ye note khatm karke seedha agle subtopic par badho.</p>
 			<?php else : ?>
-				<h2>Subject complete 🎉</h2>
-				<p>Tum is subject ke available notes ke end par ho. Revision ke liye subject home par wapas jao.</p>
+				<h2><?php echo esc_html( sprintf( '%s complete 🎉', $labels['singular'] ) ); ?></h2>
+				<p><?php echo esc_html( sprintf( 'Tum is %s ke available notes ke end par ho. Revision ke liye %s home par wapas jao.', $labels['lower'], $labels['lower'] ) ); ?></p>
 			<?php endif; ?>
 		</div>
 
@@ -405,7 +438,7 @@ function ts_cs_note_render_continue_learning( $sequence, $position, $syllabus_ro
 		<?php elseif ( $syllabus_root ) : ?>
 			<?php $url = get_term_link( $syllabus_root ); ?>
 			<?php if ( ! is_wp_error( $url ) ) : ?>
-				<a class="sg-note-btn sg-note-btn--primary" href="<?php echo esc_url( $url ); ?>">Subject Home</a>
+				<a class="sg-note-btn sg-note-btn--primary" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $labels['home'] ); ?></a>
 			<?php endif; ?>
 		<?php endif; ?>
 	</aside>

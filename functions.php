@@ -219,6 +219,10 @@ require_once get_template_directory() . '/inc/accordion/accordion-init.php';
 require_once get_template_directory() . '/inc/tab/tab-init.php';
 // Silicon Geek Step 5R: GATE PYQ Practice Set archive and single-set renderer.
 require_once get_template_directory() . '/inc/custom-post-type/ece-gate-render.php';
+// Silicon Geek Step 6: ECE Projects archive + single project build-guide renderer.
+require_once get_template_directory() . '/inc/custom-post-type/ece-project-render.php';
+// Silicon Geek Step 7: Embedded + VLSI starter Module/Topic learning paths.
+require_once get_template_directory() . '/inc/custom-post-type/ece-learning-paths.php';
 require_once get_template_directory() . '/inc/read-more-toggle/read-more-toggle-init.php';
 require_once get_template_directory() . '/inc/post-content-image/post-content-image.php';
 require_once get_template_directory() . '/inc/category-filter/category-filter-init.php';

@@ -65,5 +65,8 @@ add_action('init', function () {
      register_block_pattern_category('ts-block-theme/ece-gate-pyq-practice-set', [
         'label' => __('Gate PYQ practice set', 'ts-block-theme'),
     ]);
+     register_block_pattern_category('ts-block-theme/ece-project-guide', [
+        'label' => __('Project guide', 'ts-block-theme'),
+    ]);
 });
 
