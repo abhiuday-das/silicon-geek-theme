@@ -223,6 +223,10 @@ require_once get_template_directory() . '/inc/custom-post-type/ece-gate-render.p
 require_once get_template_directory() . '/inc/custom-post-type/ece-project-render.php';
 // Silicon Geek Step 7: Embedded + VLSI starter Module/Topic learning paths.
 require_once get_template_directory() . '/inc/custom-post-type/ece-learning-paths.php';
+// Silicon Geek Step 8: Global Search + dynamic Mega Menu/mobile navigation.
+require_once get_template_directory() . '/inc/custom-post-type/ece-search-nav.php';
+// Silicon Geek Step 9: SEO, safe performance helpers and launch polish.
+require_once get_template_directory() . '/inc/custom-post-type/ece-seo-launch.php';
 require_once get_template_directory() . '/inc/read-more-toggle/read-more-toggle-init.php';
 require_once get_template_directory() . '/inc/post-content-image/post-content-image.php';
 require_once get_template_directory() . '/inc/category-filter/category-filter-init.php';

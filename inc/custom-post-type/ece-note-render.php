@@ -508,7 +508,7 @@ function ts_cs_note_render_page( $post ) {
 
 					<?php if ( has_post_thumbnail( $post ) ) : ?>
 						<figure class="sg-note-featured">
-							<?php echo get_the_post_thumbnail( $post, 'large', array( 'alt' => esc_attr( get_the_title( $post ) ) ) ); ?>
+							<?php echo get_the_post_thumbnail( $post, 'cs-hero', array( 'alt' => esc_attr( get_the_title( $post ) ), 'loading' => 'eager', 'fetchpriority' => 'high', 'decoding' => 'async' ) ); ?>
 							<?php $caption = get_the_post_thumbnail_caption( $post ); ?>
 							<?php if ( $caption ) : ?>
 								<figcaption><?php echo esc_html( $caption ); ?></figcaption>
