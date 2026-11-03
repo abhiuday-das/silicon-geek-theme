@@ -1,0 +1,218 @@
+/* ==========================================================================
+   Silicon Geek — About & Trust Pages
+   Marker: sg-about-trust-pages-v1
+   Used by: patterns/about-silicon-geek.php
+   Policy patterns use the existing cs-inner typography and need no extra CSS.
+   ========================================================================== */
+
+.cs-inner-content {
+  .sg-about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: 1.4rem;
+    margin: 2rem 0 2.6rem;
+  }
+
+  .sg-about-grid--2 {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 27rem), 1fr));
+  }
+
+  /* Four audience cards stay as a balanced 2 × 2 block inside the article. */
+  .sg-about-grid--audience {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 681px) {
+    .sg-about-card--wide {
+      grid-column: span 2;
+    }
+  }
+
+  .sg-about-card {
+    height: 100%;
+    padding: 2rem;
+    border: 1px solid #dbeafe;
+    border-radius: 1.8rem;
+    background: linear-gradient(180deg, #fff, #f8fbff);
+    box-shadow: 0 1rem 2.6rem rgba(15, 23, 42, 0.05);
+
+    h3 {
+      margin: 1.1rem 0 0.7rem;
+      color: #0f172a;
+      font-size: 1.9rem;
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      color: #475569;
+      font-size: 1.5rem;
+      line-height: 1.65;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: #0369a1;
+      font-weight: 800;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .sg-about-icon {
+    display: grid;
+    width: 4.6rem;
+    height: 4.6rem;
+    place-items: center;
+    border-radius: 1.4rem;
+    background: #ecfeff;
+    font-size: 2.3rem;
+    line-height: 1;
+  }
+
+  .sg-about-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .sg-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.8rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    font-size: 1.12rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .sg-status--live {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .sg-status--soon {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .sg-about-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin: 2rem 0 2.6rem;
+  }
+
+  .sg-about-step {
+    position: relative;
+    padding: 1.8rem 1.6rem;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    border-radius: 1.6rem;
+    background: #fff;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0.45rem;
+      background: linear-gradient(180deg, #06b6d4, #2563eb);
+    }
+
+    b {
+      display: block;
+      margin-bottom: 0.6rem;
+      color: #0284c7;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+      font-size: 1.65rem;
+      line-height: 1.35;
+    }
+
+    span {
+      display: block;
+      color: #64748b;
+      font-size: 1.4rem;
+      line-height: 1.6;
+    }
+  }
+
+  .sg-policy-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 23rem), 1fr));
+    gap: 1.2rem;
+    margin: 2rem 0 2.6rem;
+
+    a {
+      display: block;
+      height: 100%;
+      padding: 1.7rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 1.5rem;
+      background: #fff;
+      color: #334155;
+      text-decoration: none;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+
+      &:hover {
+        border-color: #7dd3fc;
+        box-shadow: 0 1.2rem 2.8rem rgba(14, 116, 144, 0.12);
+        transform: translateY(-0.2rem);
+      }
+
+      strong {
+        display: block;
+        margin-bottom: 0.45rem;
+        color: #0f172a;
+        font-size: 1.6rem;
+      }
+
+      span {
+        display: block;
+        font-size: 1.35rem;
+        line-height: 1.55;
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+    .sg-about-steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .sg-about-card {
+      padding: 1.7rem;
+    }
+    .sg-about-grid,
+    .sg-policy-links {
+      gap: 1.1rem;
+    }
+    .sg-about-grid--audience,
+    .sg-about-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+}

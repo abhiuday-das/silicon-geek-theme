@@ -5,12 +5,28 @@ add_action('init', function () {
         'label' => __('Subpage Banner Patterns', 'ts-block-theme'),
     ]);
 
-    register_block_pattern_category('ts-block-theme-about-us', [
+    register_block_pattern_category('ts-block-theme/about-silicon-geek', [
         'label' => __('About Us Patterns', 'ts-block-theme'),
     ]);
 
-
-
+register_block_pattern_category('ts-block-theme/policy-academic-integrity', [
+        'label' => __('Policy Academic integrity Patterns', 'ts-block-theme'),
+    ]);
+register_block_pattern_category('ts-block-theme/policy-disclaimer', [
+        'label' => __('Policy Disclaimer Patterns', 'ts-block-theme'),
+    ]);
+    register_block_pattern_category('ts-block-theme/policy-privacy', [
+        'label' => __('Policy Privacy Patterns', 'ts-block-theme'),
+    ]);
+ register_block_pattern_category('ts-block-theme/policy-project-help', [
+        'label' => __('Policy Project Patterns', 'ts-block-theme'),
+    ]);
+     register_block_pattern_category('ts-block-theme/policy-refund-cancellation', [
+        'label' => __('Policy refund Patterns', 'ts-block-theme'),
+    ]);
+     register_block_pattern_category('ts-block-theme/policy-terms', [
+        'label' => __('Policy terms Patterns', 'ts-block-theme'),
+    ]);
 
     register_block_pattern_category('ts-block-theme-contact-us', [
         'label' => __('Contact Us Patterns', 'ts-block-theme'),

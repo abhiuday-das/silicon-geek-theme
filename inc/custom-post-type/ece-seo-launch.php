@@ -21,6 +21,7 @@
  *    non-critical theme scripts, async image decoding and an eager preload
  *    for the featured image on single learning pages.
  *  - [sg_launch_404] Shortcode used by templates/404.html.
+ *  - Owner-requested redirect from ordinary missing page slugs to /404/.
  *
  * Duplicate-SEO guard:
  *  If Yoast SEO, Rank Math, All in One SEO or SEOPress is active, this file
@@ -45,6 +46,7 @@ add_filter( 'wp_resource_hints', 'ts_sg_perf_resource_hints', 10, 2 );
 add_filter( 'script_loader_tag', 'ts_sg_perf_defer_scripts', 10, 3 );
 add_filter( 'wp_get_attachment_image_attributes', 'ts_sg_perf_image_attributes', 10, 3 );
 add_shortcode( 'sg_launch_404', 'ts_sg_launch_404_shortcode' );
+add_action( 'template_redirect', 'ts_sg_launch_redirect_missing_to_404', 20 );
 
 /* -------------------------------------------------------------------------
  * Customizer settings
@@ -1192,11 +1194,15 @@ function ts_sg_perf_image_attributes( $attributes, $attachment, $size ) {
 }
 
 /* -------------------------------------------------------------------------
- * Branded 404 Shortcode
+ * Branded 404 Shortcode + owner-requested /404/ redirect
  * ---------------------------------------------------------------------- */
 
 /**
  * [sg_launch_404] Shortcode used by templates/404.html.
+ *
+ * Only valid root Course Structure terms become Learning Path cards. The
+ * path row uses a dedicated flex layout (plus the same critical flex basis
+ * inline) so the four main paths always share one full desktop row.
  *
  * @return string
  */
@@ -1204,6 +1210,47 @@ function ts_sg_launch_404_shortcode() {
 	$roots = function_exists( 'ts_cs_course_get_children' )
 		? ts_cs_course_get_children( 0, false )
 		: array();
+
+	$path_cards      = array();
+	$preferred_order = array(
+		'btech-ece'        => 0,
+		'gate-ec'          => 1,
+		'embedded-systems' => 2,
+		'vlsi-design'      => 3,
+	);
+
+	foreach ( (array) $roots as $position => $root ) {
+		if ( ! $root instanceof WP_Term || '' === trim( (string) $root->name ) ) {
+			continue;
+		}
+
+		$url = get_term_link( $root );
+
+		if ( is_wp_error( $url ) || '' === (string) $url ) {
+			continue;
+		}
+
+		$path_cards[] = array(
+			'position'    => (int) $position,
+			'name'        => $root->name,
+			'description' => $root->description
+				? ts_sg_seo_clean_text( $root->description, 105 )
+				: 'Step-by-step folders aur notes explore karo.',
+			'url'         => $url,
+			'order'       => isset( $preferred_order[ $root->slug ] ) ? $preferred_order[ $root->slug ] : 100,
+		);
+	}
+
+	usort(
+		$path_cards,
+		static function ( $a, $b ) {
+			if ( $a['order'] === $b['order'] ) {
+				return $a['position'] <=> $b['position'];
+			}
+
+			return $a['order'] <=> $b['order'];
+		}
+	);
 
 	$project_help_page  = get_page_by_path( 'project-help' );
 	$project_help_ready = $project_help_page && 'publish' === $project_help_page->post_status;
@@ -1268,20 +1315,24 @@ function ts_sg_launch_404_shortcode() {
 				</div>
 			</div>
 
-			<?php if ( ! empty( $roots ) ) : ?>
+			<?php if ( ! empty( $path_cards ) ) : ?>
 				<div class="sg-launch-404__section">
 					<p>Start learning</p>
 					<h2>Learning Paths</h2>
-					<div class="sg-launch-404__grid">
-						<?php foreach ( $roots as $root ) : ?>
-							<?php $url = get_term_link( $root ); ?>
-							<?php if ( ! is_wp_error( $url ) ) : ?>
-								<a class="sg-launch-404__card" href="<?php echo esc_url( $url ); ?>">
-									<strong><?php echo esc_html( $root->name ); ?></strong>
-									<span><?php echo esc_html( $root->description ? ts_sg_seo_clean_text( $root->description, 105 ) : 'Step-by-step folders aur notes explore karo.' ); ?></span>
-									<em>Open Path →</em>
-								</a>
-							<?php endif; ?>
+					<div
+						class="sg-launch-404__path-grid"
+						style="display:flex;flex-wrap:wrap;gap:18px;width:100%;"
+					>
+						<?php foreach ( $path_cards as $path_card ) : ?>
+							<a
+								class="sg-launch-404__path-card"
+								href="<?php echo esc_url( $path_card['url'] ); ?>"
+								style="flex:1 1 calc((100% - 54px) / 4);min-width:0;box-sizing:border-box;"
+							>
+								<strong><?php echo esc_html( $path_card['name'] ); ?></strong>
+								<span><?php echo esc_html( $path_card['description'] ); ?></span>
+								<em>Open Path →</em>
+							</a>
 						<?php endforeach; ?>
 					</div>
 				</div>
@@ -1317,4 +1368,58 @@ function ts_sg_launch_404_shortcode() {
 	<?php
 
 	return trim( ob_get_clean() );
+}
+
+/**
+ * Redirect ordinary missing front-end URLs to the branded /404/ URL.
+ *
+ * Site-owner requirement: a missing slug such as /sdfg/ should land on
+ * /404/, where templates/404.html renders the branded page. The redirect
+ * intentionally excludes /404/ itself (no loop), system endpoints,
+ * non-GET/HEAD requests and missing static files. WordPress still sends a
+ * real 404 status for the final /404/ request.
+ */
+function ts_sg_launch_redirect_missing_to_404() {
+	if ( ! is_404() || is_admin() || is_customize_preview() ) {
+		return;
+	}
+
+	if ( wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || is_feed() || is_robots() || is_trackback() ) {
+		return;
+	}
+
+	$method = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) : 'GET'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+	if ( ! in_array( $method, array( 'GET', 'HEAD' ), true ) ) {
+		return;
+	}
+
+	global $wp;
+
+	$request = isset( $wp->request ) ? trim( (string) $wp->request, '/' ) : '';
+
+	// The destination itself must render, not redirect again.
+	if ( '404' === $request ) {
+		return;
+	}
+
+	$blocked_prefixes = array( 'wp-admin', 'wp-login.php', 'wp-json', 'wp-cron.php', 'xmlrpc.php' );
+
+	foreach ( $blocked_prefixes as $prefix ) {
+		if ( $prefix === $request || 0 === strpos( $request, $prefix . '/' ) ) {
+			return;
+		}
+	}
+
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$path        = (string) wp_parse_url( $request_uri, PHP_URL_PATH );
+	$extension   = strtolower( pathinfo( $path, PATHINFO_EXTENSION ) );
+	$static_exts = array( 'css', 'js', 'mjs', 'map', 'jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'ico', 'bmp', 'avif', 'woff', 'woff2', 'ttf', 'otf', 'eot', 'pdf', 'zip', 'gz', 'tar', 'mp3', 'mp4', 'webm', 'ogg', 'wav', 'xml', 'txt', 'json' );
+
+	if ( in_array( $extension, $static_exts, true ) ) {
+		return;
+	}
+
+	wp_safe_redirect( home_url( '/404/' ), 302 );
+	exit;
 }

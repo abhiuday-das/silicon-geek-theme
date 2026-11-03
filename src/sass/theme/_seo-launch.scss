@@ -1,22 +1,30 @@
 /* =====================================================================
-   Silicon Geek Step 9 — SEO + Performance + Launch Polish
-   Paste at the BILKUL END of src/sass/theme/_circuitshala-home.scss.
-   Verify token: sg-step-9-seo-launch
+   Silicon Geek Step 9 — SEO + Performance + Launch Polish (CLEAN FINAL)
+   Replace the complete old Step 9 block in
+   src/sass/theme/_circuitshala-home.scss with this one block.
+   Verify token: sg-step-9-clean-final
 
-   Scope:
-   - Branded 404 page from [sg_launch_404]
-   - No menu redesign in this block
+   Final 404 layout:
+   - Four Learning Path cards in one row on desktop/tablet widths
+   - Two per row on small tablets, one per row on phones
+   - Large, fully visible 404 mark in the hero
    ===================================================================== */
+
+body.error404 .sg-launch-404-template-main {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
 
 .sg-launch-404 {
   --sg-404-ink: #0b1226;
   --sg-404-body: #334155;
   --sg-404-muted: #64748b;
   --sg-404-line: #e2e8f0;
-  --sg-404-accent: #0891b2;
   --sg-404-accent-dark: #0e7490;
   background: #f8fafc;
   color: var(--sg-404-body);
+  overflow: hidden;
 }
 
 .sg-launch-404 *,
@@ -26,16 +34,15 @@
 }
 
 .sg-launch-404__wrap {
-  width: 100%;
-  max-width: 124rem;
+  width: min(124rem, calc(100% - 4rem));
   margin-left: auto;
   margin-right: auto;
-  padding: clamp(2rem, 4vw, 4rem) clamp(1.6rem, 3vw, 2.4rem)
-    clamp(4rem, 6vw, 6rem);
+  padding: clamp(2rem, 4vw, 4rem) 0 clamp(4rem, 6vw, 6rem);
 }
 
 .sg-launch-404__hero {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   padding: clamp(3rem, 6vw, 5.6rem);
   border-radius: 2.4rem;
@@ -59,6 +66,7 @@
   content: "";
   position: absolute;
   inset: 0;
+  z-index: -1;
   opacity: 0.12;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
@@ -69,16 +77,20 @@
 
 .sg-launch-404__hero > * {
   position: relative;
+  z-index: 1;
 }
 
 .sg-launch-404__code {
   position: absolute !important;
-  top: clamp(-2.4rem, -2vw, -1rem);
-  right: clamp(1rem, 4vw, 4rem);
+  top: 1rem;
+  right: 3.8rem;
+  z-index: 0 !important;
   margin: 0;
-  color: rgba(255, 255, 255, 0.08);
+  color: rgba(191, 219, 254, 0.24);
+  -webkit-text-stroke: 0.2rem rgba(125, 211, 252, 0.58);
+  text-shadow: 0 0 3.6rem rgba(14, 165, 233, 0.28);
   font-family: Montserrat, "Open Sans", sans-serif;
-  font-size: clamp(10rem, 20vw, 19rem);
+  font-size: clamp(15rem, 19vw, 22rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.06em;
@@ -87,8 +99,10 @@
 
 .sg-launch-404__eyebrow {
   display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
   margin: 0 0 1.2rem;
-  padding: 0.55rem 1.1rem;
+  padding: 0.6rem 1.2rem 0.6rem 0.6rem;
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.09);
@@ -99,10 +113,27 @@
   text-transform: uppercase;
 }
 
+.sg-launch-404__eyebrow::before {
+  content: "404";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  background: #f59e0b;
+  color: #111827;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  box-shadow: 0 0.6rem 1.8rem rgba(245, 158, 11, 0.28);
+}
+
 .sg-launch-404 h1 {
   max-width: 78rem;
   margin: 0;
   color: #fff;
+  font-family: Montserrat, "Open Sans", sans-serif;
   font-size: clamp(3.2rem, 5vw, 5.4rem);
   font-weight: 800;
   line-height: 1.08;
@@ -159,6 +190,7 @@
 }
 
 .sg-launch-404__section {
+  width: 100%;
   margin-top: 3.6rem;
 }
 
@@ -175,58 +207,75 @@
 .sg-launch-404__panel h2 {
   margin: 0;
   color: var(--sg-404-ink);
+  font-family: Montserrat, "Open Sans", sans-serif;
   font-size: clamp(2.2rem, 3vw, 3rem);
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.025em;
 }
 
-.sg-launch-404__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.4rem;
+/*
+ * The Learning Path row intentionally uses flexbox instead of the old CSS
+ * grid. Four valid path cards therefore share one complete row and stretch
+ * across the full container; the Shortcode also carries the same critical
+ * flex basis inline, so legacy grid rules cannot leave empty columns.
+ */
+.sg-launch-404__path-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  width: 100%;
   margin-top: 1.8rem;
 }
 
-.sg-launch-404__card {
+.sg-launch-404__path-card {
   display: flex;
+  flex: 1 1 calc((100% - 5.4rem) / 4);
   min-width: 0;
-  min-height: 15rem;
+  min-height: 17.6rem;
   flex-direction: column;
-  padding: 1.8rem;
+  margin: 0;
+  padding: 2rem;
   border: 1px solid var(--sg-404-line);
-  border-radius: 1.8rem;
+  border-radius: 2rem;
   background: #fff;
   color: var(--sg-404-ink) !important;
   text-decoration: none !important;
-  box-shadow: 0 0.8rem 2.2rem rgba(2, 6, 23, 0.05);
+  box-shadow: 0 1rem 2.6rem rgba(2, 6, 23, 0.055);
   transition:
     border-color 0.18s ease,
     transform 0.18s ease,
     box-shadow 0.18s ease;
 }
 
-.sg-launch-404__card:hover,
-.sg-launch-404__card:focus-visible {
+.sg-launch-404__path-card:hover,
+.sg-launch-404__path-card:focus-visible {
   border-color: #a5f3fc;
-  box-shadow: 0 1.4rem 3rem rgba(2, 6, 23, 0.08);
-  transform: translateY(-1px);
+  box-shadow: 0 1.6rem 3.4rem rgba(2, 6, 23, 0.09);
+  transform: translateY(-2px);
 }
 
-.sg-launch-404__card strong {
+.sg-launch-404__path-card strong {
+  display: block;
+  width: 100%;
+  font-family: Montserrat, "Open Sans", sans-serif;
   font-size: 1.72rem;
   font-weight: 800;
   line-height: 1.3;
 }
 
-.sg-launch-404__card span {
+.sg-launch-404__path-card span {
+  display: block;
+  width: 100%;
   margin-top: 0.8rem;
   color: var(--sg-404-muted);
   font-size: 1.38rem;
   line-height: 1.55;
 }
 
-.sg-launch-404__card em {
+.sg-launch-404__path-card em {
+  display: block;
+  width: 100%;
   margin-top: auto;
   padding-top: 1.4rem;
   color: var(--sg-404-accent-dark);
@@ -239,10 +288,12 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.6rem;
+  width: 100%;
   margin-top: 2.4rem;
 }
 
 .sg-launch-404__panel {
+  width: 100%;
   min-width: 0;
   padding: 2rem;
   border: 1px solid var(--sg-404-line);
@@ -259,9 +310,12 @@
 .sg-launch-404__panel li {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
-.sg-launch-404__panel li::before {
+.sg-launch-404__panel li::before,
+.sg-launch-404__panel li::after {
+  content: none !important;
   display: none !important;
 }
 
@@ -293,27 +347,51 @@
   color: var(--sg-404-accent-dark) !important;
 }
 
-@media (max-width: 1024px) {
-  .sg-launch-404__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.sg-launch-404 a:focus-visible,
+.sg-launch-404 button:focus-visible,
+.sg-launch-404 input:focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.75);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .sg-launch-404__path-card {
+    padding: 1.6rem;
+  }
+
+  .sg-launch-404__path-card strong {
+    font-size: 1.55rem;
+  }
+
+  .sg-launch-404__path-card span {
+    font-size: 1.28rem;
   }
 }
 
 @media (max-width: 767px) {
+  .sg-launch-404__wrap {
+    width: calc(100% - 2.4rem);
+    padding-top: 2rem;
+    padding-bottom: 4.8rem;
+  }
+
   .sg-launch-404__hero {
     padding: 2.6rem 2rem;
     border-radius: 2rem;
   }
 
   .sg-launch-404__code {
-    font-size: 10rem;
+    top: 0.8rem;
+    right: 1.4rem;
+    font-size: 11.2rem;
+    -webkit-text-stroke-width: 0.15rem;
   }
 
   .sg-launch-404__lead {
     font-size: 1.5rem;
   }
 
-  /* 404 hero form me select nahi hai, isliye input + button ek line me rakho. */
+  /* The 404 hero form has no select, so the input and button stay in one row. */
   .sg-launch-404__hero .sg-global-search--hero {
     flex-wrap: nowrap;
     padding: 0.5rem 0.5rem 0.5rem 4rem;
@@ -339,12 +417,16 @@
   }
 }
 
-@media (max-width: 560px) {
-  .sg-launch-404__grid {
-    grid-template-columns: minmax(0, 1fr);
+@media (max-width: 680px) {
+  .sg-launch-404__path-card {
+    flex-basis: calc((100% - 1.8rem) / 2) !important;
+    min-height: 16rem;
   }
+}
 
-  .sg-launch-404__card {
+@media (max-width: 440px) {
+  .sg-launch-404__path-card {
+    flex-basis: 100% !important;
     min-height: 0;
   }
 
@@ -354,9 +436,507 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sg-launch-404__card {
+  .sg-launch-404__path-card {
     transition: none !important;
   }
 }
 
-/* ---------- End Step 9 SEO + Launch Polish (sg-step-9-seo-launch) ---------- */
+/* ---------- End Step 9 Clean Final (sg-step-9-clean-final) ---------- */
+/* =====================================================================
+   Silicon Geek Step 9 — SEO + Performance + Launch Polish (CLEAN FINAL)
+   Replace the complete old Step 9 block in
+   src/sass/theme/_circuitshala-home.scss with this one block.
+   Verify token: sg-step-9-clean-final
+
+   Final 404 layout:
+   - Four Learning Path cards in one row on desktop/tablet widths
+   - Two per row on small tablets, one per row on phones
+   - Large, fully visible 404 mark in the hero
+   ===================================================================== */
+
+body.error404 .sg-launch-404-template-main {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sg-launch-404 {
+  --sg-404-ink: #0b1226;
+  --sg-404-body: #334155;
+  --sg-404-muted: #64748b;
+  --sg-404-line: #e2e8f0;
+  --sg-404-accent-dark: #0e7490;
+  background: #f8fafc;
+  color: var(--sg-404-body);
+  overflow: hidden;
+}
+
+.sg-launch-404 *,
+.sg-launch-404 *::before,
+.sg-launch-404 *::after {
+  box-sizing: border-box;
+}
+
+.sg-launch-404__wrap {
+  width: min(124rem, calc(100% - 4rem));
+  margin-left: auto;
+  margin-right: auto;
+  padding: clamp(2rem, 4vw, 4rem) 0 clamp(4rem, 6vw, 6rem);
+}
+
+.sg-launch-404__hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(3rem, 6vw, 5.6rem);
+  border-radius: 2.4rem;
+  background:
+    radial-gradient(
+      62rem 36rem at 92% 0%,
+      rgba(14, 165, 233, 0.34),
+      transparent 60%
+    ),
+    radial-gradient(
+      48rem 30rem at 0% 110%,
+      rgba(245, 158, 11, 0.16),
+      transparent 55%
+    ),
+    linear-gradient(135deg, #0b1226, #111b38 58%, #0c2f52);
+  color: #fff;
+  box-shadow: 0 2rem 5rem rgba(2, 6, 23, 0.14);
+}
+
+.sg-launch-404__hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 4.4rem 4.4rem;
+  pointer-events: none;
+}
+
+.sg-launch-404__hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sg-launch-404__code {
+  position: absolute !important;
+  top: 1rem;
+  right: 3.8rem;
+  z-index: 0 !important;
+  margin: 0;
+  color: rgba(191, 219, 254, 0.24);
+  -webkit-text-stroke: 0.2rem rgba(125, 211, 252, 0.58);
+  text-shadow: 0 0 3.6rem rgba(14, 165, 233, 0.28);
+  font-family: Montserrat, "Open Sans", sans-serif;
+  font-size: clamp(15rem, 19vw, 22rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  pointer-events: none;
+}
+
+.sg-launch-404__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0 0 1.2rem;
+  padding: 0.6rem 1.2rem 0.6rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  color: #bae6fd;
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sg-launch-404__eyebrow::before {
+  content: "404";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  background: #f59e0b;
+  color: #111827;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  box-shadow: 0 0.6rem 1.8rem rgba(245, 158, 11, 0.28);
+}
+
+.sg-launch-404 h1 {
+  max-width: 78rem;
+  margin: 0;
+  color: #fff;
+  font-family: Montserrat, "Open Sans", sans-serif;
+  font-size: clamp(3.2rem, 5vw, 5.4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.sg-launch-404__lead {
+  max-width: 70rem;
+  margin: 1.5rem 0 0;
+  color: #cbd5e1;
+  font-size: 1.68rem;
+  line-height: 1.65;
+}
+
+.sg-launch-404__hero .sg-global-search--hero {
+  max-width: 74rem;
+  margin-top: 2.6rem;
+}
+
+.sg-launch-404__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.sg-launch-404__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.6rem;
+  padding: 1rem 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff !important;
+  font-size: 1.42rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-decoration: none !important;
+}
+
+.sg-launch-404__btn--primary {
+  border-color: transparent;
+  background: #fff;
+  color: var(--sg-404-ink) !important;
+}
+
+.sg-launch-404__btn:hover,
+.sg-launch-404__btn:focus-visible {
+  border-color: #67e8f9;
+  background: #ecfeff;
+  color: #164e63 !important;
+}
+
+.sg-launch-404__section {
+  width: 100%;
+  margin-top: 3.6rem;
+}
+
+.sg-launch-404__section > p {
+  margin: 0 0 0.3rem;
+  color: var(--sg-404-accent-dark);
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.sg-launch-404__section > h2,
+.sg-launch-404__panel h2 {
+  margin: 0;
+  color: var(--sg-404-ink);
+  font-family: Montserrat, "Open Sans", sans-serif;
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+/*
+ * The Learning Path row intentionally uses flexbox instead of the old CSS
+ * grid. Four valid path cards therefore share one complete row and stretch
+ * across the full container; the Shortcode also carries the same critical
+ * flex basis inline, so legacy grid rules cannot leave empty columns.
+ */
+.sg-launch-404__path-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  width: 100%;
+  margin-top: 1.8rem;
+}
+
+.sg-launch-404__path-card {
+  display: flex;
+  flex: 1 1 calc((100% - 5.4rem) / 4);
+  min-width: 0;
+  min-height: 17.6rem;
+  flex-direction: column;
+  margin: 0;
+  padding: 2rem;
+  border: 1px solid var(--sg-404-line);
+  border-radius: 2rem;
+  background: #fff;
+  color: var(--sg-404-ink) !important;
+  text-decoration: none !important;
+  box-shadow: 0 1rem 2.6rem rgba(2, 6, 23, 0.055);
+  transition:
+    border-color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.sg-launch-404__path-card:hover,
+.sg-launch-404__path-card:focus-visible {
+  border-color: #a5f3fc;
+  box-shadow: 0 1.6rem 3.4rem rgba(2, 6, 23, 0.09);
+  transform: translateY(-2px);
+}
+
+.sg-launch-404__path-card strong {
+  display: block;
+  width: 100%;
+  font-family: Montserrat, "Open Sans", sans-serif;
+  font-size: 1.72rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.sg-launch-404__path-card span {
+  display: block;
+  width: 100%;
+  margin-top: 0.8rem;
+  color: var(--sg-404-muted);
+  font-size: 1.38rem;
+  line-height: 1.55;
+}
+
+.sg-launch-404__path-card em {
+  display: block;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 1.4rem;
+  color: var(--sg-404-accent-dark);
+  font-size: 1.34rem;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.sg-launch-404__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem;
+  width: 100%;
+  margin-top: 2.4rem;
+}
+
+.sg-launch-404__panel {
+  width: 100%;
+  min-width: 0;
+  padding: 2rem;
+  border: 1px solid var(--sg-404-line);
+  border-radius: 1.8rem;
+  background: #fff;
+}
+
+.sg-launch-404__panel ul {
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sg-launch-404__panel li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sg-launch-404__panel li::before,
+.sg-launch-404__panel li::after {
+  content: none !important;
+  display: none !important;
+}
+
+.sg-launch-404__panel li + li {
+  border-top: 1px solid var(--sg-404-line);
+}
+
+.sg-launch-404__panel a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.1rem 0;
+  color: var(--sg-404-body) !important;
+  font-size: 1.48rem;
+  font-weight: 700;
+  line-height: 1.45;
+  text-decoration: none !important;
+}
+
+.sg-launch-404__panel a::after {
+  content: "→";
+  flex: 0 0 auto;
+  color: var(--sg-404-accent-dark);
+}
+
+.sg-launch-404__panel a:hover,
+.sg-launch-404__panel a:focus-visible {
+  color: var(--sg-404-accent-dark) !important;
+}
+
+.sg-launch-404 a:focus-visible,
+.sg-launch-404 button:focus-visible,
+.sg-launch-404 input:focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.75);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .sg-launch-404__path-card {
+    padding: 1.6rem;
+  }
+
+  .sg-launch-404__path-card strong {
+    font-size: 1.55rem;
+  }
+
+  .sg-launch-404__path-card span {
+    font-size: 1.28rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .sg-launch-404__wrap {
+    width: calc(100% - 2.4rem);
+    padding-top: 1.6rem;
+    padding-bottom: 3.2rem;
+  }
+
+  .sg-launch-404__hero {
+    padding: 2.2rem 1.8rem;
+    border-radius: 2rem;
+  }
+
+  /*
+   * On phones the large 404 mark sits in the normal flow above the badge.
+   * This keeps it clearly visible without crossing the badge or heading.
+   */
+  .sg-launch-404__code {
+    position: relative !important;
+    top: auto;
+    right: auto;
+    left: auto;
+    display: block;
+    width: 100%;
+    margin: -0.4rem 0 0.3rem;
+    padding-right: 0.2rem;
+    text-align: right;
+    font-size: clamp(6.8rem, 22vw, 9rem);
+    line-height: 0.9;
+    -webkit-text-stroke-width: 0.16rem;
+  }
+
+  .sg-launch-404__eyebrow {
+    margin-bottom: 0.9rem;
+  }
+
+  .sg-launch-404 h1 {
+    font-size: clamp(2.9rem, 9vw, 3.6rem);
+  }
+
+  .sg-launch-404__lead {
+    margin-top: 1.1rem;
+    font-size: 1.5rem;
+  }
+
+  .sg-launch-404__actions {
+    margin-top: 1.4rem;
+  }
+
+  .sg-launch-404__section {
+    margin-top: 2.4rem;
+  }
+
+  .sg-launch-404__path-grid {
+    gap: 1.2rem !important;
+    margin-top: 1.2rem;
+  }
+
+  .sg-launch-404__path-card {
+    padding: 1.6rem;
+  }
+
+  .sg-launch-404__path-card span {
+    margin-top: 0.55rem;
+  }
+
+  .sg-launch-404__path-card em {
+    padding-top: 1rem;
+  }
+
+  .sg-launch-404__panel {
+    padding: 1.6rem;
+  }
+
+  /* The 404 hero form has no select, so the input and button stay in one row. */
+  .sg-launch-404__hero .sg-global-search--hero {
+    flex-wrap: nowrap;
+    margin-top: 1.8rem;
+    padding: 0.5rem 0.5rem 0.5rem 4rem;
+    border-radius: 999px;
+  }
+
+  .sg-launch-404__hero .sg-global-search--hero .sg-global-search__icon {
+    top: 50%;
+  }
+
+  .sg-launch-404__hero .sg-global-search--hero .sg-global-search__input {
+    flex: 1 1 0% !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  .sg-launch-404__hero .sg-global-search--hero .sg-global-search__button {
+    flex: 0 0 auto !important;
+  }
+
+  .sg-launch-404__columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.2rem;
+    margin-top: 1.6rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .sg-launch-404__path-card {
+    flex-basis: calc((100% - 1.2rem) / 2) !important;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 440px) {
+  .sg-launch-404__path-card {
+    flex-basis: 100% !important;
+    min-height: 0;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .sg-launch-404__btn {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sg-launch-404__path-card {
+    transition: none !important;
+  }
+}
+
+/* ---------- End Step 9 Clean Final (sg-step-9-clean-final) ---------- */

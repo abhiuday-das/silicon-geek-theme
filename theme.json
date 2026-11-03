@@ -583,6 +583,16 @@
       "name": "page-focus-violet",
       "title": "Inner Page — Focus Reading (Violet)",
       "postTypes": ["page"]
+    },
+    {
+      "name": "page-about-silicon-geek",
+      "title": "About Silicon Geek",
+      "postTypes": ["page"]
+    },
+    {
+      "name": "page-policy",
+      "title": "Silicon Geek Policy",
+      "postTypes": ["page"]
     }
   ],
   "templates": [
